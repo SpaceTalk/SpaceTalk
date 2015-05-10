@@ -1,4 +1,9 @@
 Template.channel.helpers({
+  messages: function() {
+    var _id = Router.current().params._id;
+    return Messages.find({_channel: _id});
+  },
+
   channel: function() {
     var _id = Router.current().params._id;
     return Channels.findOne({_id: _id});
