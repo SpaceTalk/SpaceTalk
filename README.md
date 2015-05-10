@@ -52,3 +52,4 @@ Thanks to [@timbrandin](https://twitter.com/timbrandin) who created this materia
 * Per Fredelius ([@worldsayshi](https://github.com/worldsayshi))
 * Robin Lindh Nilsson (?)
 * Tim Brandin ([@timbrandin](https://twitter.com/timbrandin))
+* Tobias Tikka ([@tobiastikka](https://twitter.com/tobiastikka))
