@@ -10,6 +10,11 @@ This code is part of the Meteor Workshop that takes place on the 14th of May 201
 
 It was made solely do demonstrate the efficiency and the simple nature of Meteor.
 
+## Prerequisites
+
+* [Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+* [Meteor](https://www.meteor.com/install)
+
 ## Getting started
 
 Clone the repository:
@@ -28,6 +33,7 @@ Each page on the presentation on slides.com presents tasks that you are supposed
 
 Navigate to [the presentation on slides.com.](https://slides.com/timbrandin/meteor-slack)
 
+> This guide starts on the master branch.
 
 ### Checkout the next step
 
