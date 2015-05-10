@@ -23,7 +23,7 @@ Clone the repository:
 git clone git@github.com:studiointeract/meteor-slack.git
 ```
 
-We created the code for this step just by calling ```meteor create meteor-slack``` in the terminal and the added this to the repo on this branch.
+We created the code for this step just by calling ```meteor create meteor-slack``` in the terminal (console) and then added what was generated to the repo on the master branch (excluding this awesome README).
 
 ## How to follow this guide?
 
