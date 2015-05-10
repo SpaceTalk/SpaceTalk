@@ -1,6 +1,6 @@
 # Meteor Slack
 
-A chat application made in steps, it is designed to look a little like Slack.
+A chat application made in steps, and designed to look a little bit like Slack.
 
 > We hope you like it! :)
 
