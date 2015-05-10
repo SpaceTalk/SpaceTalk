@@ -1,3 +1,7 @@
 <template name="home">
-  Hello world
+  <ul>
+    {{#each channels}}
+    <li>{{name}}</li>
+    {{/each}}
+  </ul>
 </template>
