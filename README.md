@@ -24,10 +24,15 @@ We created the code for this step just by calling ```meteor create meteor-slack`
 
 Each page on the presentation on slides.com presents tasks that you are supposed to try and solve, if you get stuck or fall behind the group you can always ask an expert (if you're participating) or checkout the solution on the next step.
 
+### Follow the steps in the presentation
+
+Navigate to [the presentation on slides.com.](https://slides.com/timbrandin/meteor-slack)
+
+
 ### Checkout the next step
 
 ```
-git checkout step-# // <-- Replace # with the number of your current step in the presenation.
+git checkout step-# // <-- Replace # with the number of your current step in the presentation.
 ```
 
 ## Credits
