@@ -2,7 +2,7 @@
 
 A chat application made in steps, and designed to look a little bit like Slack.
 
-> We hope you like it! :)
+> With channels for multiple users and infinite scroll and a list of channels in a sidebar.
 
 ## Disclaimer
 
