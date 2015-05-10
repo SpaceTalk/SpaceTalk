@@ -11,3 +11,4 @@ iron:router
 markdown
 accounts-password
 accounts-ui
+momentjs:moment

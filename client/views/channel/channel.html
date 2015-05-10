@@ -4,7 +4,7 @@
   <ul>
     {{#each messages}}
     <li>
-      <div>{{user.emails.[0].address}}</div>
+      <div>{{user.emails.[0].address}} {{time}}</div>
       {{#markdown}}{{{message}}}{{/markdown}}
     </li>
     {{/each}}
