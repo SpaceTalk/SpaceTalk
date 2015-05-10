@@ -8,3 +8,4 @@ meteor-platform
 autopublish
 insecure
 iron:router
+markdown

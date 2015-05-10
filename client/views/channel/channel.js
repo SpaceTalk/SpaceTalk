@@ -15,6 +15,8 @@ Template.channel.events({
     if (event.keyCode == 13 && !event.shiftKey) { // Check if enter was pressed (but without shift).
       var _id = Router.current().params._id;
       var value = instance.find('textarea').value;
+      // Markdown requires double spaces at the end of the line to force line-breaks.
+      value = value.replace("\n", "  \n");
       instance.find('textarea').value = ''; // Clear the textarea.
       Messages.insert({_channel: _id, message: value});
     }
