@@ -1,5 +1,6 @@
 Template.home.onCreated(function() {
   this.subscribe('channels');
+  this.subscribe('allUserNames');
 });
 
 Template.home.helpers({
