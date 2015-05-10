@@ -1,3 +1,7 @@
+Template.home.onCreated(function() {
+  this.subscribe('channels');
+});
+
 Template.home.helpers({
   channels: function() {
     return Channels.find();
