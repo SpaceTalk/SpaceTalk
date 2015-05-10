@@ -9,3 +9,5 @@ autopublish
 insecure
 iron:router
 markdown
+accounts-password
+accounts-ui
