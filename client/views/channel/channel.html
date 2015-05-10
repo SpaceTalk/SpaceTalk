@@ -3,6 +3,7 @@
 
   <ul>
     {{#each messages}}
+    <h2>{{date}}</h2>
     <li>
       <div>{{user.emails.[0].address}} {{time}}</div>
       {{#markdown}}{{{message}}}{{/markdown}}
