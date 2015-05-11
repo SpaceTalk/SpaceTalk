@@ -1,0 +1,29 @@
+$aside: 220px;
+$top: 53px;
+
+header,
+aside,
+footer {
+  position: fixed;
+}
+
+header {
+  top: 0;
+  height: $top;
+  margin-left: $aside;
+}
+
+aside {
+  top: $top;
+  width: $aside;
+}
+
+article {
+  margin-left: $aside;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  margin-left: $aside;
+}
