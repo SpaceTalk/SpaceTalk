@@ -1,6 +1,14 @@
 $aside: 220px;
 $top: 53px;
 
+$primary: #453744;
+
+$padding: 16px;
+
+body {
+  margin: 0;
+}
+
 header,
 aside,
 footer {
@@ -11,14 +19,31 @@ header {
   top: 0;
   height: $top;
   margin-left: $aside;
+  background: white;
+  width: 100%;
+  h1 {
+    padding: 0 $padding; // padding only on left and right side.
+    margin: 0;
+    line-height: 53px;
+  }
 }
 
 aside {
   top: $top;
   width: $aside;
+  background: $primary;
+  height: calc(100% - 53px);
+  padding: $padding;
+  box-sizing: border-box;
+  &, a {
+    color: lighten($primary, 30%);
+  }
 }
 
 article {
+  padding: $padding;
+  margin-top: 53px;
+  height: calc(100% - 53px);
   margin-left: $aside;
 }
 
@@ -26,4 +51,6 @@ footer {
   position: fixed;
   bottom: 0;
   margin-left: $aside;
+  padding: $padding;
+  background: white;
 }
