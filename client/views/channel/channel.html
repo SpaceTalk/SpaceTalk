@@ -14,10 +14,14 @@
   </ul>
 
   {{#contentFor 'footer'}}
-  <form>
-    <textarea rows="1" cols="100"></textarea>
-  </form>
+  {{> messageForm}}
   {{/contentFor}}
 
   {{> home}}
+</template>
+
+<template name="messageForm">
+  <form>
+    <textarea rows="1" cols="100"></textarea>
+  </form>
 </template>

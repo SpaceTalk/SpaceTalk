@@ -35,7 +35,7 @@ Template.channel.helpers({
   }
 });
 
-Template.channel.events({
+Template.messageForm.events({
   'keyup textarea': function(event, instance) {
     if (event.keyCode == 13 && !event.shiftKey) { // Check if enter was pressed (but without shift).
       var _id = Router.current().params._id;
