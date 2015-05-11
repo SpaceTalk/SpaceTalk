@@ -10,6 +10,7 @@ blaze-tools@1.0.3
 boilerplate-generator@1.0.3
 callback-hook@1.0.3
 check@1.0.5
+copleykj:jquery-autosize@1.17.8
 ddp@1.1.0
 deps@1.0.7
 ejson@1.0.6
@@ -60,6 +61,9 @@ spacebars@1.0.6
 spacebars-compiler@1.0.6
 srp@1.0.3
 templating@1.1.1
+tmeasday:crypto-base@3.1.2
+tmeasday:crypto-md5@3.1.2
+tmeasday:gravatar@0.0.4
 tracker@1.0.7
 ui@1.0.6
 underscore@1.0.3

@@ -5,10 +5,17 @@
 
   <ul>
     {{#each messages}}
+    {{#if date}}
     <h2>{{date}}</h2>
+    {{/if}}
     <li>
-      <div>{{user.username}} {{time}}</div>
-      {{#markdown}}{{{message}}}{{/markdown}}
+      {{#if avatar}}
+      <img src="{{avatar}}" class="avatar">
+      {{/if}}
+      <div class="message-body">
+        <div><span class="username">{{user.username}}</span> <span class="time">{{time}}</span></div>
+        <div class="message">{{#markdown}}{{{message}}}{{/markdown}}</div>
+      </div>
     </li>
     {{/each}}
   </ul>
