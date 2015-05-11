@@ -1,5 +1,7 @@
 <template name="channel">
+  {{#contentFor 'header'}}
   <h1>{{channel.name}}</h1>
+  {{/contentFor}}
 
   <ul>
     {{#each messages}}
@@ -11,9 +13,11 @@
     {{/each}}
   </ul>
 
+  {{#contentFor 'footer'}}
   <form>
     <textarea rows="1" cols="100"></textarea>
   </form>
+  {{/contentFor}}
 
   {{> home}}
 </template>

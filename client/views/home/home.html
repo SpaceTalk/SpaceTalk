@@ -1,4 +1,5 @@
 <template name="home">
+  {{#contentFor 'aside'}}
   <form>
     <label for="name">Channel name:</label>
     <input id="name" type="text">
@@ -11,4 +12,5 @@
   </ul>
 
   {{> loginButtons}}
+  {{/contentFor}}
 </template>
