@@ -45,7 +45,7 @@ header {
   background: white;
   width: 100%;
   h1 {
-    padding: 0 $padding; // padding only on left and right side.
+    padding: 0 $padding + 4px; // padding only on left and right side.
     margin: 0;
     line-height: 53px;
     color: $primary;
