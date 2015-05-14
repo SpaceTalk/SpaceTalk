@@ -10,10 +10,10 @@ So if you'd like to be part of the project, please check out the [roadmap](https
 
 ### Features
 
-[x] Channels for multiple users
-[x] Markdown in messages
-[x] Gravatar profile pictures
-[x] Autosizing textarea
+- [x] Channels for multiple users
+- [x] Markdown in messages
+- [x] Gravatar profile pictures
+- [x] Autosizing textarea
 
 ### Prerequisites
 
