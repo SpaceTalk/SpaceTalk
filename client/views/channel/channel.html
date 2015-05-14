@@ -1,0 +1,34 @@
+<template name="channel">
+  {{#contentFor 'header'}}
+  <h1>{{channel.name}}</h1>
+  {{/contentFor}}
+
+  <ul>
+    {{#each messages}}
+    {{#if date}}
+    <h2>{{date}}</h2>
+    {{/if}}
+    <li>
+      {{#if avatar}}
+      <img src="{{avatar}}" class="avatar">
+      {{/if}}
+      <div class="message-body">
+        <div><span class="username">{{user.username}}</span> <span class="time">{{time}}</span></div>
+        <div class="message">{{#markdown}}{{{message}}}{{/markdown}}</div>
+      </div>
+    </li>
+    {{/each}}
+  </ul>
+
+  {{#contentFor 'footer'}}
+  {{> messageForm}}
+  {{/contentFor}}
+
+  {{> home}}
+</template>
+
+<template name="messageForm">
+  <form>
+    <textarea rows="1" cols="100"></textarea>
+  </form>
+</template>

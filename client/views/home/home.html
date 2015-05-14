@@ -1,0 +1,31 @@
+<template name="home">
+  {{#contentFor 'aside'}}
+  <div class="team">
+    <span class="title">Meteor Slack</span>
+  </div>
+
+  {{> channelForm}}
+  <ul>
+    {{#each channels}}
+    <li class="{{active}}"><a href="/channel/{{_id}}">{{name}}</a></li>
+    {{/each}}
+  </ul>
+
+  <div class="user">
+    {{#if avatar}}
+    <img src="{{avatar}}" class="avatar">
+    {{/if}}
+    {{> loginButtons}}
+  </div>
+  {{/contentFor}}
+</template>
+
+<template name="channelForm">
+  <form>
+    <label for="name">Channels</label>
+    <button type="button" class="show-form"><i class="icon-plus"></i></button>
+    <div class="add-channel-form hidden">
+      <input id="name" type="text" autocomplete="off">
+    </div>
+  </form>
+</template>

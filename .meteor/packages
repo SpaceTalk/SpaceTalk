@@ -5,5 +5,11 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
-insecure
+iron:router
+markdown
+accounts-password
+accounts-ui
+momentjs:moment
+fourseven:scss
+copleykj:jquery-autosize
+tmeasday:gravatar

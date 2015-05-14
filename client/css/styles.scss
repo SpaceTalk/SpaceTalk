@@ -1,0 +1,265 @@
+$aside: 220px;
+$top: 53px;
+
+$primary: #453744;
+$secondary: #3D3C40;
+$accent: #4C9689;
+
+$padding: 16px;
+
+@mixin channel() {
+  &:before {
+    content: '#';
+    color: lighten(desaturate($primary, 30%), 30%);
+    font-weight: normal;
+    margin-right: 3px;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: Lato, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  line-height: 1rem;
+  color: #555459;
+}
+
+ul, li {
+  padding: 0 0 2px;
+  margin: 0;
+  list-style: none;
+  line-height: 1.5rem;
+}
+
+header,
+aside,
+footer {
+  position: fixed;
+}
+
+header {
+  top: 0;
+  height: $top;
+  margin-left: $aside;
+  background: white;
+  width: 100%;
+  h1 {
+    padding: 0 $padding + 4px; // padding only on left and right side.
+    margin: 0;
+    line-height: 53px;
+    color: $primary;
+    font-size: 24px;
+    font-weight: 900;
+  }
+}
+
+label {
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.show-form {
+  float: right;
+  display: block;
+  padding: 0;
+  border: solid 1px lighten($primary, 15%);
+  background: $primary;
+  border-radius: 50% 50%;
+  width: 17px;
+  height: 17px;
+  &:focus {
+    outline: none;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+aside li a,
+header h1 {
+  @include channel();
+}
+
+.icon-plus {
+  position: relative;
+  cursor: pointer;
+  &:before {
+    content: '+';
+    color: lighten($primary, 15%);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    position: absolute;
+    top: -10px;
+    left: -5px;
+  }
+}
+
+.add-channel-form {
+  padding: $padding/2 0;
+  input[type="text"] {
+    background: none;
+    border: solid 2px lighten($primary, 30%);
+    border-radius: 4px;
+    padding: 4px;
+    box-sizing: border-box;
+    color: lighten($primary, 40%);
+    font-weight: 300;
+    font-size: 15px;
+    text-shadow: none;
+    display: block;
+    width: 100%;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+aside {
+  top: $top;
+  width: $aside;
+  background: $primary;
+  height: calc(100% - 53px);
+  padding: $padding;
+  box-sizing: border-box;
+  z-index: 2;
+  &, a {
+    color: lighten($primary, 30%);
+    text-decoration: none;
+    text-shadow: 1px 1px darken($primary, 5%);
+  }
+  a {
+    padding: 0;
+    display: block;
+  }
+  #login-buttons {
+    &, a {
+      text-shadow: none !important;
+    }
+  }
+  ul {
+    margin: $padding/2 0;
+  }
+  li a:before {
+    color: lighten($primary, 10%);
+  }
+  .active {
+    background: $accent;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    margin-left: -$padding;
+    padding-left: $padding;
+    a {
+      color: white;
+      text-shadow: 1px 1px darken($accent, 10%);
+      &:before {
+        color: lighten($accent, 20%);
+      }
+    }
+  }
+  .team {
+    position: fixed;
+    top: 0;
+    background: darken($primary, 5%);
+    border-bottom: solid 2px darken($primary, 10%);
+    width: $aside;
+    margin-left: -$padding;
+    padding-left: $padding;
+    text-shadow: none;
+    line-height: $top;
+    height: $top;
+    box-sizing: border-box;
+    font-weight: 900;
+    color: white;
+  }
+}
+
+.user {
+  position: fixed;
+  display: block;
+  width: 220px;
+  box-sizing: border-box;
+  padding: $padding/2;
+  margin: 0 (-$padding);
+  bottom: 0;
+  background: darken($primary, 5%);
+  border-top: solid 2px darken($primary, 10%);
+  line-height: 35px;
+  font-weight: 900;
+  a.login-link-text {
+    color: white;
+    text-decoration: none !important;
+  }
+}
+
+#login-dropdown-list {
+  bottom: 30px;
+  left: 50px;
+  top: initial;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  border: none;
+}
+
+.avatar {
+  width: 40px;
+  border-radius: 4px;
+  float: left;
+  margin-right: $padding*2/3;
+}
+
+article {
+  padding: $padding $padding*4/3;
+  margin-top: 53px;
+  height: calc(100% - 53px);
+  margin-left: $aside;
+  .message {
+    font-size: 15px;
+    color: $secondary;
+  }
+  .username, h2 {
+    color: darken($primary, 15%);
+    font-weight: 900;
+  }
+  li {
+    margin-top: $padding/2;
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  }
+  p {
+    margin: 0 0 $padding/2 0;
+  }
+  .time {
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-left: 3px;
+  }
+  .message-body {
+    float: left;
+  }
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  margin-left: $aside;
+  padding: $padding $padding*4/3-3px;
+  background: white;
+  z-index: 1;
+  textarea {
+    border: solid 2px lightgray;
+    border-radius: 4px;
+    padding: $padding/2;
+    width: 100%;
+    box-sizing: border-box;
+    resize: none !important;
+    font-size: 14px;
+    &:focus {
+      outline: none;
+    }
+  }
+}
