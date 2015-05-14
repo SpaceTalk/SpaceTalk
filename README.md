@@ -48,6 +48,46 @@ cd SpaceTalk
 meteor
 ```
 
+### Deploying
+
+Here are guides on deploying your app on some different clouds:
+
+#### Digital Ocean
+
+Here's a [$10 reference promo to setup a new droplet](https://www.digitalocean.com/?refcode=0d850306ddd1), and do check if this promo code works as well: **DROPLET10**
+
+1. Create a droplet on Digital Ocean
+  * And add your SSH-key (it makes it simpler). ```pbcopy < ~/.ssh/id-rsa.pub```
+2. Install and use [Meteor Up](https://github.com/arunoda/meteor-up)
+3. Create a .deploy folder for the Meteor Up settings.
+
+  ```
+  mkdir .deploy
+  cd .deploy
+  mup init
+  ```
+
+4. Add your settings for the droplet and your ssh-key in mup.json
+5. Setup your machine with node.js, mongo and spiderable (if desired).
+
+  ```
+  mup setup
+  ```
+
+6. Deploy your app to the droplet
+
+  ```
+  mup deploy
+  ```
+
+#### Meteor
+
+```
+meteor deploy my-spacetalk-app.meteor.com
+```
+
+####
+
 ### Disclaimer
 
 This code is part of the Meteor Workshop that takes place on the 14th of May 2015 in Gothenburg Sweden.
