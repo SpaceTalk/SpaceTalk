@@ -58,7 +58,7 @@ But it was solely made do demonstrate the efficiency and simple nature of Meteor
 
 ### Credits
 
-Thanks to [@timbrandin](https://twitter.com/timbrandin) who created this material, and the experts who helped to improve and make this workshop awesome (in alphabetical order):
+Thanks to [@timbrandin](https://twitter.com/timbrandin) who created this material, and the experts who helped to improve and make [the workshop](http://www.meetup.com/Meteor-Goteborg/events/221282857/) awesome (in alphabetical order):
 
 * Andreas Rolén ([@adderollen](https://twitter.com/adderollen))
 * Johan Brook ([@johanbrook](https://twitter.com/johanbrook))
