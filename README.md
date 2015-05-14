@@ -50,11 +50,11 @@ meteor
 
 ### Disclaimer
 
-This code is part of the Meteor Workshop that takes place on the 14th of May 2015 in Gothenburg Sweden.
+This code was part of a [Meteor Workshop](http://www.meetup.com/Meteor-Goteborg/events/221282857/) that took place on the 14th of May 2015 in Gothenburg, Sweden.
 
-Where we built a chat application in 25 steps (https://slides.com/timbrandin/meteor-slack) – originally designed to look a little bit like Slack.
+We used it to build a chat application in 25 steps (https://slides.com/timbrandin/meteor-slack) – it was originally designed to look a little bit like Slack.
 
-It was made solely made do demonstrate the efficiency and simple nature of Meteor applications.
+But it was solely made do demonstrate the efficiency and simple nature of Meteor applications.
 
 ### Credits
 
