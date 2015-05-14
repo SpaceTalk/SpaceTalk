@@ -1,14 +1,8 @@
-# Meteor Slack
+# SpaceTalk
 
-A chat application made in steps, and designed to look a little bit like Slack.
+A chat application made in 25 steps (https://slides.com/timbrandin/meteor-slack), originally designed to look a little bit like Slack.
 
-> With channels for multiple users and infinite scroll and a list of channels in a sidebar.
-
-## Disclaimer
-
-This code is part of the Meteor Workshop that takes place on the 14th of May 2015 in Gothenburg Sweden.
-
-It was made solely do demonstrate the efficiency and the simple nature of Meteor.
+> With channels for multiple users, markdown, gravatar, an autosizing textarea and a list of channels in a sidebar.
 
 ## Prerequisites
 
@@ -20,26 +14,23 @@ It was made solely do demonstrate the efficiency and the simple nature of Meteor
 Clone the repository:
 
 ```
-git clone git@github.com:studiointeract/meteor-slack.git
+git clone git@github.com:SpaceTalk/SpaceTalk.git
 ```
 
-We created the code for this step just by calling ```meteor create meteor-slack``` in the terminal (console) and then added what was generated to the repo on the master branch (excluding this awesome README).
-
-## How to follow this guide?
-
-Each page on the presentation on slides.com presents tasks that you are supposed to try and solve, if you get stuck or fall behind the group you can always ask an expert (if you're participating) or checkout the solution on the next step.
-
-### Follow the steps in the presentation
-
-Navigate to [the presentation on slides.com.](https://slides.com/timbrandin/meteor-slack)
-
-> This guide starts on the master branch.
-
-### Checkout the next step
+Start the app:
 
 ```
-git checkout step-# // <-- Replace # with the number of your current step in the presentation.
+cd SpaceTalk
+meteor
 ```
+
+## Disclaimer
+
+This code is part of the Meteor Workshop that takes place on the 14th of May 2015 in Gothenburg Sweden.
+
+It was made solely do demonstrate the efficiency and the simple nature of Meteor.
+
+Now we're building an open source chat application out of this.
 
 ## Credits
 
