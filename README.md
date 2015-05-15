@@ -56,7 +56,7 @@ We used it to build a chat application in 25 steps (https://slides.com/timbrandi
 
 But it was solely made do demonstrate the efficiency and simple nature of Meteor applications.
 
-### Credits
+#### Credits
 
 Thanks to [@timbrandin](https://twitter.com/timbrandin) who created this material, and the experts who helped to improve and make [the workshop](http://www.meetup.com/Meteor-Goteborg/events/221282857/) awesome (in alphabetical order):
 
