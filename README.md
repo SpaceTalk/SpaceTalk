@@ -88,4 +88,4 @@ MA  02110-1301, USA.
 
 -------
 
-Copyright © 2014 Tim Brandin &amp; SpaceTalk
+Copyright © 2015 Tim Brandin &amp; SpaceTalk
