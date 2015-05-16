@@ -15,10 +15,16 @@ So if you'd like to be part of the project, please check out the [roadmap](https
 
 ### Getting started
 
-Clone the repository:
+Fork the repository with the [top right button](https://github.com/SpaceTalk/SpaceTalk#fork-destination-box) and clone your fork:
 
 ```
-git clone git@github.com:SpaceTalk/SpaceTalk.git
+git clone https://github.com/YOURGITHUBUSERNAME/SpaceTalk.git
+```
+
+Add the remote source to your local clone:
+
+```
+git remote add upstream https://github.com/SpaceTalk/SpaceTalk.git
 ```
 
 Start the app:
@@ -27,6 +33,15 @@ Start the app:
 cd SpaceTalk
 meteor
 ```
+
+To update your clone do a pull:
+
+```
+git pull upstream master
+```
+
+Commit your changes to your fork, and create Pull Request with [github helper](https://github.com/SpaceTalk/SpaceTalk/compare/master...#)
+
 
 ### Disclaimer
 
