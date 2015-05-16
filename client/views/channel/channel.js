@@ -1,8 +1,13 @@
+var currentChannel = function () {
+  var _id = FlowRouter.getParam('_id');
+  return Channels.findOne({_id: _id});
+};
+
 Template.channel.onCreated(function() {
   var instance = this;
-  // Listen for changes to reactive variables (such as Router.current()).
+  // Listen for changes to reactive variables (such as FlowRouter.getParam()).
   instance.autorun(function() {
-    var channel = Router.current().params._id;
+    var channel = FlowRouter.getParam('_id');
     var sub = instance.subscribe('messages', channel);
     if (sub.ready()) {
       window.scrollTo(0, document.body.scrollHeight);
@@ -14,16 +19,17 @@ Template.channel.onRendered(function() {
   $('article').css({'padding-bottom': $('footer').outerHeight()});
 });
 
+Template.channelHeader.helpers({
+  channel: currentChannel
+});
+
 Template.channel.helpers({
   messages: function() {
-    var _id = Router.current().params._id;
+    var _id = FlowRouter.getParam('_id');
     return Messages.find({_channel: _id});
   },
 
-  channel: function() {
-    var _id = Router.current().params._id;
-    return Channels.findOne({_id: _id});
-  },
+  channel: currentChannel,
 
   user: function() {
     return Meteor.users.findOne({_id: this._userId});
@@ -53,7 +59,7 @@ Template.messageForm.events({
   'keydown textarea': function(event, instance) {
     if (event.keyCode == 13 && !event.shiftKey) { // Check if enter was pressed (but without shift).
       event.preventDefault();
-      var _id = Router.current().params._id;
+      var _id = FlowRouter.getParam('_id');
       var value = instance.find('textarea').value;
       // Markdown requires double spaces at the end of the line to force line-breaks.
       value = value.replace("\n", "  \n");
