@@ -46,7 +46,6 @@ Commit your changes to your fork, and create Pull Request with [github helper](h
 
 1. Code follows the [Meteor Style Guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide))
 2. Code doesn’t break things (The app can still run)
-3. Aligns with [the general plan for the product](https://trello.com/b/R9Nh1V3t/spacetalk-roadmap)
 
 ### Disclaimer
 
