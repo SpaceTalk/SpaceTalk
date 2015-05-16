@@ -6,27 +6,7 @@ Note: SpaceTalk is beta software. Most of it should work but it's still a little
 
 A lot of work has already gone into SpaceTalk, but it needs that final push to reach its full potential.
 
-So if you'd like to be part of the project, please check out the [roadmap](https://trello.com/b/R9Nh1V3t/spacetalk-roadmap) and [issues](https://github.com/SpaceTalk/SpaceTalk/issues) to see if there's anything you can help with.
-
-### Features
-
-- [x] Channels for multiple users
-- [x] Markdown in messages
-- [x] Gravatar profile pictures
-- [x] Auto-resizing textarea
-- [ ] Auto-scroll on new messages
-
-### Important features (We want these)
-
-- [ ] List of people
-- [ ] Online status
-- [ ] Direct messages
-- [ ] Notifications
-- [ ] Mentions
-- [ ] Email notifications
-- [ ] Rich embeds
-- [ ] Private groups
-- [ ] Channel members
+So if you'd like to be part of the project, please check out the [roadmap](https://trello.com/b/R9Nh1V3t/spacetalk-roadmap) and [issues](https://github.com/SpaceTalk/SpaceTalk/issues) to see if there's anything you can help with. (Note: We're following [Meteor Style Guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide))
 
 ### Prerequisites
 
