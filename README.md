@@ -42,6 +42,11 @@ git pull upstream master
 
 Commit your changes to your fork, and create Pull Request with [github helper](https://github.com/SpaceTalk/SpaceTalk/compare/master...#)
 
+### Guidelines for reviewing Pull Requests
+
+1. Code follows the [Meteor Style Guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide))
+2. Code doesn’t break things (The app can still run)
+3. Aligns with [the general plan for the product](https://trello.com/b/R9Nh1V3t/spacetalk-roadmap)
 
 ### Disclaimer
 
