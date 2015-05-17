@@ -1,56 +1,70 @@
 Channel = BlazeComponent.extendComponent({
-  onCreated: function () {
+  onCreated: function() {
     var self = this;
     // Listen for changes to reactive variables (such as FlowRouter.getParam()).
-    self.autorun(function () {
+    self.autorun(function() {
       var channel = currentRouteId();
-      console.log("ests");
-      channel && self.subscribe('messages', channel, function () {
+      channel && self.subscribe('messages', channel, function() {
         scrollDown();
       });
     });
   },
-  onRendered: function () {
+  onRendered: function() {
 
-    Messages.find({ _channel: currentRouteId() }).observeChanges({
+    // Observe the changes on the messages for this channel
+    Messages.find({
+      _channel: currentRouteId()
+    }).observeChanges({
+      // When a new message is added
       added: function(id, doc) {
-         scrollDown();
+        // Trigger the scroll down method which determines whether to scroll down or not
+        scrollDown();
       }
     });
 
-    $('article').css({ 'padding-bottom': $('footer').outerHeight() });
+    $('article').css({
+      'padding-bottom': $('footer').outerHeight()
+    });
   },
-  messages: function () {
+  messages: function() {
     var _id = currentRouteId();
-    return Messages.find({ _channel: _id });
+    return Messages.find({
+      _channel: _id
+    });
   },
-  channel: function () {
+  channel: function() {
     var _id = currentRouteId();
-    return Channels.findOne({ _id: _id });
+    return Channels.findOne({
+      _id: _id
+    });
   },
-  user: function () {
-    return Meteor.users.findOne({ _id: this.currentData()._userId });
+  user: function() {
+    return Meteor.users.findOne({
+      _id: this.currentData()._userId
+    });
   },
-  time: function () {
+  time: function() {
     return moment(this.timestamp).format('h:mm a');
   },
-  date: function () {
+  date: function() {
     var dateNow = moment(this.currentData().timestamp).calendar();
 
     if (!this.date || this.date != dateNow) {
       return this.date = dateNow;
     }
   },
-  avatar: function () {
-    var user = Meteor.users.findOne({ _id: this.currentData()._userId });
+  avatar: function() {
+    var user = Meteor.users.findOne({
+      _id: this.currentData()._userId
+    });
     if (user && user.emails) {
       return Gravatar.imageUrl(user.emails[0].address);
     }
   },
-  events: function () {
+  events: function() {
     return [{
-      'keydown textarea': function (event) {
-        if (event.keyCode == 13 && ! event.shiftKey) { // Check if enter was pressed (but without shift).
+      'keydown textarea': function(event) {
+        if (event.keyCode == 13 && !event.shiftKey) { // Check if enter was pressed (but without shift).
           event.preventDefault();
           var _id = currentRouteId();
           var value = this.find('textarea').value;
@@ -64,15 +78,28 @@ Channel = BlazeComponent.extendComponent({
             timestamp: new Date() // Add a timestamp to each message.
           });
           // Restore the autosize value.
-          this.$('textarea').css({ height: 37 });
+          this.$('textarea').css({
+            height: 37
+          });
           window.scrollTo(0, document.body.scrollHeight);
         }
-        $('article').css({ 'padding-bottom': $('footer').outerHeight() });
+        $('article').css({
+          'padding-bottom': $('footer').outerHeight()
+        });
       }
     }];
   }
 }).register('Channel');
 
+/**
+ * Scrolls down the page when the user is a at or nearly at the bottom of the page
+ */
 var scrollDown = function() {
-  window.scrollTo(0, document.body.scrollHeight);
+  // Check if the innerHeight + the scrollY position is higher than the offsetHeight - 200
+  console.log((window.innerHeight + window.scrollY));
+  console.log(" and " + document.body.offsetHeight);
+  if ((window.innerHeight + window.scrollY) >= (Number(document.body.offsetHeight) - 200)) {
+    // Scroll down the page
+    window.scrollTo(0, document.body.scrollHeight);
+  }
 }
