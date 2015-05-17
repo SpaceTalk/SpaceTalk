@@ -3,7 +3,7 @@ Channel = BlazeComponent.extendComponent({
     var self = this;
     // Listen for changes to reactive variables (such as FlowRouter.getParam()).
     self.autorun(function() {
-      var channel = currentRouteId();
+      var channel = FlowRouter.getParam('channel')
       channel && self.subscribe('messages', channel, function () {
         scrollDown();
       });
@@ -13,7 +13,7 @@ Channel = BlazeComponent.extendComponent({
 
     // Observe the changes on the messages for this channel
     Messages.find({
-      _channel: currentRouteId()
+      _channel: FlowRouter.getParam('channel')
     }).observeChanges({
       // When a new message is added
       added: function(id, doc) {
@@ -27,15 +27,13 @@ Channel = BlazeComponent.extendComponent({
     });
   },
   messages: function() {
-    var _id = currentRouteId();
     return Messages.find({
-      _channel: _id
+      _channel: FlowRouter.getParam('channel')
     });
   },
   channel: function() {
-    var _id = currentRouteId();
     return Channels.findOne({
-      _id: _id
+      _id: FlowRouter.getParam('channel')
     });
   },
   user: function() {
@@ -66,7 +64,7 @@ Channel = BlazeComponent.extendComponent({
       'keydown textarea': function(event) {
         if (event.keyCode == 13 && !event.shiftKey) { // Check if enter was pressed (but without shift).
           event.preventDefault();
-          var _id = currentRouteId();
+          var _id = FlowRouter.getParam('channel');
           var value = this.find('textarea').value;
           // Markdown requires double spaces at the end of the line to force line-breaks.
           value = value.replace("\n", "  \n");

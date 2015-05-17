@@ -15,3 +15,4 @@ tmeasday:gravatar
 meteorhacks:flow-layout
 meteorhacks:flow-router
 peerlibrary:blaze-components
+arillo:flow-router-helpers

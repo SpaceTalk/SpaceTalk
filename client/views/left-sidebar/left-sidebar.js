@@ -13,7 +13,7 @@ LeftSidebar = BlazeComponent.extendComponent({
     }
   },
   activeChannelClass: function () {
-    var _id = currentRouteId();
+    var _id = FlowRouter.getParam('channel');
     return _id == this.currentData()._id ? 'active' : '';
   },
 }).register('leftSidebar');
