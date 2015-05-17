@@ -44,7 +44,7 @@ Commit your changes to your fork, and create Pull Request with [github helper](h
 
 ### Guidelines for reviewing Pull Requests
 
-1. Code follows the [Meteor Style Guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide))
+1. Code follows the [Meteor Style Guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide)
 2. Code doesn’t break things (The app can still run)
 
 ### Disclaimer
