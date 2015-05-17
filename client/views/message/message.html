@@ -12,12 +12,16 @@
         {{/if}}
       </div>
       {{#if isEditing.get}}
-      <div class="edit-box">
-        <textarea rows="1" cols="90" class="edit-message-input">{{{message}}}</textarea>
-      </div>
+        {{> messageEditBox message=message}}
       {{else}}
       <div class="message">{{#markdown}}{{{message}}}{{/markdown}}</div>
       {{/if}}
     </div>
   </li>
+</template>
+
+<template name="messageEditBox">
+  <div class="edit-box">
+    <textarea rows="1" cols="90" class="edit-message-input">{{message}}</textarea>
+  </div>
 </template>

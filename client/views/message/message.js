@@ -1,3 +1,24 @@
+Template.messageEditBox.onRendered(function () {
+  var input = this.find('.edit-message-input');
+  input.focus();
+
+  if (input.setSelectionRange) {
+    var len = input.value.length * 2;
+    input.setSelectionRange(len, len);
+  } else {
+    $(input).val($(input).val());
+  }
+
+  input.scrollTop = 999999;
+});
+
+Template.messageEditBox.helpers({
+  message: function () {
+    // remove trailing newlines
+    return this.message.replace(/\s+$/g, '');
+  }
+});
+
 Message = BlazeComponent.extendComponent({
   onCreated: function () {
     this.isEditing = new ReactiveVar(false);
