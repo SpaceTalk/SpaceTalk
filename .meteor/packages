@@ -7,7 +7,6 @@
 meteor-platform
 markdown
 accounts-password
-accounts-ui
 momentjs:moment
 fourseven:scss
 copleykj:jquery-autosize
@@ -15,3 +14,4 @@ tmeasday:gravatar
 meteorhacks:flow-layout
 meteorhacks:flow-router
 peerlibrary:blaze-components
+useraccounts:unstyled
