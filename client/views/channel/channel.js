@@ -96,8 +96,6 @@ Channel = BlazeComponent.extendComponent({
  */
 var scrollDown = function() {
   // Check if the innerHeight + the scrollY position is higher than the offsetHeight - 200
-  console.log((window.innerHeight + window.scrollY));
-  console.log(" and " + document.body.offsetHeight);
   if ((window.innerHeight + window.scrollY) >= (Number(document.body.offsetHeight) - 200)) {
     // Scroll down the page
     window.scrollTo(0, document.body.scrollHeight);
