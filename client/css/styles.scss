@@ -188,6 +188,9 @@ aside {
   border-top: solid 2px darken($primary, 10%);
   line-height: 35px;
   font-weight: 900;
+  a {
+    display: inline;
+  }
   a.login-link-text {
     color: white;
     text-decoration: none !important;
