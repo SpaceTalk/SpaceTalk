@@ -38,39 +38,16 @@ Channel = BlazeComponent.extendComponent({
       _id: _id
     });
   },
-  user: function() {
-    return Meteor.users.findOne({
-      _id: this.currentData()._userId
-    });
-  },
-  time: function() {
-    return moment(this.timestamp).format('h:mm a');
-  },
-  date: function() {
-    var dateNow = moment(this.currentData().timestamp).calendar();
-
-    if (!this.date || this.date != dateNow) {
-      return this.date = dateNow;
-    }
-  },
-  avatar: function() {
-    var user = Meteor.users.findOne({
-      _id: this.currentData()._userId
-    });
-    if (user && user.emails) {
-      return Gravatar.imageUrl(user.emails[0].address);
-    }
-  },
   events: function() {
     return [{
-      'keydown textarea': function(event) {
+      'keydown .message-input': function(event) {
         if (event.keyCode == 13 && !event.shiftKey) { // Check if enter was pressed (but without shift).
           event.preventDefault();
           var _id = currentRouteId();
           var value = this.find('textarea').value;
           // Markdown requires double spaces at the end of the line to force line-breaks.
           value = value.replace("\n", "  \n");
-          this.find('textarea').value = ''; // Clear the textarea.
+          this.find('.message-input').value = ''; // Clear the textarea.
           Messages.insert({
             _channel: _id, // Channel reference.
             message: value,
@@ -78,7 +55,7 @@ Channel = BlazeComponent.extendComponent({
             timestamp: new Date() // Add a timestamp to each message.
           });
           // Restore the autosize value.
-          this.$('textarea').css({
+          this.$('.message-input').css({
             height: 37
           });
           window.scrollTo(0, document.body.scrollHeight);

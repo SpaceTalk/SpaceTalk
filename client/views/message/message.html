@@ -1,0 +1,23 @@
+<template name="message">
+  <li>
+    {{#if avatar}}
+      <img src="{{avatar}}" class="avatar">
+    {{/if}}
+    <div class="message-body">
+      <div>
+        <span class="username">{{user.username}}</span>
+        <span class="time">{{time}}</span>
+        {{#if isOwner}}
+          <a href="#" class="edit">Edit</a>
+        {{/if}}
+      </div>
+      {{#if isEditing.get}}
+      <div class="edit-box">
+        <textarea rows="1" cols="90" class="edit-message-input">{{{message}}}</textarea>
+      </div>
+      {{else}}
+      <div class="message">{{#markdown}}{{{message}}}{{/markdown}}</div>
+      {{/if}}
+    </div>
+  </li>
+</template>
