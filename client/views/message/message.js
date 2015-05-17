@@ -1,24 +1,3 @@
-Template.messageEditBox.onRendered(function () {
-  var input = this.find('.edit-message-input');
-  input.focus();
-
-  if (input.setSelectionRange) {
-    var len = input.value.length * 2;
-    input.setSelectionRange(len, len);
-  } else {
-    $(input).val($(input).val());
-  }
-
-  input.scrollTop = 999999;
-});
-
-Template.messageEditBox.helpers({
-  message: function () {
-    // remove trailing newlines
-    return this.message.replace(/\s+$/g, '');
-  }
-});
-
 Message = BlazeComponent.extendComponent({
   onCreated: function () {
     this.isEditing = new ReactiveVar(false);
@@ -31,6 +10,24 @@ Message = BlazeComponent.extendComponent({
       self.isEditing.set(false);
       $(document.body).unbind('click', self._onClickOutside);
     }
+  },
+
+  _focus: function () {
+    var input = this.find('.edit-message-input');
+    input.focus();
+
+    if (input.setSelectionRange) {
+      var len = input.value.length * 2;
+      input.setSelectionRange(len, len);
+    } else {
+      $(input).val($(input).val());
+    }
+
+    input.scrollTop = 999999;
+  },
+
+  _removeTrailingNewLine: function (content) {
+    return content.replace(/\s+$/g, '');
   },
 
   user: function () {
@@ -60,11 +57,13 @@ Message = BlazeComponent.extendComponent({
     var self = this;
 
     var toggled = !self.isEditing.get();
+    self.isEditing.set(toggled);
+
+    Tracker.flush();
     if (toggled) {
       $(document.body).bind('click', { instance: this }, self._onClickOutside);
+      this._focus();
     }
-
-    self.isEditing.set(toggled);
   },
 
   events: function () {
