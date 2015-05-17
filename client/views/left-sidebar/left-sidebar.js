@@ -16,4 +16,4 @@ LeftSidebar = BlazeComponent.extendComponent({
     var _id = currentRouteId();
     return _id == this.currentData()._id ? 'active' : '';
   },
-}).register('LeftSidebar');
+}).register('leftSidebar');

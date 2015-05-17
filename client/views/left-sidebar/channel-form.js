@@ -28,4 +28,4 @@ ChannelForm = BlazeComponent.extendComponent({
       }
     }];
   }
-}).register('ChannelForm');
+}).register('channelForm');

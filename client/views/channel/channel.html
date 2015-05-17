@@ -1,8 +1,8 @@
-<template name="Channel">
-  {{#Header}}
+<template name="channel">
+  {{#header}}
     <h1>{{channel.name}}</h1>
-  {{/Header}}
-  {{#Content}}
+  {{/header}}
+  {{#content}}
     <ul>
       {{#each messages}}
         {{#if date}}
@@ -19,10 +19,10 @@
         </li>
       {{/each}}
     </ul>
-  {{/Content}}
-  {{#Footer}}
+  {{/content}}
+  {{#footer}}
     {{> messageForm}}
-  {{/Footer}}
+  {{/footer}}
 </template>
 
 <template name="messageForm">

@@ -4,7 +4,6 @@ Channel = BlazeComponent.extendComponent({
     // Listen for changes to reactive variables (such as FlowRouter.getParam()).
     self.autorun(function () {
       var channel = currentRouteId();
-      console.log("ests");
       channel && self.subscribe('messages', channel, function () {
         scrollDown();
       });
@@ -13,8 +12,8 @@ Channel = BlazeComponent.extendComponent({
   onRendered: function () {
 
     Messages.find({ _channel: currentRouteId() }).observeChanges({
-      added: function(id, doc) {
-         scrollDown();
+      added: function (id, doc) {
+        scrollDown();
       }
     });
 
@@ -71,7 +70,7 @@ Channel = BlazeComponent.extendComponent({
       }
     }];
   }
-}).register('Channel');
+}).register('channel');
 
 var scrollDown = function() {
   window.scrollTo(0, document.body.scrollHeight);

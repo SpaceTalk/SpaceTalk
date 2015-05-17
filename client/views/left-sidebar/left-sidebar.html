@@ -1,10 +1,10 @@
-<template name="LeftSidebar">
+<template name="leftSidebar">
   <aside id="left-sidebar">
     <div class="team">
       <span class="title">SpaceTalk</span>
     </div>
 
-    {{> ChannelForm}}
+    {{> channelForm}}
     <ul>
       {{#each channels}}
         <li class="{{activeChannelClass}}"><a href="/channel/{{_id}}">{{name}}</a></li>
