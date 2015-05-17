@@ -4,12 +4,20 @@ Channel = BlazeComponent.extendComponent({
     // Listen for changes to reactive variables (such as FlowRouter.getParam()).
     self.autorun(function () {
       var channel = currentRouteId();
+      console.log("ests");
       channel && self.subscribe('messages', channel, function () {
-        window.scrollTo(0, document.body.scrollHeight);
+        scrollDown();
       });
     });
   },
   onRendered: function () {
+
+    Messages.find({ _channel: currentRouteId() }).observeChanges({
+      added: function(id, doc) {
+         scrollDown();
+      }
+    });
+
     $('article').css({ 'padding-bottom': $('footer').outerHeight() });
   },
   messages: function () {
@@ -28,7 +36,7 @@ Channel = BlazeComponent.extendComponent({
   },
   date: function () {
     var dateNow = moment(this.currentData().timestamp).calendar();
-    
+
     if (!this.date || this.date != dateNow) {
       return this.date = dateNow;
     }
@@ -64,3 +72,7 @@ Channel = BlazeComponent.extendComponent({
     }];
   }
 }).register('Channel');
+
+var scrollDown = function() {
+  window.scrollTo(0, document.body.scrollHeight);
+}
