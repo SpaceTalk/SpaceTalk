@@ -16,7 +16,7 @@ Template.home.helpers({
   },
 
   active: function() {
-    var _id = Router.current().params._id;
+    var _id = FlowRouter.getParam('_id');;
     return _id == this._id ? 'active' : '';
   }
 });
