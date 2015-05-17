@@ -3,6 +3,15 @@ Message = BlazeComponent.extendComponent({
     this.isEditing = new ReactiveVar(false);
   },
 
+  _onClickOutside: function (e) {
+    var self = e.data.instance;
+    if (!$(e.target).is(self.$('.edit-message-input')) &&
+        !$(e.target).is(self.$('.edit'))) {
+      self.isEditing.set(false);
+      $(document.body).unbind('click', self._onClickOutside);
+    }
+  },
+
   user: function () {
     return Meteor.users.findOne({
       _id: this.currentData()._userId
@@ -27,7 +36,14 @@ Message = BlazeComponent.extendComponent({
   },
 
   toggleEditMode: function () {
-    this.isEditing.set(!this.isEditing.get());
+    var self = this;
+
+    var toggled = !self.isEditing.get();
+    if (toggled) {
+      $(document.body).bind('click', { instance: this }, self._onClickOutside);
+    }
+
+    self.isEditing.set(toggled);
   },
 
   events: function () {
