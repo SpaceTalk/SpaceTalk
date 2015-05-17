@@ -1,17 +1,17 @@
 <template name="layout">
   <header>
-    {{> yield "header"}}
+    {{> Template.dynamic template=header}}
   </header>
 
   <aside>
-    {{> yield "aside"}}
+    {{> Template.dynamic template=aside}}
   </aside>
 
   <article>
-    {{> yield}}
+    {{> Template.dynamic template=body}}
   </article>
 
   <footer>
-    {{> yield "footer"}}
+    {{> Template.dynamic template=footer}}
   </footer>
 </template>
