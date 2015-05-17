@@ -1,30 +1,28 @@
 <template name="channel">
-  {{#contentFor 'header'}}
-  <h1>{{channel.name}}</h1>
-  {{/contentFor}}
-
-  <ul>
-    {{#each messages}}
-    {{#if date}}
-    <h2>{{date}}</h2>
-    {{/if}}
-    <li>
-      {{#if avatar}}
-      <img src="{{avatar}}" class="avatar">
-      {{/if}}
-      <div class="message-body">
-        <div><span class="username">{{user.username}}</span> <span class="time">{{time}}</span></div>
-        <div class="message">{{#markdown}}{{{message}}}{{/markdown}}</div>
-      </div>
-    </li>
-    {{/each}}
-  </ul>
-
-  {{#contentFor 'footer'}}
-  {{> messageForm}}
-  {{/contentFor}}
-
-  {{> home}}
+  {{#header}}
+    <h1>{{channel.name}}</h1>
+  {{/header}}
+  {{#content}}
+    <ul>
+      {{#each messages}}
+        {{#if date}}
+          <h2>{{date}}</h2>
+        {{/if}}
+        <li>
+          {{#if avatar}}
+            <img src="{{avatar}}" class="avatar">
+          {{/if}}
+          <div class="message-body">
+            <div><span class="username">{{user.username}}</span> <span class="time">{{time}}</span></div>
+            <div class="message">{{#markdown}}{{{message}}}{{/markdown}}</div>
+          </div>
+        </li>
+      {{/each}}
+    </ul>
+  {{/content}}
+  {{#footer}}
+    {{> messageForm}}
+  {{/footer}}
 </template>
 
 <template name="messageForm">

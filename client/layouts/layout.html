@@ -1,17 +1,4 @@
 <template name="layout">
-  <header>
-    {{> yield "header"}}
-  </header>
-
-  <aside>
-    {{> yield "aside"}}
-  </aside>
-
-  <article>
-    {{> yield}}
-  </article>
-
-  <footer>
-    {{> yield "footer"}}
-  </footer>
+  {{> leftSidebar}}
+  {{> Template.dynamic template=main}}
 </template>

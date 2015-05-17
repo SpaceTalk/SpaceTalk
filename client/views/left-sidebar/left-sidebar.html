@@ -1,0 +1,21 @@
+<template name="leftSidebar">
+  <aside id="left-sidebar">
+    <div class="team">
+      <span class="title">SpaceTalk</span>
+    </div>
+
+    {{> channelForm}}
+    <ul>
+      {{#each channels}}
+        <li class="{{activeChannelClass}}"><a href="/channel/{{_id}}">{{name}}</a></li>
+      {{/each}}
+    </ul>
+
+    <div class="user">
+      {{#if currentUserAvatar}}
+        <img src="{{currentUserAvatar}}" class="avatar">
+      {{/if}}
+      {{> loginButtons}}
+    </div>
+  </aside>
+</template>
