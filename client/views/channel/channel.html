@@ -14,7 +14,7 @@
           {{/if}}
           <div class="message-body">
             <div><span class="username">{{user.username}}</span> <span class="time">{{time}}</span></div>
-            <div class="message">{{#markdown}}{{{message}}}{{/markdown}}</div>
+            <div class="message">{{#markdown}}{{#emoji}}{{{message}}}{{/emoji}}{{/markdown}}</div>
           </div>
         </li>
       {{/each}}
