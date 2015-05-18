@@ -209,6 +209,20 @@ aside {
   margin-right: $padding*2/3;
 }
 
+.message-input,
+.edit-message-input {
+  border: solid 2px lightgray;
+  border-radius: 4px;
+  padding: $padding/2;
+  width: 100%;
+  box-sizing: border-box;
+  resize: none !important;
+  font-size: 14px;
+  &:focus {
+    outline: none;
+  }
+}
+
 article {
   padding: $padding $padding*4/3;
   margin-top: 53px;
@@ -238,6 +252,16 @@ article {
     text-transform: uppercase;
     margin-left: 3px;
   }
+  .edit {
+    font-size: 12px;
+    margin-left: 3px;
+    text-decoration: none;
+    color: grey;
+    display: none;
+  }
+  .message-body:hover .edit {
+    display: inline;
+  }
   .message-body {
     float: left;
   }
@@ -250,16 +274,4 @@ footer {
   padding: $padding $padding*4/3-3px;
   background: white;
   z-index: 1;
-  textarea {
-    border: solid 2px lightgray;
-    border-radius: 4px;
-    padding: $padding/2;
-    width: 100%;
-    box-sizing: border-box;
-    resize: none !important;
-    font-size: 14px;
-    &:focus {
-      outline: none;
-    }
-  }
 }

@@ -6,6 +6,7 @@
 
 meteor-platform
 markdown
+reactive-var
 accounts-password
 accounts-ui
 momentjs:moment
