@@ -12,7 +12,10 @@ ChannelForm = BlazeComponent.extendComponent({
         var name = this.find('input').value;
         this.find('input').value = '';
 
-        Channels.insert({name: name});
+        Channels.insert({
+          teamId: currentTeamId(),
+          name: name
+        });
 
         // Hide form when submitted.
         this.$('.add-channel-form').addClass('hidden');
