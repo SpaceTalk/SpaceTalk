@@ -1,13 +1,13 @@
 <template name="leftSidebar">
   <aside id="left-sidebar">
     <div class="team">
-      <span class="title">SpaceTalk</span>
+      <span class="title">{{currentTeam.name}}</span>
     </div>
 
     {{> channelForm}}
     <ul>
       {{#each channels}}
-        <li class="{{activeChannelClass}}"><a href="{{pathFor 'channel' team="public" channel=_id }}">{{name}}</a></li>
+        <li class="{{activeChannelClass}}"><a href="{{pathFor 'channel' team=currentTeam._id channel=_id }}">{{name}}</a></li>
       {{/each}}
     </ul>
 
