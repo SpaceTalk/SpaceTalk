@@ -5,8 +5,7 @@ Message = BlazeComponent.extendComponent({
 
   _onClickOutside: function (e) {
     var self = e.data.instance;
-    if (!$(e.target).is(self.$('.edit-message-input')) &&
-        !$(e.target).is(self.$('.edit'))) {
+    if (!$(e.target).is(self.$('.edit-message-input')) && !$(e.target).is(self.$('.edit'))) {
       self.isEditing.set(false);
       $(document.body).unbind('click', self._onClickOutside);
     }
@@ -32,12 +31,12 @@ Message = BlazeComponent.extendComponent({
 
   user: function () {
     return Meteor.users.findOne({
-      _id: this.currentData()._userId
+      _id: this.currentData().userId
     });
   },
 
   isOwner: function () {
-      return this.currentData()._userId === Meteor.userId();
+    return this.currentData().userId === Meteor.userId();
   },
 
   time: function () {
@@ -45,9 +44,8 @@ Message = BlazeComponent.extendComponent({
   },
 
   avatar: function () {
-    var user = Meteor.users.findOne({
-      _id: this.currentData()._userId
-    });
+    var user = Meteor.users.findOne(this.currentData().userId);
+
     if (user && user.emails) {
       return Gravatar.imageUrl(user.emails[0].address);
     }
@@ -67,27 +65,28 @@ Message = BlazeComponent.extendComponent({
   },
 
   events: function () {
-    return [{
-      'click .edit': function (e) {
-        e.preventDefault();
-        this.toggleEditMode();
-      },
-
-      'keydown .edit-box': function (e) {
-        if (e.keyCode === 27 && !e.shiftKey) { // esc to cancel
+    return [
+      {
+        'click .edit': function (e) {
           e.preventDefault();
           this.toggleEditMode();
-        } else if (e.keyCode === 13 && !e.shifKey) { // enter to save
-          e.preventDefault();
+        },
 
-          var content = this.find('.edit-message-input').value;
-          Messages.update(this.currentData()._id, {
-            $set: { message: content }
-          });
+        'keydown .edit-box': function (e) {
+          if (e.keyCode === 27 && !e.shiftKey) { // esc to cancel
+            e.preventDefault();
+            this.toggleEditMode();
+          } else if (e.keyCode === 13 && !e.shifKey) { // enter to save
+            e.preventDefault();
 
-          this.toggleEditMode();
+            var content = this.find('.edit-message-input').value;
+            Messages.update(this.currentData()._id, {
+              $set: { message: content }
+            });
+
+            this.toggleEditMode();
+          }
         }
-      }
-    }]
+      }]
   }
 }).register('message');

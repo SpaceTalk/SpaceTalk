@@ -1,10 +1,6 @@
 LeftSidebar = BlazeComponent.extendComponent({
-  onCreated: function () {
-    this.subscribe('channels');
-    this.subscribe('allUserNames');
-  },
   channels: function () {
-    return Channels.find();
+    return Channels.find( { teamId: currentTeamId() } );
   },
   currentUserAvatar: function () {
     var user = Meteor.user();
@@ -13,7 +9,18 @@ LeftSidebar = BlazeComponent.extendComponent({
     }
   },
   activeChannelClass: function () {
-    var _id = currentRouteId();
-    return _id == this.currentData()._id ? 'active' : '';
+    return currentChannelId() == this.currentData()._id ? 'active' : '';
   },
+  events: function() {
+    return [
+      {
+        'click .sign-out': function(event) {
+          event.preventDefault();
+
+          Meteor.logout();
+          FlowRouter.go('home');
+        }
+      }
+    ]
+  }
 }).register('leftSidebar');
