@@ -5,18 +5,7 @@
   {{#content}}
     <ul>
       {{#each messages}}
-        {{#if date}}
-          <h2>{{date}}</h2>
-        {{/if}}
-        <li>
-          {{#if avatar}}
-            <img src="{{avatar}}" class="avatar">
-          {{/if}}
-          <div class="message-body">
-            <div><span class="username">{{user.username}}</span> <span class="time">{{time}}</span></div>
-            <div class="message">{{#markdown}}{{#emoji}}{{{message}}}{{/emoji}}{{/markdown}}</div>
-          </div>
-        </li>
+        {{> message this}}
       {{/each}}
     </ul>
   {{/content}}
@@ -27,6 +16,6 @@
 
 <template name="messageForm">
   <form>
-    <textarea rows="1" cols="100"></textarea>
+    <textarea rows="1" cols="100" class="message-input" autofocus="true"></textarea>
   </form>
 </template>

@@ -188,6 +188,9 @@ aside {
   border-top: solid 2px darken($primary, 10%);
   line-height: 35px;
   font-weight: 900;
+  a {
+    display: inline;
+  }
   a.login-link-text {
     color: white;
     text-decoration: none !important;
@@ -207,6 +210,20 @@ aside {
   border-radius: 4px;
   float: left;
   margin-right: $padding*2/3;
+}
+
+.message-input,
+.edit-message-input {
+  border: solid 2px lightgray;
+  border-radius: 4px;
+  padding: $padding/2;
+  width: 100%;
+  box-sizing: border-box;
+  resize: none !important;
+  font-size: 14px;
+  &:focus {
+    outline: none;
+  }
 }
 
 article {
@@ -238,6 +255,16 @@ article {
     text-transform: uppercase;
     margin-left: 3px;
   }
+  .edit {
+    font-size: 12px;
+    margin-left: 3px;
+    text-decoration: none;
+    color: grey;
+    display: none;
+  }
+  .message-body:hover .edit {
+    display: inline;
+  }
   .message-body {
     float: left;
   }
@@ -255,16 +282,4 @@ footer {
   padding: $padding $padding*4/3-3px;
   background: white;
   z-index: 1;
-  textarea {
-    border: solid 2px lightgray;
-    border-radius: 4px;
-    padding: $padding/2;
-    width: 100%;
-    box-sizing: border-box;
-    resize: none !important;
-    font-size: 14px;
-    &:focus {
-      outline: none;
-    }
-  }
 }
