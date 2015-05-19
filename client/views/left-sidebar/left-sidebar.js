@@ -14,8 +14,11 @@ LeftSidebar = BlazeComponent.extendComponent({
   events: function() {
     return [
       {
-        'click .sign-out': function() {
+        'click .sign-out': function(event) {
+          event.preventDefault();
+
           Meteor.logout();
+          FlowRouter.go('home');
         }
       }
     ]

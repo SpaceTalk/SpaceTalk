@@ -12,18 +12,8 @@
       </ul>
     {{/if}}
     <div class="user">
-      {{#if currentUser}}
-        {{#if currentUserAvatar}}
-          <img src="{{currentUserAvatar}}" class="avatar">
-        {{/if}}
-        <a href="#" class="sign-out">{{currentUser.username}}</a>
-      {{else}}
-        {{#if loggingIn}}
-          Logging in...
-        {{else}}
-          <a href="/sign-in">Login</a>
-        {{/if}}
-      {{/if}}
+      <img src="{{currentUserAvatar}}" class="avatar">
+      <a href="#" class="sign-out">{{currentUser.username}}</a>
     </div>
   </aside>
 </template>
