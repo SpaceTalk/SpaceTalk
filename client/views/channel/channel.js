@@ -29,58 +29,59 @@ Channel = BlazeComponent.extendComponent({
       channelId: currentChannelId()
     });
   },
-  user: function () {
-    return Meteor.users.findOne({
-      _id: this.currentData().userId
+  channel: function() {
+    var _id = currentRouteId();
+    return Channels.findOne({
+      _id: _id
     });
   },
-  time: function () {
+  user: function() {
+    return Meteor.users.findOne({
+      _id: this.currentData()._userId
+    });
+  },
+  time: function() {
     return moment(this.timestamp).format('h:mm a');
   },
-  date: function () {
+  date: function() {
     var dateNow = moment(this.currentData().timestamp).calendar();
 
     if (!this.date || this.date != dateNow) {
       return this.date = dateNow;
     }
   },
-  avatar: function () {
+  avatar: function() {
     var user = Meteor.users.findOne({
-      _id: this.currentData().userId
+      _id: this.currentData()._userId
     });
-
     if (user && user.emails) {
       return Gravatar.imageUrl(user.emails[0].address);
     }
   },
-  events: function () {
-    return [
-      {
-        'keydown textarea': function (event) {
-          if (event.keyCode == 13 && !event.shiftKey) { // Check if enter was pressed (but without shift).
-            event.preventDefault();
-            var value = this.find('textarea').value;
-            // Markdown requires double spaces at the end of the line to force line-breaks.
-            value = value.replace("\n", "  \n");
-            this.find('textarea').value = ''; // Clear the textarea.
-            Messages.insert({
-              // TODO: should be checked server side if the user is allowed to do this
-              channelId: currentChannelId(),
-              message: value,
-              // TODO: should be added server side.
-              userId: Meteor.userId(), // Add userId to each message.
-              // TODO: should be added automatically with simple-schema or astronomy, this is pretty bad
-              timestamp: new Date() // Add a timestamp to each message.
-            });
-            // Restore the autosize value.
-            this.$('textarea').css({
-              height: 37
-            });
-            window.scrollTo(0, document.body.scrollHeight);
-          }
-          $('article').css({
-            'padding-bottom': $('footer').outerHeight()
+  events: function() {
+    return [{
+      'keydown .message-input': function(event) {
+        if (event.keyCode == 13 && !event.shiftKey) { // Check if enter was pressed (but without shift).
+          event.preventDefault();
+          var _id = currentRouteId();
+          var value = this.find('textarea').value;
+          // Markdown requires double spaces at the end of the line to force line-breaks.
+          value = value.replace("\n", "  \n");
+          this.find('.message-input').value = ''; // Clear the textarea.
+          Messages.insert({
+            // TODO: should be checked server side if the user is allowed to do this
+            channelId: currentChannelId(),
+            message: value,
+            // TODO: should be added server side.
+            userId: Meteor.userId(), // Add userId to each message.
+            // TODO: should be added automatically with simple-schema or astronomy, this is pretty bad
+            timestamp: new Date() // Add a timestamp to each message.
           });
+          // Restore the autosize value.
+          this.$('.message-input').css({
+            height: 37
+          });
+          window.scrollTo(0, document.body.scrollHeight);
         }
       }
     ];
