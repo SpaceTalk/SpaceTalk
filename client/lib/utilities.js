@@ -2,23 +2,24 @@ currentRouteId = function () {
   return FlowRouter.getParam('_id');
 };
 
-currentTeamId = function() {
-  var team = FlowRouter.getParam('team');
-  return Teams.findOne(team)._id;
-};
-
 currentTeam = function() {
-  return Teams.findOne(FlowRouter.getParam('team'));
+  const search = FlowRouter.getParam('team');
+  // Search teams by id or slug
+  return Teams.findOne( { $or: [ { _id: search }, { slug: search } ]});
 };
 
 currentChannel = function() {
-  return Channels.findOne(FlowRouter.getParam('channel'));
+  const search = FlowRouter.getParam('channel');
+  // Search cnannel by id or slug
+  return Channels.findOne( { $or: [ { _id: search }, { slug: search } ]});
 };
 
 currentChannelId = function() {
-  return currentChannel() ? currentChannel()._id : null;
+  const channel = currentChannel();
+  return channel ? channel._id : null;
 };
 
 currentTeamId = function() {
-  return currentTeam() ? currentTeamId()._id : null;
+  const team = currentTeam();
+  return team ? team._id : null;
 };

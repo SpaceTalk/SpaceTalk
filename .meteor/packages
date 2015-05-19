@@ -16,3 +16,4 @@ meteorhacks:flow-layout
 meteorhacks:flow-router
 peerlibrary:blaze-components
 arillo:flow-router-helpers
+todda00:friendly-slugs

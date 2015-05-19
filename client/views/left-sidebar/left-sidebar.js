@@ -1,6 +1,6 @@
 LeftSidebar = BlazeComponent.extendComponent({
   channels: function () {
-    return Channels.find();
+    return Channels.find( { teamId: currentTeamId() } );
   },
   currentUserAvatar: function () {
     var user = Meteor.user();

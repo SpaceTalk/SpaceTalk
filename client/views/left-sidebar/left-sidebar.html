@@ -7,7 +7,7 @@
     {{> channelForm}}
     <ul>
       {{#each channels}}
-        <li class="{{activeChannelClass}}"><a href="{{pathFor 'channel' team=currentTeam._id channel=_id }}">{{name}}</a></li>
+        <li class="{{activeChannelClass}}"><a href="{{pathFor 'channel' team=currentTeam.slug channel=slug }}">{{name}}</a></li>
       {{/each}}
     </ul>
 
