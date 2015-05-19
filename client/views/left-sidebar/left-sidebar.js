@@ -10,5 +10,14 @@ LeftSidebar = BlazeComponent.extendComponent({
   },
   activeChannelClass: function () {
     return currentChannelId() == this.currentData()._id ? 'active' : '';
+  },
+  events: function() {
+    return [
+      {
+        'click .sign-out': function() {
+          Meteor.logout();
+        }
+      }
+    ]
   }
 }).register('leftSidebar');
