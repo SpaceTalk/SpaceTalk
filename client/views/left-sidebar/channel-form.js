@@ -9,10 +9,13 @@ ChannelForm = BlazeComponent.extendComponent({
         // We are building an application, so we don't want the form to reload the page.
         event.preventDefault();
 
-        var name = this.find('input').value;
-        this.find('input').value = '';
+        var name = $(event.target).find('[name=name]').val();
 
-        Channels.insert({name: name});
+        //TODO: unsave as shit we might just use meteor methods for this or really check not changeable parameters
+        Channels.insert({
+          teamId: currentTeamId(),
+          name: name
+        });
 
         // Hide form when submitted.
         this.$('.add-channel-form').addClass('hidden');

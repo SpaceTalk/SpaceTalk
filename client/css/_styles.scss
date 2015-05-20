@@ -47,6 +47,11 @@ header {
   margin-left: $aside;
   background: white;
   width: 100%;
+
+  &.home-header{
+    margin-left: 0;
+  }
+
   h1 {
     padding: 0 $padding + 4px; // padding only on left and right side.
     margin: 0;
@@ -203,6 +208,9 @@ aside {
   border-top: solid 2px darken($primary, 10%);
   line-height: 35px;
   font-weight: 900;
+  a {
+    display: inline;
+  }
   a.login-link-text {
     color: white;
     text-decoration: none !important;
@@ -243,6 +251,12 @@ article {
   margin-top: 53px;
   height: calc(100% - 53px);
   margin-left: $aside;
+
+  &.home-content{
+    margin-left: 0;
+  }
+
+
   .message {
     font-size: 15px;
     color: $secondary;
@@ -279,6 +293,11 @@ article {
   }
   .message-body {
     float: left;
+  }
+  .emoji {
+    height: 23px;
+    vertical-align: middle;
+    margin-top: -3px;
   }
 }
 

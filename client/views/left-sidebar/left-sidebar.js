@@ -1,10 +1,6 @@
 LeftSidebar = BlazeComponent.extendComponent({
-  onCreated: function () {
-    this.subscribe('channels');
-    this.subscribe('allUserNames');
-  },
   channels: function () {
-    return Channels.find();
+    return Channels.find( { teamId: currentTeamId() } );
   },
   allUsersExceptMe: function () {
     // TODO: add limit, autoscale to sidebar height
@@ -16,14 +12,25 @@ LeftSidebar = BlazeComponent.extendComponent({
     label = thisUser.status.idle ? 'idle' : label;
     return label;
   },
-  currentUseravatar: function () {
+  currentUserAvatar: function () {
     var user = Meteor.user();
     if (user && user.emails) {
       return Gravatar.imageUrl(user.emails[0].address);
     }
   },
   activeChannelClass: function () {
-    var _id = currentRouteId();
-    return _id == this.currentData()._id ? 'active' : '';
+    return currentChannelId() == this.currentData()._id ? 'active' : '';
   },
+  events: function() {
+    return [
+      {
+        'click .sign-out': function(event) {
+          event.preventDefault();
+
+          Meteor.logout();
+          FlowRouter.go('home');
+        }
+      }
+    ]
+  }
 }).register('leftSidebar');
