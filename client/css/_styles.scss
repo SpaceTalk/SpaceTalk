@@ -59,11 +59,12 @@ label {
   float: right;
   display: block;
   padding: 0;
-  border: solid 1px lighten($primary, 15%);
+  border: none;
+  color: lighten($primary, 30%);
   background: $primary;
-  border-radius: 50% 50%;
-  width: 17px;
-  height: 17px;
+  font-size: 17px;
+  cursor: pointer;
+  
   &:focus {
     outline: none;
   }
@@ -76,21 +77,6 @@ label {
 aside li a,
 header h1 {
   @include channel();
-}
-
-.icon-plus {
-  position: relative;
-  cursor: pointer;
-  &:before {
-    content: '+';
-    color: lighten($primary, 15%);
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 16px;
-    position: absolute;
-    top: -10px;
-    left: -5px;
-  }
 }
 
 .add-channel-form {
