@@ -6,9 +6,9 @@ LeftSidebar = BlazeComponent.extendComponent({
     // TODO: add limit, autoscale to sidebar height
     return Meteor.users.find({ _id: { $ne: Meteor.userId() } });
   },
-  userStatusLabel: function (userId) {
-    var user = Meteor.users.findOne({ _id: userId });
-    var statusLabel = user.status.online ? 'online' : user.status.idle ? 'idle' : 'offline';
+  userStatusLabel: function () {
+    var parent = this.currentData();
+    var statusLabel = parent.status.online ? 'online' : parent.status.idle ? 'idle' : 'offline';
     return statusLabel;
   },
   currentUserAvatar: function () {
