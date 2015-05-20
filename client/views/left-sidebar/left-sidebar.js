@@ -6,6 +6,16 @@ LeftSidebar = BlazeComponent.extendComponent({
   channels: function () {
     return Channels.find();
   },
+  allUsersExceptMe: function () {
+    // TODO: add limit, autoscale to sidebar height
+    return Meteor.users.find({ _id: { $ne: Meteor.userId() } });
+  },
+  userStatusLabel: function (userId) {
+    var thisUser = Meteor.users.findOne({ _id: userId });
+    var label = thisUser.status.online ? 'online' : 'offline';
+    label = thisUser.status.idle ? 'idle' : label;
+    return label;
+  },
   currentUseravatar: function () {
     var user = Meteor.user();
     if (user && user.emails) {
