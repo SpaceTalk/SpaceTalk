@@ -1,12 +1,3 @@
-$aside: 220px;
-$top: 53px;
-
-$primary: #453744;
-$secondary: #3D3C40;
-$accent: #4C9689;
-
-$padding: 16px;
-
 @mixin channel() {
   &:before {
     content: '#';
@@ -44,6 +35,11 @@ header {
   margin-left: $aside;
   background: white;
   width: 100%;
+
+  &.home-header{
+    margin-left: 0;
+  }
+
   h1 {
     padding: 0 $padding + 4px; // padding only on left and right side.
     margin: 0;
@@ -231,6 +227,12 @@ article {
   margin-top: 53px;
   height: calc(100% - 53px);
   margin-left: $aside;
+
+  &.home-content{
+    margin-left: 0;
+  }
+
+
   .message {
     font-size: 15px;
     color: $secondary;
