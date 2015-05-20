@@ -1,19 +1,14 @@
 <template name="home">
-  {{#if currentUser}}
-    <h1>Redirecting you...</h1>
-    {{redirectTo '/teams/public'}}
-  {{else}}
-    {{#header classess="home-header"}}
-      <h1>Home</h1>
-    {{/header}}
-    {{#content classess="home-content"}}
-      <p>This is the homepage here should a user be able to login. When he's logged in he should be able to select the team on which he has access to.
-      For the time being every member has access to every team which means that a logged in user should see all the teams here. The <a href="{{pathFor 'teamHome' team="public" }}">public team</a>  gets created by default</p>
-  
-      <p>If you have ever started an older version of SpaceTalk please clear you database first after that you can login with admin/admin.</p>
-  
-      {{> atForm state='signIn'}}
-      When you log in, you will automatically be redirected to the backend.
-    {{/content}}
-  {{/if}}
+  {{#header classess="home-header"}}
+    <h1>Home</h1>
+  {{/header}}
+  {{#content classess="home-content"}}
+    <p>This is the homepage here should a user be able to login. When he's logged in he should be able to select the team on which he has access to.
+    For the time being every member has access to every team which means that a logged in user should see all the teams here. The <a href="{{pathFor 'teamHome' team="public" }}">public team</a>  gets created by default</p>
+
+    <p>If you have ever started an older version of SpaceTalk please clear you database first after that you can login with admin/admin.</p>
+
+    {{> atForm state='signIn'}}
+    Once you log in, you will automatically be redirected to the backend interface.
+  {{/content}}
 </template>
