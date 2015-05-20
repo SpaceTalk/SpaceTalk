@@ -1,29 +1,19 @@
 <template name="leftSidebar">
   <aside id="left-sidebar">
     <div class="team">
-      <span class="title">SpaceTalk</span>
+      <span class="title">{{currentTeam.name}}</span>
     </div>
     {{#if currentUser}}
       {{> channelForm}}
       <ul>
         {{#each channels}}
-          <li class="{{activeChannelClass}}"><a href="/channel/{{_id}}">{{name}}</a></li>
+          <li class="{{activeChannelClass}}"><a href="{{pathFor 'channel' team=currentTeam.slug channel=slug }}">{{name}}</a></li>
         {{/each}}
       </ul>
     {{/if}}
     <div class="user">
-      {{#if currentUser}}
-        {{#if currentUserAvatar}}
-          <img src="{{currentUserAvatar}}" class="avatar">
-        {{/if}}
-        <a href="/sign-out">Sign Out</a>
-      {{else}}
-        {{#if loggingIn}}
-          Signing In...
-        {{else}}
-          <a href="/sign-in">Sign In</a> or <a href="/sign-up">Sign Up</a>
-        {{/if}}
-      {{/if}}
+      <img src="{{currentUserAvatar}}" class="avatar">
+      <a href="#" class="sign-out">{{currentUser.username}}</a>
     </div>
   </aside>
 </template>

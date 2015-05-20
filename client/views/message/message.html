@@ -16,7 +16,7 @@
           <textarea rows="1" cols="90" class="edit-message-input">{{_removeTrailingNewLine message}}</textarea>
         </div>
       {{else}}
-        <div class="message">{{#markdown}}{{{message}}}{{/markdown}}</div>
+        <div class="message">{{#markdown}}{{#emoji}}{{{message}}}{{/emoji}}{{/markdown}}</div>
       {{/if}}
     </div>
   </li>
