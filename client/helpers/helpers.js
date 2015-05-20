@@ -9,3 +9,7 @@ Template.registerHelper('currentTeam', function () {
 Template.registerHelper('currentUser', function() {
   return Meteor.user();
 });
+
+Template.registerHelper('redirectTo', function(route) {
+  FlowRouter.go(route);
+});
