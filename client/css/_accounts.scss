@@ -52,6 +52,12 @@
   padding: .5rem 1rem;
   border-radius: 3px;
   margin-bottom: 2rem;
+  transition: background-color 300ms ease-out;
+  cursor: pointer;
+
+  &:hover{
+    background-color: darken($accent, 20%);
+  }
 }
 
 .at-signup{
