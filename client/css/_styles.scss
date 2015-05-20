@@ -79,6 +79,16 @@ header h1 {
   @include channel();
 }
 
+.channel-remove-icon {
+  color: lighten(desaturate($primary, 30%), 60%);
+  cursor: pointer;
+  transition: color .3s ease-in-out;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
 .add-channel-form {
   padding: $padding/2 0;
   input[type="text"] {
