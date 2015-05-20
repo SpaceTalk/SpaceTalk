@@ -1,15 +1,3 @@
-$aside: 220px;
-$top: 53px;
-
-$primary: #453744;
-$secondary: #3D3C40;
-$accent: #4C9689;
-$online: #43A047;
-$offline: lighten($primary, 15%);
-$idle: #FF8F00;
-
-$padding: 16px;
-
 @mixin channel() {
   &:before {
     content: '#';
@@ -85,7 +73,7 @@ label {
   display: none;
 }
 
-aside .list-channels a,
+.left-sidebar .list-channels a,
 header h1 {
   @include channel();
 }
@@ -125,7 +113,7 @@ header h1 {
   }
 }
 
-aside {
+.left-sidebar {
   top: $top;
   width: $aside;
   background: $primary;
@@ -193,6 +181,14 @@ aside {
   }
   .user-circle-idle {
     color: $idle;
+  }
+
+  &-channels {
+    li a:before {
+      content: '#';
+      margin-right: 3px;
+      font-weight: bolder;
+    }
   }
 }
 

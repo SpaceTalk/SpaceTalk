@@ -7,10 +7,9 @@ LeftSidebar = BlazeComponent.extendComponent({
     return Meteor.users.find({ _id: { $ne: Meteor.userId() } });
   },
   userStatusLabel: function (userId) {
-    var thisUser = Meteor.users.findOne({ _id: userId });
-    var label = thisUser.status.online ? 'online' : 'offline';
-    label = thisUser.status.idle ? 'idle' : label;
-    return label;
+    var user = Meteor.users.findOne({ _id: userId });
+    var statusLabel = user.status.online ? 'online' : user.status.idle ? 'idle' : 'offline';
+    return statusLabel;
   },
   currentUserAvatar: function () {
     var user = Meteor.user();
