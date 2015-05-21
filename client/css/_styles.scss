@@ -74,6 +74,22 @@ label {
   display: none;
 }
 
+.show-dropdown {
+  float: right;
+  display: block;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: lighten($primary, 30%);
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: 6px;
+}
+
+.dropdown {
+  padding-left: 50px;
+}
+
 .left-sidebar .list-channels a,
 header h1 {
   @include channel();
