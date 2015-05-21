@@ -19,6 +19,7 @@ deps@1.0.7
 ejson@1.0.6
 email@1.0.6
 fastclick@1.0.3
+fortawesome:fontawesome@4.3.0
 fourseven:scss@3.0.0
 geojson-utils@1.0.3
 html-tools@1.0.4
@@ -27,6 +28,7 @@ http@1.1.0
 id-map@1.0.3
 jquery@1.11.3_2
 json@1.0.3
+kevohagan:sweetalert@0.5.0
 launch-screen@1.0.2
 less@1.0.14
 livedata@1.0.13
