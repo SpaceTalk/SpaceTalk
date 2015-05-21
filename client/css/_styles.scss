@@ -74,7 +74,7 @@ label {
   display: none;
 }
 
-aside li a,
+.left-sidebar .list-channels a,
 header h1 {
   @include channel();
 }
@@ -109,7 +109,7 @@ header h1 {
   }
 }
 
-aside {
+.left-sidebar {
   top: $top;
   width: $aside;
   background: $primary;
@@ -165,6 +165,26 @@ aside {
     box-sizing: border-box;
     font-weight: 900;
     color: white;
+  }
+  .aside-section {
+    margin-bottom: 35px;
+  }
+  .user-circle-online {
+    color: $online;
+  }
+  .user-circle-offline {
+    color: $offline;
+  }
+  .user-circle-idle {
+    color: $idle;
+  }
+
+  &-channels {
+    li a:before {
+      content: '#';
+      margin-right: 3px;
+      font-weight: bolder;
+    }
   }
 }
 

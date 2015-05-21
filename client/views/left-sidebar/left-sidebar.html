@@ -1,16 +1,26 @@
 <template name="leftSidebar">
-  <aside id="left-sidebar">
+  <aside class="left-sidebar">
     <div class="team">
       <span class="title">{{currentTeam.name}}</span>
     </div>
-    {{#if currentUser}}
+    <div class="left-sidebar-channels aside-section">
       {{> channelForm}}
       <ul>
         {{#each channels}}
           <li class="{{activeChannelClass}}"><a href="{{pathFor 'channel' team=currentTeam.slug channel=slug }}">{{name}}</a></li>
         {{/each}}
       </ul>
-    {{/if}}
+    </div>
+    <div class="aside-section">
+      {{> directMessagesForm}}
+      <ul>
+        {{#each allUsersExceptMe}}
+          <li class="list-users">
+            <a href="#"><b class="user-circle-{{userStatusLabel}}">&#8226;</b> {{username}}</a>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
     <div class="user">
       <img src="{{currentUserAvatar}}" class="avatar">
       <a href="#" class="sign-out">{{currentUser.username}}</a>
