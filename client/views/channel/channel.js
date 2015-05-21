@@ -82,6 +82,63 @@ Channel = BlazeComponent.extendComponent({
             });
             window.scrollTo(0, document.body.scrollHeight);
           }
+        },
+        'click [data-action="remove-channel"]': function (event, template) {
+          event.preventDefault();
+
+          if (!currentChannel()) {
+            swal({
+              title: 'Yikes! Something went wrong',
+              text: "We can't find the current channel at the moment, are you still online?",
+              type: 'error'
+            });
+          } else {
+            var channelName = currentChannel().name;
+
+            // swal is provided by kevohagan:sweetalert
+            swal({
+              title: 'Delete #' + channelName,
+              text: 'Deleting this channel will delete all of the messages in '+ 
+              'it, for everyone in your team, forever.' + 
+              ' To confirm, enter <strong>' + 
+              currentChannel().name + '</strong> below.',
+              html: true,
+              type: 'input',
+              showCancelButton: true,
+              closeOnConfirm: false,
+              confirmButtonText: 'Delete ' + channelName,
+              confirmButtonColor: '#ec6c62',
+            }, function (inputValue) {
+              if (inputValue === channelName) {
+                Meteor.call('channels.remove', currentChannelId(), 
+                  function(error) {
+                    if (error) {
+                      swal({
+                        title: 'Yikes! Something went wrong',
+                        text: error.reason,
+                        type: 'error'
+                      });
+                    } else {
+                      swal({
+                        title: 'Channel deleted!',
+                        text: 'The <strong>#' + channelName + '</strong> ' +  
+                        'channel is gone forever!',
+                        type: 'success',
+                        html: true
+                      });
+                      // TODO: Redirect to the actual team home of the user's team
+                      FlowRouter.go('teamHome',{team: 'public'});
+                    }
+                  });
+              } else {
+                swal({
+                  title: "Incorrect channel name",
+                  type: "info",
+                  text: "You didn't type the channel name correctly, so we haven't deleted it."
+                });
+              }
+            });
+          }
         }
       }];
   }
