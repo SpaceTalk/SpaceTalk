@@ -28,6 +28,12 @@ LeftSidebar = BlazeComponent.extendComponent({
 
           Meteor.logout();
           FlowRouter.go('home');
+        },
+        
+        'click .show-dropdown': function(event) {
+          event.preventDefault();
+          
+          this.$(".dropdown").toggleClass("hidden");
         }
       }
     ]
