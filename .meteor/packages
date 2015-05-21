@@ -20,6 +20,8 @@ todda00:friendly-slugs
 useraccounts:core
 arillo:flow-router-helpers
 seriousm:emoji-continued
+mrt:tiny-scrollbar
+jquery
 kevohagan:sweetalert
 fortawesome:fontawesome
 aldeed:autoform

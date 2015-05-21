@@ -64,7 +64,7 @@ label {
   background: $primary;
   font-size: 17px;
   cursor: pointer;
-  
+
   &:focus {
     outline: none;
   }
@@ -82,6 +82,7 @@ header h1 {
 .channel-remove-icon {
   color: lighten(desaturate($primary, 30%), 60%);
   cursor: pointer;
+  margin-left: 40px;
   transition: color .3s ease-in-out;
 
   &:hover {
@@ -301,3 +302,4 @@ footer {
   background: white;
   z-index: 1;
 }
+
