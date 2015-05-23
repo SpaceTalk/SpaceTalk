@@ -98,9 +98,9 @@ Channel = BlazeComponent.extendComponent({
             // swal is provided by kevohagan:sweetalert
             swal({
               title: 'Delete #' + channelName,
-              text: 'Deleting this channel will delete all of the messages in '+ 
-              'it, for everyone in your team, forever.' + 
-              ' To confirm, enter <strong>' + 
+              text: 'Deleting this channel will delete all of the messages in '+
+              'it, for everyone in your team, forever.' +
+              ' To confirm, enter <strong>' +
               currentChannel().name + '</strong> below.',
               html: true,
               type: 'input',
@@ -110,7 +110,7 @@ Channel = BlazeComponent.extendComponent({
               confirmButtonColor: '#ec6c62',
             }, function (inputValue) {
               if (inputValue === channelName) {
-                Meteor.call('channels.remove', currentChannelId(), 
+                Meteor.call('channels.remove', currentChannelId(),
                   function(error) {
                     if (error) {
                       swal({
@@ -121,7 +121,7 @@ Channel = BlazeComponent.extendComponent({
                     } else {
                       swal({
                         title: 'Channel deleted!',
-                        text: 'The <strong>#' + channelName + '</strong> ' +  
+                        text: 'The <strong>#' + channelName + '</strong> ' +
                         'channel is gone forever!',
                         type: 'success',
                         html: true
@@ -139,6 +139,12 @@ Channel = BlazeComponent.extendComponent({
               }
             });
           }
+        },
+        'click [data-action="display-channel-info"]': function (event, template) {
+          event.preventDefault();
+          $('.channel-info').toggleClass('pane-off');
+          $('article').toggleClass('article-full');
+          $('footer').toggleClass('footer-full');
         }
       }];
   }
