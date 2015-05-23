@@ -35,6 +35,12 @@ header {
   margin-left: $aside;
   background: white;
   width: 100%;
+  //font-size: 24px;
+  font-weight: 900;
+
+  * {
+    display: inline-block;
+  }
 
   &.home-header{
     margin-left: 0;
@@ -45,8 +51,6 @@ header {
     margin: 0;
     line-height: 53px;
     color: $primary;
-    font-size: 24px;
-    font-weight: 900;
   }
 }
 
@@ -99,7 +103,24 @@ header h1 {
   color: lighten(desaturate($primary, 30%), 60%);
   cursor: pointer;
   margin-left: 40px;
+  position : fixed;
+  margin: 20px 0px;
   transition: color .3s ease-in-out;
+  font-size: 24px;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.channel-display-info-icon {
+  color: lighten(desaturate($primary, 30%), 60%);
+  cursor: pointer;
+  right: 40px;
+  position : fixed;
+  margin: 20px 0px;
+  transition: color .3s ease-in-out;
+  font-size: 24px;
 
   &:hover {
     color: $primary;
@@ -260,6 +281,7 @@ article {
   margin-top: 53px;
   height: calc(100% - 53px);
   margin-left: $aside;
+  margin-right: 0px;
 
   &.home-content{
     margin-left: 0;
@@ -310,12 +332,66 @@ article {
   }
 }
 
+.channel-info {
+  right : 0px;
+  top: $top;
+  width: $channelInfo;
+  background: $white;
+  height: calc(100% - 53px);
+  padding: $padding;
+  box-sizing: border-box;
+  z-index: 2;
+  transition: right .2s ease-in-out;
+  transition: margin-right .2s ease-in-out;
+  &, a {
+    color: lighten($primary, 30%);
+    text-decoration: none;
+    text-shadow: 1px 1px darken($primary, 5%);
+  }
+  a {
+    padding: 0;
+    display: block;
+  }
+  ul {
+    margin: $padding/2 0;
+  }
+  li a:before {
+    color: lighten($primary, 10%);
+  }
+  .aside-section {
+    margin-bottom: 35px;
+  }
+  .title {
+    color : #555459;
+    text-shadow : none;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    font-weight: 400;
+  }
+
+}
+
+.pane-off {
+  right : -$channelInfo;
+  transition: right .2s ease-in-out;
+}
+
+.article-full {
+  margin-right : $channelInfo;
+  transition: margin-right .2s ease-in-out;
+}
+
+.footer-full {
+  right : $channelInfo;
+  transition: right .2s ease-in-out;
+}
+
 footer {
   position: fixed;
   bottom: 0;
-  margin-left: $aside;
+  left: $aside;
+  right : 0px;
   padding: $padding $padding*4/3-3px;
   background: white;
   z-index: 1;
 }
-
