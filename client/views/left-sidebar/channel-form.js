@@ -26,8 +26,8 @@ ChannelForm = BlazeComponent.extendComponent({
         event.preventDefault();
 
         // Show form.
-        this.$('.add-channel-form').toggleClass('hidden');
-        this.$('.add-channel-form input').focus();
+        this.$('.left-sidebar-channels-add-form').toggleClass('hidden');
+        this.$('.left-sidebar-channels-add-form input').focus();
       }
     }];
   }

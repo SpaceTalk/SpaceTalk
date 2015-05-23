@@ -1,0 +1,107 @@
+.channel {
+
+  &-header {
+    position: fixed;
+    top: 0;
+    height: $top;
+    margin-left: $aside;
+    background: white;
+    width: 100%;
+
+    &.home-header {
+      margin-left: 0;
+    }
+
+    h1 {
+      @include channel();
+      padding: 0 $padding + 4px; // padding only on left and right side.
+      margin: 0;
+      line-height: 53px;
+      color: $primary;
+      font-size: 24px;
+      font-weight: 900;
+    }
+  }
+
+  &-content {
+    padding: 16px $padding*4/3 71px $padding*4/3;
+    margin-top: 53px;
+    height: calc(100% - 53px);
+    margin-left: $aside;
+
+    &.home-content{
+      margin-left: 0;
+    }
+
+
+    .message {
+      font-size: 15px;
+      color: $secondary;
+    }
+    .username, h2 {
+      color: darken($primary, 15%);
+      font-weight: 900;
+    }
+    li {
+      margin-top: $padding/2;
+      &:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+    }
+    p {
+      margin: 0 0 $padding/2 0;
+    }
+    .time {
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-left: 3px;
+    }
+    .edit {
+      font-size: 12px;
+      margin-left: 3px;
+      text-decoration: none;
+      color: grey;
+      display: none;
+    }
+    .message-body:hover .edit {
+      display: inline;
+    }
+    .message-body {
+      float: left;
+    }
+    .emoji {
+      height: 23px;
+      vertical-align: middle;
+      margin-top: -3px;
+    }
+  }
+
+  &-footer {
+    position: fixed;
+    bottom: 0;
+    margin-left: $aside;
+    padding: $padding $padding*4/3-3px;
+    background: white;
+    z-index: 1;
+  }
+
+  &-remove-icon {
+    color: lighten(desaturate($primary, 30%), 60%);
+    cursor: pointer;
+    margin-left: 40px;
+    transition: color .3s ease-in-out;
+
+    &:hover {
+      color: $primary;
+    }
+
+  }
+
+  label {
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+
+}

@@ -29,44 +29,44 @@ Channel = BlazeComponent.extendComponent({
       channelId: currentChannelId()
     });
   },
-  channel: function() {
+  channel: function () {
     var _id = currentRouteId();
     return Channels.findOne({
       _id: _id
     });
   },
-  user: function() {
+  user: function () {
     return Meteor.users.findOne({
       _id: this.currentData()._userId
     });
   },
-  time: function() {
+  time: function () {
     return moment(this.timestamp).format('h:mm a');
   },
-  date: function() {
+  date: function () {
     var dateNow = moment(this.currentData().timestamp).calendar();
 
     if (!this.date || this.date != dateNow) {
       return this.date = dateNow;
     }
   },
-  avatar: function() {
+  avatar: function () {
     var user = Meteor.users.findOne(this.currentData().userId);
     if (user && user.emails) {
       return Gravatar.imageUrl(user.emails[0].address);
     }
   },
-  events: function() {
+  events: function () {
     return [
       {
-        'keydown .message-input': function (event) {
+        'keydown textarea[name=message]': function (event) {
           if (event.keyCode == 13 && !event.shiftKey) { // Check if enter was pressed (but without shift).
             event.preventDefault();
             var _id = currentRouteId();
-            var value = this.find('textarea').value;
+            var value = this.find('textarea[name=message]').value;
             // Markdown requires double spaces at the end of the line to force line-breaks.
             value = value.replace("\n", "  \n");
-            this.find('.message-input').value = ''; // Clear the textarea.
+            this.find('textarea[name=message]').value = ''; // Clear the textarea.
             Messages.insert({
               // TODO: should be checked server side if the user is allowed to do this
               channelId: currentChannelId(),
@@ -77,7 +77,7 @@ Channel = BlazeComponent.extendComponent({
               timestamp: new Date() // Add a timestamp to each message.
             });
             // Restore the autosize value.
-            this.$('.message-input').css({
+            this.$('textarea[name=message]').css({
               height: 37
             });
             window.scrollTo(0, document.body.scrollHeight);
@@ -98,9 +98,9 @@ Channel = BlazeComponent.extendComponent({
             // swal is provided by kevohagan:sweetalert
             swal({
               title: 'Delete #' + channelName,
-              text: 'Deleting this channel will delete all of the messages in '+ 
-              'it, for everyone in your team, forever.' + 
-              ' To confirm, enter <strong>' + 
+              text: 'Deleting this channel will delete all of the messages in ' +
+              'it, for everyone in your team, forever.' +
+              ' To confirm, enter <strong>' +
               currentChannel().name + '</strong> below.',
               html: true,
               type: 'input',
@@ -110,8 +110,8 @@ Channel = BlazeComponent.extendComponent({
               confirmButtonColor: '#ec6c62',
             }, function (inputValue) {
               if (inputValue === channelName) {
-                Meteor.call('channels.remove', currentChannelId(), 
-                  function(error) {
+                Meteor.call('channels.remove', currentChannelId(),
+                  function (error) {
                     if (error) {
                       swal({
                         title: 'Yikes! Something went wrong',
@@ -121,13 +121,13 @@ Channel = BlazeComponent.extendComponent({
                     } else {
                       swal({
                         title: 'Channel deleted!',
-                        text: 'The <strong>#' + channelName + '</strong> ' +  
+                        text: 'The <strong>#' + channelName + '</strong> ' +
                         'channel is gone forever!',
                         type: 'success',
                         html: true
                       });
                       // TODO: Redirect to the actual team home of the user's team
-                      FlowRouter.go('teamHome',{team: 'public'});
+                      FlowRouter.go('teamHome', { team: 'public' });
                     }
                   });
               } else {
@@ -149,14 +149,10 @@ Channel = BlazeComponent.extendComponent({
  */
 var scrollDown = function () {
   // Check if the innerHeight + the scrollY position is higher than the offsetHeight - 200
-  if ((
-    window.innerHeight + window.scrollY
-    ) >= (
+  if ((window.innerHeight + window.scrollY) >= (
     Number(document.body.offsetHeight) - 200
     )) {
     // Scroll down the page
     window.scrollTo(0, document.body.scrollHeight);
   }
-}
-
-$(".scroll").tinyscrollbar();
+};
