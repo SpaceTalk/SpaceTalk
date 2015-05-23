@@ -116,7 +116,7 @@ header h1 {
 .channel-display-info-icon {
   color: lighten(desaturate($primary, 30%), 60%);
   cursor: pointer;
-  right: 40px;
+  right: 16px;
   position : fixed;
   margin: 20px 0px;
   transition: color .3s ease-in-out;
@@ -333,6 +333,8 @@ article {
 }
 
 .channel-info {
+  border-left: solid 1px lighten($primary, 30%);
+  position : fixed;
   right : 0px;
   top: $top;
   width: $channelInfo;
@@ -340,13 +342,12 @@ article {
   height: calc(100% - 53px);
   padding: $padding;
   box-sizing: border-box;
-  z-index: 2;
+  z-index: 4;
   transition: right .2s ease-in-out;
-  transition: margin-right .2s ease-in-out;
+  transition: margin-right .2s ease-out-in;
   &, a {
     color: lighten($primary, 30%);
     text-decoration: none;
-    text-shadow: 1px 1px darken($primary, 5%);
   }
   a {
     padding: 0;
@@ -367,6 +368,20 @@ article {
     font-size: 1.4rem;
     line-height: 1.4rem;
     font-weight: 400;
+    position : fixed;
+    background: $white;
+    height : 53px;
+    z-index : 2;
+    width : 100%;
+  }
+
+  i {
+    color: lighten(desaturate($primary, 30%), 60%);
+    transition: color .2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      color: $primary;
+    }
   }
 
 }
