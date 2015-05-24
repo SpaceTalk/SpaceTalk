@@ -13,6 +13,10 @@ Meteor.methods({
       throw new Meteor.Error(404, 'Team does not exist');
     }
 
+    // Get rid of extra spaces in names, lower-case it
+    // (like Slack does), and trim it
+    channelName = channelName.replace(/\s{2,}/g, ' ').toLowerCase().trim();
+
     // Insert the new channel
     if (!Channels.findOne({ teamId: teamId, name: channelName })) {
       return Channels.insert({
