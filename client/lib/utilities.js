@@ -3,13 +3,13 @@ currentRouteId = function () {
 };
 
 currentTeam = function () {
-  var search = FlowRouter.getParam('team');
+  var search = currentTeamSlug();
   // Search teams by id or slug
   return Teams.findOne( { $or: [ { _id: search }, { slug: search } ]});
 };
 
 currentChannel = function () {
-  var search = FlowRouter.getParam('channel');
+  var search = currentChannelSlug();
   // Search cnannel by id or slug
   return Channels.findOne( { $or: [ { _id: search }, { slug: search } ]});
 };
@@ -22,6 +22,14 @@ currentChannelId = function () {
 currentTeamId = function () {
   var team = currentTeam();
   return team ? team._id : null;
+};
+
+currentTeamSlug = function () {
+  return FlowRouter.getParam('team');
+};
+
+currentChannelSlug = function () {
+  return FlowRouter.getParam('channel');
 };
 
 isSubReady = function (subName) {

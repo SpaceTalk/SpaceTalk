@@ -18,6 +18,13 @@ ChannelForm = BlazeComponent.extendComponent({
             // Channel created, hide the form and reset the input
             this.$('.left-sidebar-channels-add-form').addClass('hidden');
             $name.val('');
+
+            // Navigate to the new channel view
+            var newChannel = Channels.findOne(result);
+            FlowRouter.go('channel', {
+              team: currentTeamSlug(),
+              channel: newChannel.slug
+            });
           } else if (err) {
             switch(err.error) {
               case 401: // Not authorized
