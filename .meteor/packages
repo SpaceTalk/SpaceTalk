@@ -13,7 +13,7 @@ fourseven:scss
 copleykj:jquery-autosize
 tmeasday:gravatar
 meteorhacks:flow-layout
-meteorhacks:flow-router@1.7.0
+meteorhacks:flow-router
 peerlibrary:blaze-components
 mizzao:user-status
 todda00:friendly-slugs
