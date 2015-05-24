@@ -11,14 +11,42 @@ ChannelForm = BlazeComponent.extendComponent({
 
         var name = $(event.target).find('[name=name]').val();
 
-        // Allow only unique name
+        // Allow only unique channel name
         Meteor.call('channels.add', currentTeamId(), name, function(err, result) {
           if (result) {
-            // Hide form when submitted.
+            // Channel created, hide the form
             this.$('.left-sidebar-channels-add-form').addClass('hidden');
           } else if (err) {
-            // TODO: show user friendly error message when error occurred
-            console.log(err);
+            switch(err.error) {
+              case 401: // Not authorized
+                swal({
+                  title: 'Yikes! Something went wrong',
+                  text: "We can't complete your request at the moment, are you still online?",
+                  type: 'error'
+                });
+                break;
+              case 404: // No team found
+                swal({
+                  title: 'Yikes! Something went wrong',
+                  text: "We can't find your team at the moment, are you still online?",
+                  type: 'error'
+                });
+                break;
+              case 422: // Channel exists
+                swal({
+                  title: 'Channel name exists',
+                  text: 'Please consider joining the existing channel\nor create a different channel.',
+                  type: 'error'
+                });
+                break;
+            }
+          } else {
+            // Any other error
+            swal({
+              title: 'Yikes! Something went wrong',
+              text: "We can't complete your request at the moment, are you still online?",
+              type: 'error'
+            });
           }
         });
       },
