@@ -1,22 +1,26 @@
 <template name="channel">
-  {{> channelInfo}}
-  {{#header class="channel-header"}}
-    <h1 class="channel-title">
-      {{currentChannel.name}}
-    </h1>
-    <i class="fa fa-trash-o channel-remove-icon" data-action="remove-channel"></i>
-    <i class="fa fa-info-circle channel-display-info-icon" data-action="display-channel-info"></i>
-  {{/header}}
-  {{#content class="channel-content"}}
-    <ul class="channel-scroll">
-      {{#each messages}}
-        {{> message this}}
-      {{/each}}
-    </ul>
-  {{/content}}
-  {{#footer class="channel-footer"}}
-    {{> messageForm}}
-  {{/footer}}
+  {{#if currentChannel}}
+    {{> channelInfo}}
+    {{#header class="channel-header"}}
+      <h1 class="channel-title">
+        {{currentChannel.name}}
+      </h1>
+      <i class="fa fa-trash-o channel-remove-icon" data-action="remove-channel"></i>
+      <i class="fa fa-info-circle channel-display-info-icon" data-action="display-channel-info"></i>
+    {{/header}}
+    {{#content class="channel-content"}}
+      <ul class="channel-scroll">
+        {{#each messages}}
+          {{> message this}}
+        {{/each}}
+      </ul>
+    {{/content}}
+    {{#footer class="channel-footer"}}
+      {{> messageForm}}
+    {{/footer}}
+  {{else}}
+    {{> notFound}}
+  {{/if}}
 </template>
 
 <template name="messageForm">
