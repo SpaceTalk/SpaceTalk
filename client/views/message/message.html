@@ -1,7 +1,7 @@
 <template name="message">
   <li>
     {{#if avatar}}
-      <img src="{{avatar}}" class="avatar">
+      <img src="{{avatar}}" class="user-avatar">
     {{/if}}
     <div class="message-body">
       <div>
@@ -13,7 +13,7 @@
       </div>
       {{#if isEditing.get}}
         <div class="edit-box">
-          <textarea rows="1" cols="90" class="edit-message-input">{{_removeTrailingNewLine message}}</textarea>
+          <textarea rows="1" cols="90" class="form-message-input">{{_removeTrailingNewLine message}}</textarea>
         </div>
       {{else}}
         <div class="message">{{#markdown}}{{#emoji}}{{message}}{{/emoji}}{{/markdown}}</div>
@@ -24,6 +24,6 @@
 
 <template name="messageEditBox">
   <div class="edit-box">
-    <textarea rows="1" cols="90" class="edit-message-input">{{message}}</textarea>
+    <textarea rows="1" cols="90" class="form-message-input">{{message}}</textarea>
   </div>
 </template>
