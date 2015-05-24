@@ -9,12 +9,12 @@ Meteor.methods({
     }
 
     // Check team exist
-    if (!Teams.findOne({_id: teamId})) {
+    if (!Teams.findOne({ _id: teamId })) {
       throw new Meteor.Error(404, 'Team does not exist');
     }
 
     // Insert the new channel
-    if (!Channels.findOne({teamId: teamId, name: channelName})) {
+    if (!Channels.findOne({ teamId: teamId, name: channelName })) {
       return Channels.insert({
         teamId: teamId,
         name: channelName
