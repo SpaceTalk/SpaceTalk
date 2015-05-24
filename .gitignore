@@ -65,4 +65,4 @@ crashlytics-build.properties
 sftp-config.json
 
 # used for some fix on windows
-client\css\main.scss
+client\\css\\main.scss
