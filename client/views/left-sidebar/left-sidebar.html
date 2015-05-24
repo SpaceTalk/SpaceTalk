@@ -1,26 +1,34 @@
 <template name="leftSidebar">
   <aside class="left-sidebar">
     <div class="team">
-      <span class="left-sidebar-title">{{currentTeam.name}}</span>
+      <span class="left-sidebar-title">
+        {{#with currentTeam}}
+          {{name}}
+        {{else}}
+          Team Not Found
+        {{/with}}
+      </span>
     </div>
-    <div class="left-sidebar-channels aside-section">
-      {{> channelForm}}
-      <ul>
-        {{#each channels}}
-          <li class="{{activeChannelClass}}"><a href="{{pathFor 'channel' team=currentTeam.slug channel=slug }}">{{name}}</a></li>
-        {{/each}}
-      </ul>
-    </div>
-    <div class="aside-section">
-      {{> directMessagesForm}}
-      <ul>
-        {{#each allUsersExceptMe}}
-          <li class="list-users">
-            <a href="#"><b class="user-circle-{{userStatusLabel}}">&#8226;</b> {{username}}</a>
-          </li>
-        {{/each}}
-      </ul>
-    </div>
+    {{#if currentTeam}}
+      <div class="left-sidebar-channels aside-section">
+        {{> channelForm}}
+        <ul>
+          {{#each channels}}
+            <li class="{{activeChannelClass}}"><a href="{{pathFor 'channel' team=currentTeam.slug channel=slug}}">{{name}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="aside-section">
+        {{> directMessagesForm}}
+        <ul>
+          {{#each allUsersExceptMe}}
+            <li class="list-users">
+              <a href="#"><b class="user-circle-{{userStatusLabel}}">&#8226;</b> {{username}}</a>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
     <div class="left-sidebar-user-dropdown hidden">
       <div class="header-item">
         <hr/>
