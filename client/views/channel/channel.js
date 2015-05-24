@@ -65,6 +65,10 @@ Channel = BlazeComponent.extendComponent({
             var value = this.find('textarea[name=message]').value;
             // Markdown requires double spaces at the end of the line to force line-breaks.
             value = value.replace("\n", "  \n");
+
+            // Prevent accepting empty message
+            if ($.trim(value) === "") return;
+
             this.find('textarea[name=message]').value = ''; // Clear the textarea.
             Messages.insert({
               // TODO: should be checked server side if the user is allowed to do this
