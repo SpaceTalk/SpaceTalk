@@ -9,13 +9,15 @@ ChannelForm = BlazeComponent.extendComponent({
         // We are building an application, so we don't want the form to reload the page.
         event.preventDefault();
 
-        var name = $(event.target).find('[name=name]').val();
+        var $name = $(event.target).find('[name=name]')
+        var name = $name.val();
 
         // Allow only unique channel name
         Meteor.call('channels.add', currentTeamId(), name, function(err, result) {
           if (result) {
-            // Channel created, hide the form
+            // Channel created, hide the form and reset the input
             this.$('.left-sidebar-channels-add-form').addClass('hidden');
+            $name.val('');
           } else if (err) {
             switch(err.error) {
               case 401: // Not authorized
