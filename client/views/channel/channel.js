@@ -30,9 +30,8 @@ Channel = BlazeComponent.extendComponent({
     });
   },
   channel: function () {
-    var _id = currentRouteId();
     return Channels.findOne({
-      _id: _id
+      _id: currentChannelId()
     });
   },
   user: function () {
