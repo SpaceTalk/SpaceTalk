@@ -1,0 +1,8 @@
+@mixin channel() {
+  &:before {
+    content: '#';
+    color: lighten(desaturate($primary, 30%), 30%);
+    font-weight: normal;
+    margin-right: 3px;
+  }
+}

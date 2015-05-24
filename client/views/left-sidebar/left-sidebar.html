@@ -1,7 +1,7 @@
 <template name="leftSidebar">
   <aside class="left-sidebar">
     <div class="team">
-      <span class="title">{{currentTeam.name}}</span>
+      <span class="left-sidebar-title">{{currentTeam.name}}</span>
     </div>
     <div class="left-sidebar-channels aside-section">
       {{> channelForm}}
@@ -21,13 +21,13 @@
         {{/each}}
       </ul>
     </div>
-    <div class="user">
-      <ul class="dropdown hidden">
+    <div class="left-sidebar-user">
+      <ul class="left-sidebar-user-dropdown hidden">
         <li><a href="#" class="sign-out">Log Out</a></li>
       </ul>
-      <img src="{{currentUserAvatar}}" class="avatar">
+      <img src="{{currentUserAvatar}}" class="user-avatar">
       <a href="#">{{currentUser.username}}</a>
-      <button type="button" class="show-dropdown"><i class="fa fa-angle-up"></i></button>
+      <button type="button" class="left-sidebar-user-show-dropdown"><i class="fa fa-angle-up"></i></button>
     </div>
   </aside>
 </template>

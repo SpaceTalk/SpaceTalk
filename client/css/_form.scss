@@ -1,0 +1,16 @@
+.form {
+
+  &-message-input, &-message-input {
+    border: solid 2px lightgray;
+    border-radius: 4px;
+    padding: $padding/2;
+    width: 100%;
+    box-sizing: border-box;
+    resize: none !important;
+    font-size: 14px;
+    &:focus {
+      outline: none;
+    }
+  }
+
+}

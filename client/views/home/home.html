@@ -1,14 +1,24 @@
 <template name="home">
-  {{#header classess="home-header"}}
-    <h1>Home</h1>
-  {{/header}}
-  {{#content classess="home-content"}}
-    <p>This is the homepage here should a user be able to login. When he's logged in he should be able to select the team on which he has access to.
-    For the time being every member has access to every team which means that a logged in user should see all the teams here. The <a href="{{pathFor 'teamHome' team="public" }}">public team</a>  gets created by default</p>
+  {{#content}}
+    <!--<p>This is the homepage here should a user be able to login. When he's logged in he should be able to select the team on which he has access to.-->
+    <!--For the time being every member has access to every team which means that a logged in user should see all the teams here. The <a href="{{pathFor 'teamHome' team="public" }}">public team</a>  gets created by default</p>-->
+    <!--<p>If you have ever started an older version of SpaceTalk please clear you database first after that you can login with admin/admin.</p>-->
+    <!--{{> atForm state='signIn'}}-->
+    <!--Once you log in, you will automatically be redirected to the backend interface.-->
+    <div class="breif">
+      <p>SpaceTalk makes it easy to launch your very own chat application, and get in control of your data. Build and
+        customize your very own <em>Slack</em>, <em>Telegram</em>, or <em>Facebook Messenger</em>!</p>
 
-    <p>If you have ever started an older version of SpaceTalk please clear you database first after that you can login with admin/admin.</p>
-
-    {{> atForm state='signIn'}}
-    Once you log in, you will automatically be redirected to the backend interface.
+      <p>Built with Meteor and lots of nerd love</p>
+    </div>
+    <div class="content-inner-form">
+      {{> atForm state='signIn'}}
+    </div>
+    <ul>
+      <li>Fork <a href="http://github.com/SpaceTalk/SpaceTalk" target="_blank"><span
+        class="wide">SpaceTalk</span> on Github</a></li>
+      <li>Show <a href="https://trello.com/b/R9Nh1V3t/spacetalk-roadmap" target="_blank"><span class="show-wide">SpaceTalk</span>
+        Roadmap on Trello</a></li>
+    </ul>
   {{/content}}
 </template>

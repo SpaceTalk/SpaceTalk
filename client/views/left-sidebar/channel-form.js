@@ -11,14 +11,44 @@ ChannelForm = BlazeComponent.extendComponent({
 
         var name = $(event.target).find('[name=name]').val();
 
-        //TODO: unsave as shit we might just use meteor methods for this or really check not changeable parameters
-        Channels.insert({
-          teamId: currentTeamId(),
-          name: name
+        // Allow only unique channel name
+        Meteor.call('channels.add', currentTeamId(), name, function(err, result) {
+          if (result) {
+            // Channel created, hide the form
+            this.$('.left-sidebar-channels-add-form').addClass('hidden');
+          } else if (err) {
+            switch(err.error) {
+              case 401: // Not authorized
+                swal({
+                  title: 'Yikes! Something went wrong',
+                  text: "We can't complete your request at the moment, are you still online?",
+                  type: 'error'
+                });
+                break;
+              case 404: // No team found
+                swal({
+                  title: 'Yikes! Something went wrong',
+                  text: "We can't find your team at the moment, are you still online?",
+                  type: 'error'
+                });
+                break;
+              case 422: // Channel exists
+                swal({
+                  title: 'Channel name exists',
+                  text: 'Please consider joining the existing channel\nor create a different channel.',
+                  type: 'error'
+                });
+                break;
+            }
+          } else {
+            // Any other error
+            swal({
+              title: 'Yikes! Something went wrong',
+              text: "We can't complete your request at the moment, are you still online?",
+              type: 'error'
+            });
+          }
         });
-
-        // Hide form when submitted.
-        this.$('.add-channel-form').addClass('hidden');
       },
 
       'click .show-form': function (event) {
@@ -26,8 +56,8 @@ ChannelForm = BlazeComponent.extendComponent({
         event.preventDefault();
 
         // Show form.
-        this.$('.add-channel-form').toggleClass('hidden');
-        this.$('.add-channel-form input').focus();
+        this.$('.left-sidebar-channels-add-form').toggleClass('hidden');
+        this.$('.left-sidebar-channels-add-form input').focus();
       }
     }];
   }

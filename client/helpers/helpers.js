@@ -5,7 +5,3 @@ Template.registerHelper('currentChannel', function () {
 Template.registerHelper('currentTeam', function () {
   return currentTeam();
 });
-
-Template.registerHelper('currentUser', function() {
-  return Meteor.user();
-});

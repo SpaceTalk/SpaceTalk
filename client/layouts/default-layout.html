@@ -1,3 +1,15 @@
 <template name="defaultLayout">
-    {{> Template.dynamic template=main}}
+  <div class="layouts-default">
+    <div class="content">
+      <div class="logo">
+        <div class="logo-image">
+          <img src="/logo.png"/>
+        </div>
+      </div>
+      <div class="content-inner">
+        {{> Template.dynamic template=main}}
+        <p class="copy">Copyright © 2015 Tim Brandin &amp; SpaceTalk</p>
+      </div>
+    </div>
+  </div>
 </template>
