@@ -39,8 +39,8 @@ Message = BlazeComponent.extendComponent({
     return this.currentData().userId === Meteor.userId();
   },
 
-  time: function () {
-    return moment(this.timestamp).format('h:mm a');
+  time: function (timestamp) {
+    return moment(timestamp).format('h:mm a');
   },
 
   avatar: function () {
