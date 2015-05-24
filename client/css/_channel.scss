@@ -4,7 +4,7 @@
     position: fixed;
     top: 0;
     height: $top;
-    margin-left: $aside;
+    margin-left: $sidebar-width;
     background: white;
     width: 100%;
 
@@ -31,7 +31,7 @@
     padding: 16px $padding*4/3 71px $padding*4/3;
     margin-top: 53px;
     height: calc(100% - 53px);
-    margin-left: $aside;
+    margin-left: $sidebar-width;
 
     &-full{
     margin-right : $channelInfo;
@@ -41,7 +41,6 @@
     &.home-content{
       margin-left: 0;
     }
-
 
     .message {
       font-size: 15px;
@@ -90,11 +89,12 @@
   &-footer {
     position: fixed;
     bottom: 0;
-    left: $aside;
-    right : 0px;
+    left: $sidebar-width;
+    right: 0;
     padding: $padding $padding*4/3-3px;
     background: white;
     z-index: 1;
+
     &-full {
       right : $channelInfo;
       transition: right .2s ease-in-out;

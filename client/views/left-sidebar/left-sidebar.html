@@ -21,10 +21,23 @@
         {{/each}}
       </ul>
     </div>
-    <div class="left-sidebar-user">
-      <ul class="left-sidebar-user-dropdown hidden">
-        <li><a href="#" class="sign-out">Log Out</a></li>
+    <div class="left-sidebar-user-dropdown hidden">
+      <div class="header-item">
+        <hr/>
+        <span class="header-item-content">For me</span>
+      </div>
+      <ul class="menu-items">
+        <li class="menu-item"><a href="#" class="sign-out">Sign out</a></li>
       </ul>
+      <div class="header-item">
+        <hr/>
+        <span class="header-item-content">SpaceTalk</span>
+      </div>
+      <ul class="menu-items">
+        <li class="menu-item"><a href="{{pathFor '/contributors'}}">The contributors</a></li>
+      </ul>
+    </div>
+    <div class="left-sidebar-user">
       <img src="{{currentUserAvatar}}" class="user-avatar">
       <a href="#">{{currentUser.username}}</a>
       <button type="button" class="left-sidebar-user-show-dropdown"><i class="fa fa-angle-up"></i></button>
