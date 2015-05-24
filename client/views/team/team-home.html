@@ -1,8 +1,12 @@
 <template name="teamHome">
-  {{#header class="channel-header"}}
-    <h1>{{currentTeam.name}}</h1>
-  {{/header}}
-  {{#content class="channel-content"}}
-    <p>Welcome to the team page.</p>
-  {{/content}}
+  {{#if currentTeam}}
+    {{#header class="channel-header"}}
+      <h1>{{currentTeam.name}}</h1>
+    {{/header}}
+    {{#content class="channel-content"}}
+      <p>Welcome to the team page.</p>
+    {{/content}}
+  {{else}}
+    {{> notFound}}
+  {{/if}}
 </template>
