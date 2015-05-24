@@ -1,6 +1,63 @@
 .channel-info {
+  box-shadow: -1px 0px 5px rgba(150, 150, 150, 0.41);
+  position : fixed;
+  right : 0px;
+  width: $channel-info-width;
+  background: $white;
+  height: calc(100% - 53px);
+  padding: $padding;
+  box-sizing: border-box;
+  z-index: 4;
   top: 0;
   height: 100%;
+  transition: right .2s ease-in-out;
+  transition: margin-right .2s ease-out-in;
+  &, a {
+    color: lighten($primary, 30%);
+    text-decoration: none;
+  }
+  a {
+    padding: 0;
+    display: block;
+  }
+  ul {
+    margin: $padding/2 0;
+  }
+  li a:before {
+    color: lighten($primary, 10%);
+  }
+  .aside-section {
+    margin-bottom: 35px;
+  }
+  .title {
+    color : #555459;
+    text-shadow : none;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    font-weight: 400;
+    background: $white;
+    height : 53px;
+    z-index : 2;
+    width : 100%;
+  }
+
+  i {
+    color: lighten(desaturate($primary, 30%), 60%);
+    transition: color .2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      color: $primary;
+    }
+  }
+  &-out {
+    right : -$channel-info-width;
+    transition: right .2s ease-in-out;
+  }
+
+  &-exit {
+    position: absolute;
+    right: 11px;
+  }
 
   .channel-accordion {
 

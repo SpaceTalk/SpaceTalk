@@ -34,7 +34,7 @@
     margin-left: $sidebar-width;
 
     &-full{
-    margin-right : $channelInfo;
+    margin-right : $channel-info-width;
     transition: margin-right .2s ease-in-out;
     }
 
@@ -96,7 +96,7 @@
     z-index: 1;
 
     &-full {
-      right : $channelInfo;
+      right : $channel-info-width;
       transition: right .2s ease-in-out;
     }
   }
@@ -127,64 +127,6 @@
   label {
     text-transform: uppercase;
     font-size: 14px;
-  }
-
-  &-info {
-    border-left: solid 1px lighten($primary, 30%);
-    position : fixed;
-    right : 0px;
-    top: $top;
-    width: $channelInfo;
-    background: $white;
-    height: calc(100% - 53px);
-    padding: $padding;
-    box-sizing: border-box;
-    z-index: 4;
-    transition: right .2s ease-in-out;
-    transition: margin-right .2s ease-out-in;
-    &, a {
-      color: lighten($primary, 30%);
-      text-decoration: none;
-    }
-    a {
-      padding: 0;
-      display: block;
-    }
-    ul {
-      margin: $padding/2 0;
-    }
-    li a:before {
-      color: lighten($primary, 10%);
-    }
-    .aside-section {
-      margin-bottom: 35px;
-    }
-    .title {
-      color : #555459;
-      text-shadow : none;
-      font-size: 1.4rem;
-      line-height: 1.4rem;
-      font-weight: 400;
-      position : fixed;
-      background: $white;
-      height : 53px;
-      z-index : 2;
-      width : 100%;
-    }
-
-    i {
-      color: lighten(desaturate($primary, 30%), 60%);
-      transition: color .2s ease-in-out;
-      cursor: pointer;
-      &:hover {
-        color: $primary;
-      }
-    }
-    &-out {
-      right : -$channelInfo;
-      transition: right .2s ease-in-out;
-    }
-
   }
 
 }
