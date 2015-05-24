@@ -1,8 +1,12 @@
 <template name="notFound">
-    {{#header}}
-        <h1>Woops</h1>
-    {{/header}}
-    {{#content}}
-        We couldn't find this page.
-    {{/content}}
+  {{#header class="channel-header"}}
+    <h1>Woops</h1>
+  {{/header}}
+  {{#content class="channel-content"}}
+    <p>We couldn't find this page.</p>
+    <ul>
+      <li><a href="#" onclick="window.history.go(-1);">Go back</a></li>
+      <li><a href="{{pathFor 'teamHome' team='public'}}">Go to main team</a></li>
+    </ul>
+  {{/content}}
 </template>

@@ -12,7 +12,12 @@
       <p>Built with Meteor and lots of nerd love</p>
     </div>
     <div class="content-inner-form">
-      {{> atForm state='signIn'}}
+      {{#if currentUser}}
+        <!-- XXX TODO: Somebody style this link -->
+        <a href="{{pathFor 'teamHome' team='public'}}">Go To Your Team Dashboard!</a>
+      {{else}}
+        {{> atForm state='signIn'}}
+      {{/if}}
     </div>
     <ul>
       <li>Fork <a href="http://github.com/SpaceTalk/SpaceTalk" target="_blank"><span

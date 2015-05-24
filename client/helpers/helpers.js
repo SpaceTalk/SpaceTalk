@@ -6,6 +6,6 @@ Template.registerHelper('currentTeam', function () {
   return currentTeam();
 });
 
-Template.registerHelper('currentUser', function() {
-  return Meteor.user();
+Template.registerHelper('isSubReady', function (subName) {
+  return isSubReady(subName);
 });

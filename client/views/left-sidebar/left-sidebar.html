@@ -1,30 +1,51 @@
 <template name="leftSidebar">
   <aside class="left-sidebar">
     <div class="team">
-      <span class="left-sidebar-title">{{currentTeam.name}}</span>
+      <span class="left-sidebar-title">
+        {{#with currentTeam}}
+          {{name}}
+        {{else}}
+          Team Not Found
+        {{/with}}
+      </span>
     </div>
-    <div class="left-sidebar-channels aside-section">
-      {{> channelForm}}
-      <ul>
-        {{#each channels}}
-          <li class="{{activeChannelClass}}"><a href="{{pathFor 'channel' team=currentTeam.slug channel=slug }}">{{name}}</a></li>
-        {{/each}}
+    {{#if currentTeam}}
+      <div class="left-sidebar-channels aside-section">
+        {{> channelForm}}
+        <ul>
+          {{#each channels}}
+            <li class="{{activeChannelClass}}"><a href="{{pathFor 'channel' team=currentTeam.slug channel=slug}}">{{name}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="aside-section">
+        {{> directMessagesForm}}
+        <ul>
+          {{#each allUsersExceptMe}}
+            <li class="list-users">
+              <a href="#"><b class="user-circle-{{userStatusLabel}}">&#8226;</b> {{username}}</a>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+    <div class="left-sidebar-user-dropdown hidden">
+      <div class="header-item">
+        <hr/>
+        <span class="header-item-content">For me</span>
+      </div>
+      <ul class="menu-items">
+        <li class="menu-item"><a href="#" class="sign-out">Sign out</a></li>
       </ul>
-    </div>
-    <div class="aside-section">
-      {{> directMessagesForm}}
-      <ul>
-        {{#each allUsersExceptMe}}
-          <li class="list-users">
-            <a href="#"><b class="user-circle-{{userStatusLabel}}">&#8226;</b> {{username}}</a>
-          </li>
-        {{/each}}
+      <div class="header-item">
+        <hr/>
+        <span class="header-item-content">SpaceTalk</span>
+      </div>
+      <ul class="menu-items">
+        <li class="menu-item"><a href="{{pathFor '/contributors'}}">The contributors</a></li>
       </ul>
     </div>
     <div class="left-sidebar-user">
-      <ul class="left-sidebar-user-dropdown hidden">
-        <li><a href="#" class="sign-out">Log Out</a></li>
-      </ul>
       <img src="{{currentUserAvatar}}" class="user-avatar">
       <a href="#">{{currentUser.username}}</a>
       <button type="button" class="left-sidebar-user-show-dropdown"><i class="fa fa-angle-up"></i></button>

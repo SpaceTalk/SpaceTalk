@@ -54,7 +54,7 @@
         form {
           margin: 16px auto;
           display: inline-block;
-          padding: 8px 16px 16px;
+          padding: 16px;
           border: solid 2px #777;
           border-radius: 8px;
           background: rgba(255, 255, 255, 0.05);
@@ -104,10 +104,9 @@
     }
 
     .logo {
-      background: url(planet.png) no-repeat;
       background-size: 1920px auto;
       background-position: center bottom 130px;
-      padding-top: 180px;
+      padding-top: 50px;
 
       &-image {
         max-width: 100%;

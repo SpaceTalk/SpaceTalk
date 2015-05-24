@@ -30,9 +30,8 @@ Channel = BlazeComponent.extendComponent({
     });
   },
   channel: function () {
-    var _id = currentRouteId();
     return Channels.findOne({
-      _id: _id
+      _id: currentChannelId()
     });
   },
   user: function () {
@@ -139,6 +138,12 @@ Channel = BlazeComponent.extendComponent({
               }
             });
           }
+        },
+        'click [data-action="display-channel-info"]': function (event, template) {
+          event.preventDefault();
+          $('.channel-info').toggleClass('channel-info-out');
+          $('.channel-content').toggleClass('channel-content-full');
+          $('.channel-footer').toggleClass('channel-footer-full');
         }
       }];
   }

@@ -1,11 +1,17 @@
-$aside: 220px;
+$sidebar-width: 220px;
 $top: 53px;
+$channel-info-width: 315px;
 
+$light-text: white;
+$dark-text: black;
+$light-background: white;
+$dark-background: black;
 $primary: #453744;
 $secondary: #3D3C40;
 $accent: #428BCA;
 $online: #38978D;
 $offline: #ab9ba9;
 $idle: lighten($primary, 15%);
+$white: #FFFFFF;
 
 $padding: 16px;
