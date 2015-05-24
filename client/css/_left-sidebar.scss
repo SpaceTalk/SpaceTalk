@@ -1,7 +1,7 @@
 .left-sidebar {
   position: fixed;
   top: $top;
-  width: $aside;
+  width: $sidebar-width;
   background: $primary;
   height: calc(100% - 53px);
   padding: $padding;
@@ -41,7 +41,7 @@
     top: 0;
     background: darken($primary, 5%);
     border-bottom: solid 2px darken($primary, 10%);
-    width: $aside;
+    width: $sidebar-width;
     margin-left: -$padding;
     padding-left: $padding;
     text-shadow: none;
