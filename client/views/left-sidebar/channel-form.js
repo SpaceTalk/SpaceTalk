@@ -11,14 +11,16 @@ ChannelForm = BlazeComponent.extendComponent({
 
         var name = $(event.target).find('[name=name]').val();
 
-        //TODO: unsave as shit we might just use meteor methods for this or really check not changeable parameters
-        Channels.insert({
-          teamId: currentTeamId(),
-          name: name
+        // Allow only unique name
+        Meteor.call('channels.add', currentTeamId(), name, function(err, result) {
+          if (result) {
+            // Hide form when submitted.
+            this.$('.left-sidebar-channels-add-form').addClass('hidden');
+          } else if (err) {
+            // TODO: show user friendly error message when error occurred
+            console.log(err);
+          }
         });
-
-        // Hide form when submitted.
-        this.$('.add-channel-form').addClass('hidden');
       },
 
       'click .show-form': function (event) {
