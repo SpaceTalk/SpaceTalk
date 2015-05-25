@@ -180,7 +180,3 @@ var scrollDown = function () {
     window.scrollTo(0, document.body.scrollHeight);
   }
 };
-
-function isEnter(e) {
-  return e.keyCode === 13;
-}
