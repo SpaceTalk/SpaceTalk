@@ -3,6 +3,7 @@
   &-default {
 
     .content {
+      position: absolute;
       vertical-align: middle;
       text-align: center;
       width: 100%;
@@ -128,14 +129,12 @@
       }
       .logo {
         background-position: center bottom 110px;
-        padding-top: 160px;
       }
     }
 
     @media (max-width: 374px) {
       .logo {
         background-position: center bottom 100px;
-        padding-top: 150px;
       }
     }
   }
