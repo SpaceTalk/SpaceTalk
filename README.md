@@ -56,6 +56,14 @@ Commit your changes to your fork, and create Pull Request with [github helper](h
 1. Code follows the [Meteor Style Guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide)
 2. Code doesn’t break things (The app can still run)
 
+### Libraries
+
+This project is in flux at the moment, these are the currently agreed upon client side libraries;
+
+* CSS Pre-Processor: [Sass / .scss](http://sass-lang.com/)
+* Icon Font Library: [FontAwesome](http://fortawesome.github.io/Font-Awesome/)
+
+
 ### Disclaimer
 
 This code was part of a [Meteor Workshop](http://www.meetup.com/Meteor-Goteborg/events/221282857/) that took place on the 14th of May 2015 in Gothenburg, Sweden.
