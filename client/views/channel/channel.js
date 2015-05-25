@@ -4,25 +4,37 @@ Channel = BlazeComponent.extendComponent({
     // Listen for changes to reactive variables (such as FlowRouter.getParam()).
     self.autorun(function () {
       currentChannel() && self.subscribe('messages', currentChannelId(), function () {
+        // XXX: can't figure out to get this to consistently,
+        // on page load, it won't scroll down automatically
         scrollDown();
       });
     });
   },
   onRendered: function () {
-    // Observe the changes on the messages for this channel
-    Messages.find({
-      channelId: currentChannelId()
-    }).observeChanges({
-      // When a new message is added
-      added: function (id, doc) {
-        // Trigger the scroll down method which determines whether to scroll down or not
-        scrollDown();
+    var self = this;
+    // We need to do this in an autorun because
+    // for some reason the currentChannelId is not
+    // available until a bit later
+    self.autorun(function () {
+      if (currentChannelId()) {
+        // Note: this scrollDown does work
+        // Observe the changes on the messages for this channel
+        self.messageObserveHandle = Messages.find({
+          channelId: currentChannelId()
+        }).observeChanges({
+          // When a new message is added
+          added: function (id, doc) {
+            // Trigger the scroll down method which determines whether to scroll down or not
+            scrollDown();
+          }
+        });
       }
     });
-
-    $('article').css({
-      'padding-bottom': $('footer').outerHeight()
-    });
+  },
+  onDestroyed: function () {
+    var self = this;
+    // Prevents memory leaks!
+    self.messageObserveHandle && self.messageObserveHandle.stop();
   },
   messages: function () {
     return Messages.find({
@@ -153,11 +165,15 @@ Channel = BlazeComponent.extendComponent({
  * Scrolls down the page when the user is a at or nearly at the bottom of the page
  */
 var scrollDown = function () {
-  // Check if the innerHeight + the scrollY position is higher than the offsetHeight - 200
-  if ((window.innerHeight + window.scrollY) >= (
-    Number(document.body.offsetHeight) - 200
-    )) {
-    // Scroll down the page
-    window.scrollTo(0, document.body.scrollHeight);
-  }
+  // It has to be in a setTimeout or it won't
+  // scroll all the way down for some reason
+  setTimeout(function () {
+    // Check if the innerHeight + the scrollY position is higher than the offsetHeight - 200
+    if ((window.innerHeight + window.scrollY) >= (
+      Number(document.body.offsetHeight) - 200
+      )) {
+      // Scroll down the page
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  }, 0);
 };
