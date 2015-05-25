@@ -59,7 +59,7 @@ Channel = BlazeComponent.extendComponent({
     return [
       {
         'keydown textarea[name=message]': function (event) {
-          if (event.keyCode == 13 && !event.shiftKey) { // Check if enter was pressed (but without shift).
+          if (isEnter(event) && !event.shiftKey) { // Check if enter was pressed (but without shift).
             event.preventDefault();
             var _id = currentRouteId();
             var value = this.find('textarea[name=message]').value;
@@ -86,6 +86,7 @@ Channel = BlazeComponent.extendComponent({
             window.scrollTo(0, document.body.scrollHeight);
           }
         },
+
         'click [data-action="remove-channel"]': function (event, template) {
           event.preventDefault();
 
@@ -143,11 +144,27 @@ Channel = BlazeComponent.extendComponent({
             });
           }
         },
+
         'click [data-action="display-channel-info"]': function (event, template) {
           event.preventDefault();
           $('.channel-info').toggleClass('channel-info-out');
           $('.channel-content').toggleClass('channel-content-full');
           $('.channel-footer').toggleClass('channel-footer-full');
+        },
+
+        'click .channel-title': function(event) {
+          event.preventDefault();
+
+          this.$(".channel-dropdown").toggleClass("hidden");
+        },
+
+        'keydown input[name=channel-topic]': function (event, template) {
+
+          if (isEnter(event)) {
+
+            var content = this.find('input[name=channel-topic]').value;
+            Meteor.call('channels.updateTopic', currentChannelId(), content);
+          }
         }
       }];
   }
@@ -165,3 +182,7 @@ var scrollDown = function () {
     window.scrollTo(0, document.body.scrollHeight);
   }
 };
+
+function isEnter(e) {
+  return e.keyCode === 13;
+}
