@@ -5,9 +5,6 @@ LeftSidebar = BlazeComponent.extendComponent({
   directChannels: function() {
     return Channels.find( { teamId: currentTeamId(), direct: true } );
   },
-  currentUser: function () {
-    return Meteor.user();
-  },
   activeChannelClass: function () {
     return currentChannelId() == this.currentData()._id ? 'active' : '';
   },
