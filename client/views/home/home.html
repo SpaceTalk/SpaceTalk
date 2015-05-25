@@ -13,12 +13,22 @@
     </div>
     <div class="content-inner-form">
       {{#if currentUser}}
-        <!-- XXX TODO: Somebody style this link -->
-        <a href="{{pathFor 'teamHome' team='public'}}">Go To Your Team Dashboard!</a>
+        <h3>My Teams</h3>
+        {{#if teams}}
+          <p>You currently may enter the following teams</p>
+          <ul>
+            {{#each teams}}
+              <li><a href="{{pathFor 'teamHome' team=slug }}" target="_blank"><span class="wide">{{name}}</span></a></li>
+            {{/each}}
+          </ul>
+        {{else}}
+          <p>Looks like you don't have access to an team.</p>
+        {{/if}}
       {{else}}
         {{> atForm state='signIn'}}
       {{/if}}
     </div>
+    <h3>Contribute</h3>
     <ul>
       <li>Fork <a href="http://github.com/SpaceTalk/SpaceTalk" target="_blank"><span
         class="wide">SpaceTalk</span> on Github</a></li>
