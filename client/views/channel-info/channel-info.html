@@ -16,7 +16,9 @@
           <input type="checkbox" checked>
           <i class="fa fa-caret-down"></i>
           <h2><i class="fa fa-thumb-tack icon icon-pinned"></i> Pinned items</h2>
-          <p>Pinned items content to be here</p>
+          {{#each pinnedMessages}}
+            {{> message}}
+          {{/each}}
         </li>
         <li>
           <input type="checkbox" checked>
