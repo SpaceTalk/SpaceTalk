@@ -3,9 +3,9 @@ Message = BlazeComponent.extendComponent({
     this.isEditing = new ReactiveVar(false);
   },
 
-  _onClickOutside: function (e) {
-    var self = e.data.instance;
-    if (!$(e.target).is(self.$('.form-message-input')) && !$(e.target).is(self.$('.edit'))) {
+  _onClickOutside: function (event) {
+    var self = event.data.instance;
+    if (!$(event.target).is(self.$('.form-message-input')) && !$(event.target).is(self.$('.edit'))) {
       self.isEditing.set(false);
       $(document.body).unbind('click', self._onClickOutside);
     }
@@ -87,6 +87,6 @@ Message = BlazeComponent.extendComponent({
             this.toggleEditMode();
           }
         }
-      }]
+      }];
   }
 }).register('message');

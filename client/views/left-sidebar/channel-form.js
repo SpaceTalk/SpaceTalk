@@ -15,7 +15,7 @@ ChannelForm = BlazeComponent.extendComponent({
         if ($.trim(name) === "") return;
 
         // Allow only unique channel name
-        Meteor.call('channels.add', currentTeamId(), name, function(err, result) {
+        Meteor.call('channels.add', currentTeamId(), name, function(error, result) {
           if (result) {
             // Navigate to the new channel view
             var newChannel = Channels.findOne(result);
@@ -26,8 +26,8 @@ ChannelForm = BlazeComponent.extendComponent({
             // Channel created, clear the input and hide the form
             inputField.val('');
             currentForm.addClass('hidden');
-          } else if (err) {
-            switch(err.error) {
+          } else if (error) {
+            switch(error.error) {
               case 401: // Not authorized
                 swal({
                   title: 'Yikes! Something went wrong',

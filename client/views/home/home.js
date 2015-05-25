@@ -1,5 +1,5 @@
 Template.home.helpers({
-  'teams': function() {
+  'teams': function () {
     return Teams.find({});
   }
 });
