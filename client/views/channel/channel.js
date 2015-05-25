@@ -45,7 +45,7 @@ Channel = BlazeComponent.extendComponent({
   date: function () {
     var dateNow = moment(this.currentData().timestamp).calendar();
 
-    if (!this.date || this.date != dateNow) {
+    if (!this.date || this.date !== dateNow) {
       return this.date = dateNow;
     }
   },
@@ -86,7 +86,7 @@ Channel = BlazeComponent.extendComponent({
             window.scrollTo(0, document.body.scrollHeight);
           }
         },
-        'click [data-action="remove-channel"]': function (event, template) {
+        'click [data-action="remove-channel"]': function (event) {
           event.preventDefault();
 
           if (!currentChannel()) {
@@ -143,7 +143,7 @@ Channel = BlazeComponent.extendComponent({
             });
           }
         },
-        'click [data-action="display-channel-info"]': function (event, template) {
+        'click [data-action="display-channel-info"]': function (event) {
           event.preventDefault();
           $('.channel-info').toggleClass('channel-info-out');
           $('.channel-content').toggleClass('channel-content-full');
