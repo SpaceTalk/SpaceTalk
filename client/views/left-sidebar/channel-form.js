@@ -9,13 +9,22 @@ ChannelForm = BlazeComponent.extendComponent({
         // We are building an application, so we don't want the form to reload the page.
         event.preventDefault();
 
-        var name = $(event.target).find('[name=name]').val();
+        var currentForm = this.$('.left-sidebar-channels-add-form');
+        var inputField = $(event.target).find('[name=name]');
+        var name = inputField.val();
 
         // Allow only unique channel name
         Meteor.call('channels.add', currentTeamId(), name, function(err, result) {
           if (result) {
-            // Channel created, hide the form
-            this.$('.left-sidebar-channels-add-form').addClass('hidden');
+            // Navigate to the new channel view
+            var newChannel = Channels.findOne(result);
+            FlowRouter.go('channel', {
+              team: currentTeamSlug(),
+              channel: newChannel.slug
+            });
+            // Channel created, clear the input and hide the form
+            inputField.val('');
+            currentForm.addClass('hidden');
           } else if (err) {
             switch(err.error) {
               case 401: // Not authorized
@@ -33,10 +42,28 @@ ChannelForm = BlazeComponent.extendComponent({
                 });
                 break;
               case 422: // Channel exists
+                var channel = Channels.findOne({teamId: currentTeamId(), name: name});
                 swal({
                   title: 'Channel name exists',
-                  text: 'Please consider joining the existing channel\nor create a different channel.',
-                  type: 'error'
+                  text: 'Please consider joining the existing channel <button class="channel-link confirm">#' + name + '</button><br>or create a different channel.',
+                  type: 'error',
+                  closeOnConfirm: false,
+                  showConfirmButton: false,
+                  showCancelButton: true,
+                  closeOnCancel: true,
+                  cancelButtonText: "OK",
+                  html: true
+                }, function(isConfirm) {
+                  // User wants to visit the existing channel,
+                  // clear the input and hide the form
+                  // and redirect to the requested channel
+                  if (isConfirm) {
+                    var team = currentTeam();
+                    inputField.val('');
+                    currentForm.addClass('hidden');
+                    swal.close();
+                    FlowRouter.go('channel', { team: team.slug, channel: channel.slug });
+                  }
                 });
                 break;
             }

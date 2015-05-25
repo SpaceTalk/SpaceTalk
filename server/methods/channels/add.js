@@ -1,6 +1,5 @@
 Meteor.methods({
   'channels.add': function(teamId, channelName, options) {
-    console.log(options)
     check(teamId, String);
     check(channelName, String);
     check(options, Match.Optional({direct: Boolean, allowedUsers: [String]}));
@@ -11,7 +10,7 @@ Meteor.methods({
     }
 
     // Check team exist
-    if (!Teams.findOne({_id: teamId})) {
+    if (!Teams.findOne({ _id: teamId })) {
       throw new Meteor.Error(404, 'Team does not exist');
     }
 
@@ -24,8 +23,13 @@ Meteor.methods({
         return Channels.update({name: name}, {$set: {name: name, teamId: teamId, direct: true, allowedUsers: options.allowedUsers}});
       }
     }
+
+    // Get rid of extra spaces in names, lower-case it
+    // (like Slack does), and trim it
+    channelName = channelName.replace(/\s{2,}/g, ' ').toLowerCase().trim();
+
     // Insert the new channel
-    if (!Channels.findOne({teamId: teamId, name: channelName})) {
+    if (!Channels.findOne({ teamId: teamId, name: channelName })) {
       return Channels.insert({
         teamId: teamId,
         name: channelName
