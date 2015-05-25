@@ -1,10 +1,9 @@
 LeftSidebar = BlazeComponent.extendComponent({
   channels: function () {
-    return Channels.find( { teamId: currentTeamId() } );
+    return Channels.find( { teamId: currentTeamId(), direct: {$ne: true} } );
   },
-  allUsersExceptMe: function () {
-    // TODO: add limit, autoscale to sidebar height
-    return Meteor.users.find({ _id: { $ne: Meteor.userId() } });
+  directChannels: function() {
+    return Channels.find( { teamId: currentTeamId(), direct: true } );
   },
   userStatusLabel: function () {
     var parent = this.currentData();

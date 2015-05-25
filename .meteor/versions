@@ -14,6 +14,7 @@ check@1.0.5
 coffeescript@1.0.6
 copleykj:jquery-autosize@1.17.8
 cosmos:browserify@0.1.4
+dburles:collection-helpers@1.0.3
 ddp@1.1.0
 deps@1.0.7
 ejson@1.0.6
