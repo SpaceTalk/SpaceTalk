@@ -12,6 +12,7 @@ ChannelForm = BlazeComponent.extendComponent({
         var currentForm = this.$('.left-sidebar-channels-add-form');
         var inputField = $(event.target).find('[name=name]');
         var name = inputField.val();
+        if ($.trim(name) === "") return;
 
         // Allow only unique channel name
         Meteor.call('channels.add', currentTeamId(), name, function(err, result) {
