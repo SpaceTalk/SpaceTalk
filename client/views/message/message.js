@@ -68,7 +68,7 @@ Message = BlazeComponent.extendComponent({
     return [
       {
         'click .edit': function (event) {
-          eventpreventDefault();
+          event.preventDefault();
           this.toggleEditMode();
         },
 
