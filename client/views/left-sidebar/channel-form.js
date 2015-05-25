@@ -15,7 +15,7 @@ ChannelForm = BlazeComponent.extendComponent({
         if ($.trim(name) === "") return;
 
         // Allow only unique channel name
-        Meteor.call('channels.add', currentTeamId(), name, function(error, result) {
+        Meteor.call('channels.add', currentTeamId(), name, function (error, result) {
           if (result) {
             // Navigate to the new channel view
             var newChannel = Channels.findOne(result);
@@ -54,7 +54,7 @@ ChannelForm = BlazeComponent.extendComponent({
                   closeOnCancel: true,
                   cancelButtonText: "OK",
                   html: true
-                }, function(isConfirm) {
+                }, function (isConfirm) {
                   // User wants to visit the existing channel,
                   // clear the input and hide the form
                   // and redirect to the requested channel
