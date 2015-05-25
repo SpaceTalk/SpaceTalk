@@ -50,6 +50,7 @@
       color: darken($primary, 15%);
       font-weight: 900;
     }
+
     li {
       margin-top: $padding/2;
       &:after {
@@ -58,26 +59,44 @@
         clear: both;
       }
     }
+
     p {
       margin: 0 0 $padding/2 0;
+
     }
+
     .time {
       font-size: 12px;
       text-transform: uppercase;
       margin-left: 3px;
+
     }
+
     .edit {
       font-size: 12px;
       margin-left: 3px;
       text-decoration: none;
       color: grey;
       display: none;
+
     }
+
     .message-body:hover .edit {
       display: inline;
     }
+
+    .pin {
+      display: none !important; // _sweetalert-override.scss is affecting this
+      color: grey;
+    }
+
+    .message-body:hover .pin {
+      display: inline !important;
+    }
+
     .message-body {
       float: left;
+
     }
     .emoji {
       height: 23px;

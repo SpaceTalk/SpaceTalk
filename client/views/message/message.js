@@ -86,6 +86,17 @@ Message = BlazeComponent.extendComponent({
 
             this.toggleEditMode();
           }
+        },
+        
+        'click .pin': function (e) {
+          e.preventDefault();
+          var currentData = this.currentData();
+          Meteor.call('channel.pinMessage', 
+                      currentData.channelId
+                      currentData._id, function (error) {
+
+
+          });
         }
       }]
   }
