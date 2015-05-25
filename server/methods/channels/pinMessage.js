@@ -1,5 +1,6 @@
 Meteor.methods({
   'channels.pinMessage': function(channelId, messageId) {
+
     check(channelId, String);
     check(messageId, String);
     
@@ -18,11 +19,14 @@ Meteor.methods({
       throw new Meteor.Error(404, 'Message does not exist');
     }
     
-    return Channels.update(channelId,
+    // Using Channels.direct to get around an issue with Collection Hooks
+    // not allowing updates without a $set
+    return Channels.direct.update(channelId,
       {
         $addToSet: {
           pinnedMessageIds: messageId
         }
-      }); 
+      }
+    ); 
   }
 });

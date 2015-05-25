@@ -91,8 +91,8 @@ Message = BlazeComponent.extendComponent({
         'click .pin': function (e) {
           e.preventDefault();
           var currentData = this.currentData();
-          Meteor.call('channel.pinMessage', 
-                      currentData.channelId
+          Meteor.call('channels.pinMessage', 
+                      currentData.channelId,
                       currentData._id, function (error) {
 
 
