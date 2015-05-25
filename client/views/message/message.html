@@ -12,9 +12,7 @@
         {{/if}}
       </div>
       {{#if isEditing.get}}
-        <div class="edit-box">
-          <textarea rows="1" cols="90" class="form-message-input">{{_removeTrailingNewLine message}}</textarea>
-        </div>
+        {{> messageEditBox}}
       {{else}}
         <div class="message">{{#markdown}}{{#emoji}}{{message}}{{/emoji}}{{/markdown}}</div>
       {{/if}}
@@ -24,6 +22,6 @@
 
 <template name="messageEditBox">
   <div class="edit-box">
-    <textarea rows="1" cols="90" class="form-message-input">{{message}}</textarea>
+    <textarea rows="1" cols="90" class="edit-message-input">{{_removeTrailingNewLine message}}</textarea>
   </div>
 </template>
