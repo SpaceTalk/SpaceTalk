@@ -6,12 +6,19 @@ Note: SpaceTalk is beta software. Most of it should work but it's still a little
 
 A lot of work has already gone into SpaceTalk, but it needs that final push to reach its full potential.
 
-So if you'd like to be part of the project, please check out the [roadmap](https://trello.com/b/R9Nh1V3t/spacetalk-roadmap) and [issues](https://github.com/SpaceTalk/SpaceTalk/issues) to see if there's anything you can help with. (Note: We're following [Meteor Style Guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide))
+So if you'd like to be part of the project, please check out the [roadmap](https://trello.com/b/R9Nh1V3t/spacetalk-roadmap) and [issues](https://github.com/SpaceTalk/SpaceTalk/issues) to see if there's anything you can help with.
 
 ### Prerequisites
 
 * [Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * [Meteor](https://www.meteor.com/install)
+
+### Style Guide & Naming Conventions
+
+* We're following [Meteor Style Guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide)
+* Route naming convention: `dashed-case/routing-perhaps`
+* Custom HTML id / class naming convention: `<div id="dashed-case"></div>` however class names preferred instead of using ids `<div class="some-custom-class"></div>`
+* File naming convention: `dashed-case.html`, `dashed-case.js`
 
 ### Getting started
 
