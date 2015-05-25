@@ -67,17 +67,17 @@ Message = BlazeComponent.extendComponent({
   events: function () {
     return [
       {
-        'click .edit': function (e) {
-          e.preventDefault();
+        'click .edit': function (event) {
+          eventpreventDefault();
           this.toggleEditMode();
         },
 
-        'keydown .edit-box': function (e) {
-          if (e.keyCode === 27 && !e.shiftKey) { // esc to cancel
-            e.preventDefault();
+        'keydown .edit-box': function (event) {
+          if (event.keyCode === 27 && !event.shiftKey) { // esc to cancel
+            event.preventDefault();
             this.toggleEditMode();
-          } else if (e.keyCode === 13 && !e.shiftKey) { // enter to save
-            e.preventDefault();
+          } else if (event.keyCode === 13 && !event.shiftKey) { // enter to save
+            event.preventDefault();
 
             var content = this.find('.form-message-input').value;
             Messages.update(this.currentData()._id, {
