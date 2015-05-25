@@ -1,6 +1,13 @@
 <template name="directMessagesForm">
   <form>
     <label for="username">Direct Messages</label>
-    <button type="button" class="show-form"><i class="icon-plus"></i></button>
+    <button type="button" class="show-form"><i class="fa fa-plus-circle"></i></button>
+    <ul id="userList" class="hidden">
+      {{#each allUsersExceptMe}}
+        <li class="list-users">
+        <a class="createDirectChannel" href="#"><b class="user-circle-{{online}}">&#8226;</b> {{username}}</a>
+        </li>
+      {{/each}}
+    </ul>
   </form>
 </template>
