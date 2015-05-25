@@ -5,16 +5,8 @@ LeftSidebar = BlazeComponent.extendComponent({
   directChannels: function() {
     return Channels.find( { teamId: currentTeamId(), direct: true } );
   },
-  userStatusLabel: function () {
-    var parent = this.currentData();
-    var statusLabel = parent.status.online ? 'online' : parent.status.idle ? 'idle' : 'offline';
-    return statusLabel;
-  },
-  currentUserAvatar: function () {
-    var user = Meteor.user();
-    if (user && user.emails) {
-      return Gravatar.imageUrl(user.emails[0].address);
-    }
+  currentUser: function () {
+    return Meteor.user();
   },
   activeChannelClass: function () {
     return currentChannelId() == this.currentData()._id ? 'active' : '';

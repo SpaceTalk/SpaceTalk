@@ -23,7 +23,7 @@
         <ul>
           {{#each directChannels}}
             <li class="{{activeChannelClass}}">
-              <a href="{{pathFor 'channel' team=currentTeam.slug channel=slug}}">{{channelName}}</a>
+            <a href="{{pathFor 'channel' team=currentTeam.slug channel=slug}}"><b class="user-circle-{{otherUser.online}}">&#8226; </b>{{channelName}}</a>
             </li>
           {{/each}}
         </ul>
@@ -46,7 +46,7 @@
       </ul>
     </div>
     <div class="left-sidebar-user">
-      <img src="{{currentUserAvatar}}" class="user-avatar">
+      <img src="{{currentUser.avatar}}" class="user-avatar">
       <a href="#">{{currentUser.username}}</a>
       <button type="button" class="left-sidebar-user-show-dropdown"><i class="fa fa-angle-up"></i></button>
     </div>

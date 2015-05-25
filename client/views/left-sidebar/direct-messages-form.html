@@ -5,7 +5,7 @@
     <ul id="userList" class="hidden">
       {{#each allUsersExceptMe}}
         <li class="list-users">
-          <a class="createDirectChannel" href="#"><b class="user-circle-{{userStatusLabel}}">&#8226;</b> {{username}}</a>
+        <a class="createDirectChannel" href="#"><b class="user-circle-{{online}}">&#8226;</b> {{username}}</a>
         </li>
       {{/each}}
     </ul>
