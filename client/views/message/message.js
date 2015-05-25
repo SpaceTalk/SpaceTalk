@@ -5,14 +5,14 @@ Message = BlazeComponent.extendComponent({
 
   _onClickOutside: function (e) {
     var self = e.data.instance;
-    if (!$(e.target).is(self.$('.edit-message-input')) && !$(e.target).is(self.$('.edit'))) {
+    if (!$(e.target).is(self.$('.form-message-input')) && !$(e.target).is(self.$('.edit'))) {
       self.isEditing.set(false);
       $(document.body).unbind('click', self._onClickOutside);
     }
   },
 
   _focus: function () {
-    var input = this.find('.edit-message-input');
+    var input = this.find('.form-message-input');
     input.focus();
 
     if (input.setSelectionRange) {
@@ -76,10 +76,10 @@ Message = BlazeComponent.extendComponent({
           if (e.keyCode === 27 && !e.shiftKey) { // esc to cancel
             e.preventDefault();
             this.toggleEditMode();
-          } else if (e.keyCode === 13 && !e.shifKey) { // enter to save
+          } else if (e.keyCode === 13 && !e.shiftKey) { // enter to save
             e.preventDefault();
 
-            var content = this.find('.edit-message-input').value;
+            var content = this.find('.form-message-input').value;
             Messages.update(this.currentData()._id, {
               $set: { message: content }
             });
