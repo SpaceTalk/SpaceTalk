@@ -4,8 +4,8 @@ Template.linkify.helpers({
   }
 });
 
-var linkify = function(string) {
-  if(!string) return null;
+var linkify = function (string) {
+  if (!string) return null;
 
   // http://, https://, ftp://
   var urlPattern = /\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;

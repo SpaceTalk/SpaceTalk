@@ -17,7 +17,7 @@
         <div class="message">{{#markdown}}{{#linkify}}{{#emoji}}{{message}}{{/emoji}}{{/linkify}}{{/markdown}}
           {{#if messageUrls}}
             {{#each messageUrls}}
-              {{>oembed url=this}}
+              {{> oembed url=this}}
             {{/each}}
           {{/if}}
         </div>
