@@ -3,9 +3,9 @@ Message = BlazeComponent.extendComponent({
     this.isEditing = new ReactiveVar(false);
   },
 
-  _onClickOutside: function (e) {
-    var self = e.data.instance;
-    if (!$(e.target).is(self.$('.form-message-input')) && !$(e.target).is(self.$('.edit'))) {
+  _onClickOutside: function (event) {
+    var self = event.data.instance;
+    if (!$(event.target).is(self.$('.form-message-input')) && !$(event.target).is(self.$('.edit'))) {
       self.isEditing.set(false);
       $(document.body).unbind('click', self._onClickOutside);
     }
@@ -67,17 +67,17 @@ Message = BlazeComponent.extendComponent({
   events: function () {
     return [
       {
-        'click .edit': function (e) {
-          e.preventDefault();
+        'click .edit': function (event) {
+          event.preventDefault();
           this.toggleEditMode();
         },
 
-        'keydown .edit-box': function (e) {
-          if (e.keyCode === 27 && !e.shiftKey) { // esc to cancel
-            e.preventDefault();
+        'keydown .edit-box': function (event) {
+          if (event.keyCode === 27 && !event.shiftKey) { // esc to cancel
+            event.preventDefault();
             this.toggleEditMode();
-          } else if (e.keyCode === 13 && !e.shiftKey) { // enter to save
-            e.preventDefault();
+          } else if (event.keyCode === 13 && !event.shiftKey) { // enter to save
+            event.preventDefault();
 
             var content = this.find('.form-message-input').value;
             Messages.update(this.currentData()._id, {
@@ -98,6 +98,6 @@ Message = BlazeComponent.extendComponent({
 
           });
         }
-      }]
+      }];
   }
 }).register('message');

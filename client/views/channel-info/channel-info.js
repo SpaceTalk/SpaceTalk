@@ -5,7 +5,7 @@ ChannelInfo = BlazeComponent.extendComponent({
   onRendered: function () {
 
   },
-  events: function() {
+  events: function () {
     return [
     {
 
