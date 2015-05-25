@@ -16,9 +16,11 @@ So if you'd like to be part of the project, please check out the [roadmap](https
 ### Style Guide & Naming Conventions
 
 * We're following [Meteor Style Guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide)
-* Route naming convention: `dashed-case/routing-perhaps`
+* Template names: `<template name="camelCase"></template>`
+* Route names: `dashed-case/routing-perhaps`
+* File names: `dashed-case.html`, `dashed-case.js`
 * Custom HTML id / class naming convention: `<div id="dashed-case"></div>` however class names preferred instead of using ids `<div class="some-custom-class"></div>`
-* File naming convention: `dashed-case.html`, `dashed-case.js`
+
 
 ### Getting started
 
