@@ -59,7 +59,7 @@ Channel = BlazeComponent.extendComponent({
     return [
       {
         'keydown textarea[name=message]': function (event) {
-          if (isEnter(event) && !event.shiftKey) { // Check if enter was pressed (but without shift).
+          if (event.keyCode === 13 && ! event.shiftKey) { // Check if enter was pressed (but without shift).
             event.preventDefault();
             var _id = currentRouteId();
             var value = this.find('textarea[name=message]').value;
