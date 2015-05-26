@@ -4,9 +4,8 @@ Channel = BlazeComponent.extendComponent({
     // Listen for changes to reactive variables (such as FlowRouter.getParam()).
     self.autorun(function () {
       currentChannel() && self.subscribe('messages', currentChannelId(), function () {
-        // XXX: can't figure out to get this to consistently,
-        // on page load, it won't scroll down automatically
-        scrollDown();
+        // On channel load, scroll page to the bottom
+        scrollDown(true);
       });
     });
   },
@@ -91,7 +90,7 @@ Channel = BlazeComponent.extendComponent({
             this.$('textarea[name=message]').css({
               height: 37
             });
-            window.scrollTo(0, document.body.scrollHeight);
+            scrollDown();
           }
         },
         'click [data-action="remove-channel"]': function (event) {
@@ -164,14 +163,14 @@ Channel = BlazeComponent.extendComponent({
 /**
  * Scrolls down the page when the user is a at or nearly at the bottom of the page
  */
-var scrollDown = function () {
+var scrollDown = function (force) {
   // It has to be in a setTimeout or it won't
   // scroll all the way down for some reason
   setTimeout(function () {
     // Check if the innerHeight + the scrollY position is higher than the offsetHeight - 200
     if ((window.innerHeight + window.scrollY) >= (
       Number(document.body.offsetHeight) - 200
-      )) {
+      ) || force) {
       // Scroll down the page
       window.scrollTo(0, document.body.scrollHeight);
     }
