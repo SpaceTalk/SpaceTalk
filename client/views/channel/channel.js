@@ -73,11 +73,7 @@ Channel = BlazeComponent.extendComponent({
             Messages.insert({
               // TODO: should be checked server side if the user is allowed to do this
               channelId: currentChannelId(),
-              message: value,
-              // TODO: should be added server side.
-              userId: Meteor.userId(), // Add userId to each message.
-              // TODO: should be added automatically with simple-schema or astronomy, this is pretty bad
-              timestamp: new Date() // Add a timestamp to each message.
+              message: value
             });
             // Restore the autosize value.
             this.$('textarea[name=message]').css({
