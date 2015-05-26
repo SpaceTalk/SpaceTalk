@@ -24,6 +24,14 @@
       color: $primary;
       font-size: 24px;
       font-weight: 900;
+
+      .topic {
+        font-size: 15px;
+        color: #9e9ea6;
+        font-weight: 500;
+        cursor: default;
+        padding-left: 10px;
+      }
     }
   }
 

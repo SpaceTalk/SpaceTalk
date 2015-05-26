@@ -5,8 +5,8 @@
     {{#header class="channel-header"}}
       <h1 class="channel-title">
         {{currentChannel.channelName}}
+        <span class="topic">{{currentChannel.topic}}</span>
       </h1>
-        <p>{{currentChannel.topic}}</p>
       {{#unless currentChannel.direct}}
         <i class="fa fa-trash-o channel-remove-icon" data-action="remove-channel"></i>
         <i class="fa fa-info-circle channel-display-info-icon" data-action="display-channel-info"></i>
