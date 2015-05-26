@@ -59,7 +59,7 @@ Channel = BlazeComponent.extendComponent({
     return [
       {
         'keydown textarea[name=message]': function (event) {
-          if (event.keyCode == 13 && !event.shiftKey) { // Check if enter was pressed (but without shift).
+          if (isEnter(event) && !event.shiftKey) { // Check if enter was pressed (but without shift).
             event.preventDefault();
             var _id = currentRouteId();
             var value = this.find('textarea[name=message]').value;
@@ -144,6 +144,7 @@ Channel = BlazeComponent.extendComponent({
           $('.channel-info').toggleClass('channel-info-out');
           $('.channel-content').toggleClass('channel-content-full');
           $('.channel-footer').toggleClass('channel-footer-full');
+          $(".channel-add-purpose-dropdown").toggleClass("hidden");
         }
       }];
   }

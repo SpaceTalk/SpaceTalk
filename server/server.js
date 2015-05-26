@@ -18,7 +18,7 @@ Meteor.startup(function() {
     console.log('--------------------------');
     console.log('inserted the default team.');
 
-    const aUser = Meteor.users.findOne({username : 'admin'});
+    const aUser = Meteor.users.findOne({ username: 'admin'});
     console.log('User the user with id : '+ aUser._id);
     Channels.insert({
       name: 'general',

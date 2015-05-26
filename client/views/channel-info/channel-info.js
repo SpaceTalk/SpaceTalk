@@ -14,19 +14,19 @@ ChannelInfo = BlazeComponent.extendComponent({
   events: function () {
     return [
     {
-      'click .channel-add-purpose': function(event) {
+      'click .channel-add-purpose': function (event) {
         event.preventDefault();
         this.$(".channel-add-purpose-dropdown").toggleClass("hidden");
       },
       'keydown textarea[name=channel-purpose]': function (event) {
-        if (event.keyCode == 13 && !event.shiftKey) { // Check if enter was pressed (but without shift).
+        if (event.keyCode == 13 && ! event.shiftKey) {
           event.preventDefault();
           var textarea = this.find('textarea[name=channel-purpose]');
           var value = textarea.value.replace("\n", "  \n");
           // Prevent accepting empty channel purpose
           if ($.trim(value) === "") return;
-          Channels.update({_id:currentChannel()._id},{$set : {purpose:value}});
-          textarea.value = ''; // Clear the textarea.
+          Channels.update({ _id: currentChannelId()}, { $set: { purpose: value} });
+          textarea.value = '';
           this.$(".channel-add-purpose-dropdown").toggleClass("hidden");
         }
       }
