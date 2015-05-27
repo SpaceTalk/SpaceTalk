@@ -15,7 +15,7 @@
         {{#if teams}}
           <ul>
             {{#each teams}}
-              <li><a href="{{pathFor 'teamHome' team=slug }}" target="_blank"><span class="wide">{{name}}</span></a></li>
+            {{> teamLink}}
             {{/each}}
           </ul>
         {{else}}
@@ -31,4 +31,8 @@
     </div>
     {{/if}}
   {{/content}}
+</template>
+
+<template name="teamLink">
+  <li><a href="{{pathFor 'teamHome' team=slug }}" target="_blank">{{name}}</a></li>    
 </template>

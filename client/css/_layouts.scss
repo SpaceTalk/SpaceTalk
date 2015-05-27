@@ -8,7 +8,7 @@
       text-align: center;
       width: 100%;
       min-height: 100%;
-      font-weight: 300;
+      font-weight: 400;
       margin: 0;
       background: url(bg.jpg) #000;
       background-size: cover;
@@ -31,7 +31,9 @@
         }
 
         a {
-          color: $accent;
+          color: #FFF;
+          text-decoration: none;
+          font-weight: 800;
         }
 
         ul, li {
@@ -43,10 +45,17 @@
         li {
           display: inline-block;
           padding: 8px 24px;
-          border: solid 1px #777;
-          border-radius: 40px;
+          background: $accent;
           margin: 8px;
           cursor: pointer;
+
+          &:hover {
+            background: lighten($accent, 5%);
+          }
+
+          &:active {
+            background: darken($accent, 10%);
+          }
         }
 
         li:hover {
@@ -121,6 +130,7 @@
         display: inline-block;
 
         img {
+          margin-left: -12px;
           max-width: 100%;
           width: 468px;
           height: auto;
@@ -144,18 +154,3 @@
     }
   }
 }
-
-//.message {
-//  width: 250px;
-//  font-size: 14px;
-//  padding: 8px 16px;
-//  border: solid 2px #777;
-//  border-radius: 8px;
-//  background: rgba(255,255,255, 0.05);
-//  margin: 0 auto 8px;
-//  color: lightgreen;
-//}
-//
-//.message.error {
-//  color: yellow;
-//}

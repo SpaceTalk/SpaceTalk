@@ -60,7 +60,7 @@
 .at-signup{
   text-decoration: none;
   color: $accent;
-  transition: color 300ms ease-out;
+  transition: color 100ms ease-out;
 
   &:hover{
     color: darken($accent, 20%);
