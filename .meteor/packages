@@ -31,4 +31,6 @@ dburles:collection-helpers
 iframely:oembed
 matb33:collection-hooks
 qnub:emojione
-ogourment:settings
+sanjo:jasmine
+velocity:html-reporter
+testing
