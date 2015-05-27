@@ -1,6 +1,7 @@
 .channel {
 
   &-header {
+    z-index: 1;
     position: fixed;
     top: 0;
     height: $top;
@@ -91,6 +92,11 @@
     }
     .message-body {
       float: left;
+      width: calc(100% - 70px);
+
+      .iframely-oembed {
+        max-width: 400px;
+      }
     }
   }
 
