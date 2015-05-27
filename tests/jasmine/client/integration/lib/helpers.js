@@ -14,9 +14,9 @@
 
 var createMethodResultHandler = function (done, hook) {
   return function (error, result) {
-    if (error) {
-      console.error(error);
-    }
+    //if (error) {
+    //  console.error(error);
+    //}
     if (hook) {
       hook(error, result);
     }
@@ -81,4 +81,8 @@ goToRoute = function (pathDef, params, queryParams) {
 
 goToDefaultTeamPage = function (done) {
   return goToRoute('/teams/test')(done);
+};
+
+getCurrentRouteName = function() {
+  return FlowRouter.current().route.name;
 };

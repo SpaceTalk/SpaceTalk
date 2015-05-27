@@ -1,4 +1,5 @@
 var resetDatabase = function () {
+  console.log("clear");
   // safety check
   if (!process.env.IS_MIRROR) {
     throw new Meteor.Error(
@@ -70,8 +71,8 @@ var createDefaultTeam = function () {
 }
 
 Meteor.methods({
-  resetTestingEnvironment: resetTestingEnvironment,
-  'fixtures/users/create': createUser,
+  resetTestingusersEnvironment: resetTestingEnvironment,
+  'fixtures//create': createUser,
   'fixtures/users/createDefault': createDefaultUser,
   'fixtures/teams/create': createTeam,
   'fixtures/teams/createDefault': createDefaultTeam

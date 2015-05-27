@@ -1,7 +1,8 @@
-/* globals
- resetTestingEnvironment: true,
- createDefaultTeam: true,
- createDefaultUser: true,
+/*
+ * globals
+ * resetTestingEnvironment: true,
+ * createDefaultTeam: true,
+ * createDefaultUser: true,
  */
 
 resetTestingEnvironment = function () {
