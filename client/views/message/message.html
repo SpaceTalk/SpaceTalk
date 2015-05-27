@@ -14,7 +14,7 @@
       {{#if isEditing.get}}
         {{> messageEditBox}}
       {{else}}
-        <div class="message">{{#markdown}}{{#linkify}}{{#emoji}}{{message}}{{/emoji}}{{/linkify}}{{/markdown}}
+        <div class="message">{{#markdown}}{{#linkify}}{{#emojione}}{{message}}{{/emojione}}{{/linkify}}{{/markdown}}
           {{#if messageUrls}}
             {{#each messageUrls}}
               {{> oembed url=this}}
