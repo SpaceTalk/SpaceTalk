@@ -4,6 +4,7 @@
  createDefaultTeam: true,
  createDefaultUser: true,
  loginWithDefaultUser: true,
+ waitForRouter: true,
  goToRoute: true,
  goToDefaultTeamPage: true
  */
