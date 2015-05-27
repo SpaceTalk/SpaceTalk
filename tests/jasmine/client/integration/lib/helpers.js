@@ -65,17 +65,21 @@ loginWithDefaultUser = function (done) {
   );
 };
 
+waitForRouter = function (done) {
+  Tracker.autorun(function (computation) {
+    if (FlowRouter.subsReady()) {
+      computation.stop();
+      deferAfterFlush(done);
+    }
+  });
+};
+
 goToRoute = function (pathDef, params, queryParams) {
   return function (done) {
     queryParams = queryParams || {};
     queryParams.jasmine = true;
     FlowRouter.go(pathDef, params, queryParams);
-    Tracker.autorun(function (computation) {
-      if (FlowRouter.subsReady()) {
-        computation.stop();
-        deferAfterFlush(done);
-      }
-    });
+    waitForRouter(done);
   };
 };
 
