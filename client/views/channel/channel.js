@@ -1,16 +1,30 @@
 Channel = BlazeComponent.extendComponent({
   onCreated: function () {
     var self = this;
+
+    // Used to indicate that the user's scroll position
+    // is near the bottom, see `calculateNearBottom` method
+    self.isNearBottom = new ReactiveVar(false);
+
     // Listen for changes to reactive variables (such as FlowRouter.getParam()).
     self.autorun(function () {
       currentChannel() && self.subscribe('messages', currentChannelId(), function () {
         // On channel load, scroll page to the bottom
-        scrollDown(true);
+        scrollDown();
       });
     });
   },
   onRendered: function () {
     var self = this;
+
+    // Listen to scroll events to see if we're near the bottom
+    // This is used to detect whether we should auto-scroll down
+    // when a new message arrives
+    $(window)
+      .on('scroll', self.calculateNearBottom.bind(self))
+      // And also trigger it initially
+      .trigger('scroll');
+
     // We need to do this in an autorun because
     // for some reason the currentChannelId is not
     // available until a bit later
@@ -24,7 +38,9 @@ Channel = BlazeComponent.extendComponent({
           // When a new message is added
           added: function (id, doc) {
             // Trigger the scroll down method which determines whether to scroll down or not
-            scrollDown();
+            if (self.isNearBottom.get()) {
+              scrollDown();
+            }
           }
         });
       }
@@ -34,6 +50,14 @@ Channel = BlazeComponent.extendComponent({
     var self = this;
     // Prevents memory leaks!
     self.messageObserveHandle && self.messageObserveHandle.stop();
+    // Stop listening to scroll events
+    $(window).off(self.calculateNearBottom);
+  },
+  calculateNearBottom: function () {
+    var self = this;
+    // You are near the bottom if you're at least 200px from the bottom
+    self.isNearBottom.set((window.innerHeight + window.scrollY) >= (
+      Number(document.body.offsetHeight) - 200));
   },
   messages: function () {
     return Messages.find({
