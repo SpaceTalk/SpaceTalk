@@ -13,9 +13,8 @@
     </div>
     <div class="content-inner-form">
       {{#if currentUser}}
-        <h3>My Teams</h3>
+        <h3>Teams</h3>
         {{#if teams}}
-          <p>You currently may enter the following teams</p>
           <ul>
             {{#each teams}}
               <li><a href="{{pathFor 'teamHome' team=slug }}" target="_blank"><span class="wide">{{name}}</span></a></li>
