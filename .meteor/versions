@@ -65,7 +65,7 @@ reactive-var@1.0.5
 reload@1.1.3
 retry@1.0.3
 routepolicy@1.0.5
-sanjo:jasmine@0.13.7
+sanjo:jasmine@0.14.0
 sanjo:karma@1.5.1
 sanjo:long-running-child-process@1.0.3
 sanjo:meteor-files-helpers@1.1.0_4
