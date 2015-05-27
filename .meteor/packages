@@ -25,7 +25,9 @@ jquery
 kevohagan:sweetalert
 fortawesome:fontawesome
 aldeed:autoform
-
 useraccounts:unstyled
 dburles:collection-helpers
 matb33:collection-hooks
+sanjo:jasmine
+velocity:html-reporter
+testing
