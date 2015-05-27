@@ -46,7 +46,7 @@ var page = {
     Tracker.flush();
   },
 
-  getChannelTitle: function() {
+  getChannelTitle: function () {
     return $('.channel-title').text().trim();
   }
 };
@@ -55,13 +55,6 @@ var page = {
 describe('left sidebar', function () {
   beforeEach(resetTestingEnvironment);
   beforeEach(createDefaultTeam);
-  beforeEach(createDefaultUser);
-
-// Guarantee that tests don't run in a ongoing flush cycle.
-  beforeEach(deferAfterFlush);
-
-  beforeEach(loginWithDefaultUser);
-  beforeEach(goToDefaultTeamPage);
 
   describe('clicking on the add channel button', function () {
     it('shows the channel form', function (done) {
@@ -90,9 +83,24 @@ describe('left sidebar', function () {
   });
 
   describe('selecting a channel', function () {
-    it('changes the route', function () {
+    it('changes the channel title', function (done) {
       page.selectChannel('general');
       Tracker.flush();
+
+      waitForRouter(function () {
+        expect(page.getChannelTitle()).toEqual('general');
+        done();
+      });
+    });
+
+    it('changes the route', function (done) {
+      page.selectChannel('general');
+      Tracker.flush();
+
+      waitForRouter(function () {
+        expect(getCurrentRouteName()).toEqual('channel');
+        done();
+      });
     });
 
     it('loads the messages of the channel', function (done) {

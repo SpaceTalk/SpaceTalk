@@ -11,3 +11,11 @@ beforeAll(function () {
     });
   };
 });
+
+beforeEach(createDefaultUser);
+
+// Guarantee that tests don't run in a ongoing flush cycle.
+beforeEach(deferAfterFlush);
+
+beforeEach(loginWithDefaultUser);
+beforeEach(goToDefaultTeamPage);

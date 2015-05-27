@@ -88,6 +88,10 @@ goToDefaultTeamPage = function (done) {
   return goToRoute('/teams/test')(done);
 };
 
+goToDefaultChannel = function (done) {
+  return goToRoute('/teams/test/channels/general')(done);
+};
+
 getCurrentRouteName = function() {
   return FlowRouter.current().route.name;
 };

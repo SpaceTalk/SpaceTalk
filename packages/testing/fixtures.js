@@ -70,6 +70,14 @@ var createDefaultTeam = function () {
   return createTeam(team);
 }
 
+var createDefaultTeam = function () {
+  var team = {
+    name: 'test'
+  };
+
+  return createTeam(team);
+}
+
 Meteor.methods({
   resetTestingusersEnvironment: resetTestingEnvironment,
   'fixtures//create': createUser,
