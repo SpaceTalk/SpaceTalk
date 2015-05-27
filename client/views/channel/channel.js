@@ -150,6 +150,9 @@ Channel = BlazeComponent.extendComponent({
           event.preventDefault();
 
           this.$(".channel-dropdown").toggleClass("hidden");
+          if ($(".channel-dropdown").not('.hidden')) {
+            $('.channel-dropdown-topic-input').focus();
+          }
         },
 
         'keydown input[name=channel-topic]': function (event) {

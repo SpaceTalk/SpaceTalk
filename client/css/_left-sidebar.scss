@@ -125,7 +125,7 @@
     }
 
     &-dropdown {
-      padding: 1rem 1.25rem 0.2rem 1.25rem;
+      padding: 16px;
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
       border-radius: 4px;
@@ -135,11 +135,23 @@
       left: 150px;
       width: 200px;
       bottom: 50px;
+      background: #f3f3f3;
       z-index: 2;
       border-radius: .375rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      border: solid 2px #ccc;
       text-shadow: none;
       font-size: 0.8rem;
+
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -8px;
+        left: 46px;
+        border-left: solid 8px transparent;
+        border-right: solid 8px transparent;
+        border-top: solid 8px #ccc;
+      }
 
       a {
         color: $secondary;
@@ -152,6 +164,7 @@
         hr {
           position: absolute;
           left: 0;
+          margin-top: 8px;
           width: 100%;
         }
 
@@ -159,8 +172,8 @@
           color: lighten($secondary, 20%);
           font-size: 0.7rem;
           z-index: 2;
-          padding-right: 1rem;
-          background-color: white;
+          padding-right: 8px;
+          background-color: #f3f3f3;
           position: relative;
         }
 
@@ -171,17 +184,13 @@
         li.menu-item {
 
           &:hover {
-            background: $accent;
-            border-radius: 4px;
+            background: #ddd;
             padding-left: $padding;
             margin: 0 -1rem;
-            a {
-              color: white;
-              text-shadow: 1px 1px darken($accent, 10%);
-              &:before {
-                color: lighten($accent, 20%);
-              }
-            }
+          }
+
+          &:active {
+            background: #aaa;
           }
 
           a {
