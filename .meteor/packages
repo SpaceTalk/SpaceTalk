@@ -9,7 +9,7 @@ markdown
 reactive-var
 accounts-password
 momentjs:moment
-fourseven:scss@3.1.1
+fourseven:scss
 copleykj:jquery-autosize
 tmeasday:gravatar
 meteorhacks:flow-layout
