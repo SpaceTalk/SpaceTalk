@@ -59,7 +59,7 @@ Channel = BlazeComponent.extendComponent({
     return [
       {
         'keydown textarea[name=message]': function (event) {
-          if (event.keyCode == 13 && !event.shiftKey) { // Check if enter was pressed (but without shift).
+          if (isEnter(event) && !event.shiftKey) { // Check if enter was pressed (but without shift).
             event.preventDefault();
             var _id = currentRouteId();
             var value = this.find('textarea[name=message]').value;
@@ -73,11 +73,7 @@ Channel = BlazeComponent.extendComponent({
             Messages.insert({
               // TODO: should be checked server side if the user is allowed to do this
               channelId: currentChannelId(),
-              message: value,
-              // TODO: should be added server side.
-              userId: Meteor.userId(), // Add userId to each message.
-              // TODO: should be added automatically with simple-schema or astronomy, this is pretty bad
-              timestamp: new Date() // Add a timestamp to each message.
+              message: value
             });
             // Restore the autosize value.
             this.$('textarea[name=message]').css({
@@ -148,6 +144,21 @@ Channel = BlazeComponent.extendComponent({
           $('.channel-info').toggleClass('channel-info-out');
           $('.channel-content').toggleClass('channel-content-full');
           $('.channel-footer').toggleClass('channel-footer-full');
+        },
+
+        'click .channel-title': function(event) {
+          event.preventDefault();
+
+          this.$(".channel-dropdown").toggleClass("hidden");
+        },
+
+        'keydown input[name=channel-topic]': function (event) {
+
+          if (isEnter(event)) {
+
+            var content = this.find('input[name=channel-topic]').value;
+            Meteor.call('channels.updateTopic', currentChannelId(), content);
+          }
         }
       }];
   }

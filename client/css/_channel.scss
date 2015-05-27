@@ -24,6 +24,20 @@
       color: $primary;
       font-size: 24px;
       font-weight: 900;
+
+      i {
+        font-size: 15px;
+        color: #9e9ea6;
+        font-weight: 500;
+      }
+
+      .topic {
+        font-size: 15px;
+        color: #9e9ea6;
+        font-weight: 500;
+        cursor: default;
+        padding-left: 10px;
+      }
     }
   }
 
@@ -98,11 +112,6 @@
       float: left;
 
     }
-    .emoji {
-      height: 23px;
-      vertical-align: middle;
-      margin-top: -3px;
-    }
   }
 
   &-footer {
@@ -146,6 +155,49 @@
   label {
     text-transform: uppercase;
     font-size: 14px;
+  }
+
+  &-dropdown {
+    padding: 1rem 1.25rem 0.75rem 1.25rem;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: $light-background;
+    color: $secondary;
+    position: absolute;
+    left: 230px;
+    width: 200px;
+    top: 50px;
+    z-index: 2;
+    border-radius: .375rem;
+    box-shadow: 0 3px 8px rgba(0,0,0,.25);
+    text-shadow: none;
+    font-size: 0.8rem;
+
+    .header-item {
+      position: relative;
+
+      hr {
+        position: absolute;
+        left: 0;
+        width: 100%;
+      }
+
+      &-content {
+        color: lighten($secondary, 20%);
+        font-size: 0.7rem;
+        z-index: 2;
+        padding-right: 1rem;
+        background-color: white;
+        position: relative;
+      }
+    }
+
+    &-topic-input {
+      @extend .form-message-input;
+      font-size: 0.9rem;
+      line-height: 1rem;
+    }
   }
 
 }
