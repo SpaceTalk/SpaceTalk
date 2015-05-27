@@ -1,9 +1,12 @@
 <template name="channel">
   {{#if currentChannel}}
     {{> channelInfo}}
+    {{> channelDropdown}}
     {{#header class="channel-header"}}
       <h1 class="channel-title">
         {{currentChannel.channelName}}
+        <i class="fa fa-angle-down"></i>
+        <span class="topic">{{currentChannel.topic}}</span>
       </h1>
       {{#unless currentChannel.direct}}
         <i class="fa fa-trash-o channel-remove-icon" data-action="remove-channel"></i>
@@ -29,4 +32,13 @@
   <form>
     <textarea rows="1" cols="100" name="message" class="form-message-input" autofocus="true"></textarea>
   </form>
+</template>
+
+<template name="channelDropdown">
+    <div class="channel-dropdown hidden">
+        <div class="header-item">
+            <span class="header-item-content">Set channel topic</span>
+        </div>
+        <input name="channel-topic" class="channel-dropdown-topic-input" type="text" value="{{currentChannel.topic}}">
+    </div>
 </template>

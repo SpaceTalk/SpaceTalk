@@ -19,7 +19,7 @@ ChannelInfo = BlazeComponent.extendComponent({
         this.$(".channel-add-purpose-dropdown").toggleClass("hidden");
       },
       'keydown textarea[name=channel-purpose]': function (event) {
-        if (event.keyCode == 13 && ! event.shiftKey) {
+        if (isEnter(event) && ! event.shiftKey) {
           event.preventDefault();
           var textarea = this.find('textarea[name=channel-purpose]');
           var value = textarea.value.replace("\n", "  \n");
