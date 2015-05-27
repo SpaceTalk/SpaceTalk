@@ -94,8 +94,8 @@ Message = BlazeComponent.extendComponent({
           Meteor.call('channels.pinMessage', 
                       currentData.channelId,
                       currentData._id, function (error) {
-
-
+            // TODO: handle error
+            DOM.ChannelInfoBar.open();
           });
         }
       }];

@@ -6,9 +6,11 @@ ChannelInfo = BlazeComponent.extendComponent({
   },
 
   pinnedMessages: function () {
-    return Messages.find({
-      _id: { $in: currentChannel().pinnedMessageIds } 
-    });
+    if (currentChannel().pinnedMessageIds) {
+      return Messages.find({
+        _id: { $in: currentChannel().pinnedMessageIds } 
+      });
+    }
   },
 
   events: function () {
