@@ -3,11 +3,14 @@
   margin: auto;
   padding: 30px;
   border-radius: 3px;
-  margin-top: 5%;
+
+  h3 {
+    margin: 0;
+  }
 }
 
 .at-input {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   label {
     display: block;
     margin-bottom: 5px;
@@ -21,16 +24,18 @@
     font-size: .9rem;
     border-radius: 3px;
     border: 2px solid transparent;
-    transition: border 300ms ease-out;
 
     &:focus{
       outline: none;
-      border: 2px solid $accent;
     }
   }
   span {
-    display: block;
-    margin-top: 5px;
+    display: inline-block;
+    top: 10px;
+    right: 5px;
+    position: absolute;
+    color: green;
+    z-index: 1;
   }
   &.has-error {
     input {
@@ -62,7 +67,7 @@
 .at-signup{
   text-decoration: none;
   color: $accent;
-  transition: color 300ms ease-out;
+  transition: color 100ms ease-out;
 
   &:hover{
     color: darken($accent, 20%);

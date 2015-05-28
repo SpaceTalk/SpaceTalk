@@ -8,7 +8,7 @@
   box-sizing: border-box;
   z-index: 2;
   &, a {
-    color: lighten($primary, 30%);
+    color: lighten($primary, 50%);
     text-decoration: none;
     text-shadow: 1px 1px darken($primary, 5%);
   }
@@ -24,9 +24,8 @@
   }
   .active {
     background: $accent;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
     margin-left: -$padding;
+    margin-right: -$padding;
     padding-left: $padding;
     a {
       color: white;
@@ -56,12 +55,21 @@
   }
   .user-circle-online {
     color: $online;
+    font-size: 20px;
+    position: relative;
+    top: 2px;
   }
   .user-circle-offline {
     color: $offline;
+    font-size: 20px;
+    position: relative;
+    top: 2px;
   }
   .user-circle-idle {
     color: $idle;
+    font-size: 20px;
+    position: relative;
+    top: 2px;
   }
 
   &-channels {
@@ -120,12 +128,16 @@
       background: transparent;
       color: lighten($primary, 30%);
       cursor: pointer;
+      outline: none;
       font-size: 20px;
       margin-top: 6px;
+      &.visible {
+        color: white;
+      }
     }
 
     &-dropdown {
-      padding: 1rem 1.25rem 0.2rem 1.25rem;
+      padding: 16px;
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
       border-radius: 4px;
@@ -135,11 +147,34 @@
       left: 150px;
       width: 200px;
       bottom: 50px;
+      background: #f3f3f3;
       z-index: 2;
       border-radius: .375rem;
-      box-shadow: 0 3px 8px rgba(0,0,0,.25);
+      border: solid 2px darken($primary, 10%);
       text-shadow: none;
       font-size: 0.8rem;
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -8px;
+        left: 46px;
+        border-left: solid 8px transparent;
+        border-right: solid 8px transparent;
+        border-top: solid 8px darken($primary, 10%);
+      }
+
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -5px;
+        left: 49px;
+        border-left: solid 5px transparent;
+        border-right: solid 5px transparent;
+        border-top: solid 5px #f3f3f3;
+      }
 
       a {
         color: $secondary;
@@ -152,6 +187,7 @@
         hr {
           position: absolute;
           left: 0;
+          margin-top: 8px;
           width: 100%;
         }
 
@@ -159,8 +195,8 @@
           color: lighten($secondary, 20%);
           font-size: 0.7rem;
           z-index: 2;
-          padding-right: 1rem;
-          background-color: white;
+          padding-right: 8px;
+          background-color: #f3f3f3;
           position: relative;
         }
 
@@ -171,17 +207,13 @@
         li.menu-item {
 
           &:hover {
-            background: $accent;
-            border-radius: 4px;
+            background: #ddd;
             padding-left: $padding;
             margin: 0 -1rem;
-            a {
-              color: white;
-              text-shadow: 1px 1px darken($accent, 10%);
-              &:before {
-                color: lighten($accent, 20%);
-              }
-            }
+          }
+
+          &:active {
+            background: #aaa;
           }
 
           a {

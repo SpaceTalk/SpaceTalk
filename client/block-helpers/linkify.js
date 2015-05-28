@@ -1,8 +1,11 @@
-Template.linkify.helpers({
-  linkifiedMessage: function () {
-    return linkify(this.message);
+Blaze.Template.registerHelper("linkify", new Template('linkify', function () {
+  var view = this;
+  var content = '';
+  if (view.templateContentBlock) {
+    content = Blaze._toText(view.templateContentBlock, HTML.TEXTMODE.STRING);
   }
-});
+  return HTML.Raw(linkify(content) + '<span class="cursor"></span>');
+}));
 
 var linkify = function (string) {
   if (!string) return null;

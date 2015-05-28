@@ -1,8 +1,4 @@
 ChannelForm = BlazeComponent.extendComponent({
-  onRendered: function () {
-    // Where is this autosize library? o.0
-    this.$('textarea').autosize();
-  },
   events: function () {
     return [{
       'submit form': function (event) {

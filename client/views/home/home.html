@@ -5,20 +5,17 @@
     <!--<p>If you have ever started an older version of SpaceTalk please clear you database first after that you can login with admin/admin.</p>-->
     <!--{{> atForm state='signIn'}}-->
     <!--Once you log in, you will automatically be redirected to the backend interface.-->
+    {{#if currentUser}}
     <div class="breif">
-      <p>SpaceTalk makes it easy to launch your very own chat application, and get in control of your data. Build and
-        customize your very own <em>Slack</em>, <em>Telegram</em>, or <em>Facebook Messenger</em>!</p>
-
-      <p>Built with Meteor and lots of nerd love</p>
+      <p><strong>Welcome to SpaceTalk.</strong> SpaceTalk is made for team communication, and we've created one for you to get you started.</p>
     </div>
     <div class="content-inner-form">
       {{#if currentUser}}
-        <h3>My Teams</h3>
+        <h3>Teams</h3>
         {{#if teams}}
-          <p>You currently may enter the following teams</p>
           <ul>
             {{#each teams}}
-              <li><a href="{{pathFor 'teamHome' team=slug }}" target="_blank"><span class="wide">{{name}}</span></a></li>
+            {{> teamLink}}
             {{/each}}
           </ul>
         {{else}}
@@ -28,12 +25,14 @@
         {{> atForm state='signIn'}}
       {{/if}}
     </div>
-    <h3>Contribute</h3>
-    <ul>
-      <li>Fork <a href="http://github.com/SpaceTalk/SpaceTalk" target="_blank"><span
-        class="wide">SpaceTalk</span> on Github</a></li>
-      <li>Show <a href="https://trello.com/b/R9Nh1V3t/spacetalk-roadmap" target="_blank"><span class="show-wide">SpaceTalk</span>
-        Roadmap on Trello</a></li>
-    </ul>
+    {{else}}
+    <div class="content-inner-form">
+      {{> atForm state='signIn'}}
+    </div>
+    {{/if}}
   {{/content}}
+</template>
+
+<template name="teamLink">
+  <li><a href="{{pathFor 'teamHome' team=slug }}">{{name}}</a></li>
 </template>
