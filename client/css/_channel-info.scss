@@ -51,12 +51,6 @@
     color: lighten(desaturate($primary, 30%), 60%);
     transition: color .2s ease-in-out;
     cursor: pointer;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
     &:hover {
       color: $primary;
     }
@@ -101,7 +95,7 @@
       margin: 0;
       cursor: pointer;
       color: #555459;
-      transition: color 100ms ease-in-out;
+      transition: color 100ms ease-out;
       cursor: pointer;
       &:hover {
         color: $primary;
@@ -153,6 +147,7 @@
     }
     .icon {
       position: inherit;
+      margin-right: 4px;
     }
 
     .icon-about{

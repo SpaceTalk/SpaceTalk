@@ -22,9 +22,19 @@ LeftSidebar = BlazeComponent.extendComponent({
         },
 
         'click .left-sidebar-user-show-dropdown': function (event) {
+          var self = this;
           event.preventDefault();
 
-          this.$(".left-sidebar-user-dropdown").toggleClass("hidden");
+          self.$(".left-sidebar-user-dropdown").toggleClass("hidden");
+          self.$(".left-sidebar-user-show-dropdown").toggleClass("visible");
+
+          $(window).bind('mouseup.left-sidebar-user-dropdown', function(e) {
+            if (!self.$(e.target).closest('.left-sidebar-user')[0]) {
+              self.$(".left-sidebar-user-dropdown").addClass("hidden");
+              self.$(".left-sidebar-user-show-dropdown").removeClass("visible");
+            }
+            $(window).unbind('mouseup.left-sidebar-user-dropdown');
+          });
         }
       }
     ];

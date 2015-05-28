@@ -3,17 +3,22 @@
     {{#if avatar}}
       <img src="{{avatar}}" class="user-avatar">
     {{/if}}
-    <div class="message-body">
+    <div class="message-body {{#unless isNewAuthor}}no-avatar{{/unless}}">
+      {{#if isNewAuthor}}
       <div>
         <span class="username">{{user.username}}</span>
         <span class="time">{{time timestamp}}</span>
-        {{#if isOwner}}
-          <a href="#" class="edit">Edit</a>
-        {{/if}}
       </div>
+      {{/if}}
       {{#if isEditing.get}}
         {{> messageEditBox}}
       {{else}}
+        {{#if isOwner}}
+          <span class="modify">
+            <a href="#" class="edit" title="Edit message"><i class="fa fa-pencil"></i></a>
+            <a href="#" class="delete" title="Delete this message"><i class="fa fa-trash-o" data-action="remove-message"></i></a>
+          </span>
+        {{/if}}
         <div class="message">{{#emojione}}{{#markdown}}{{#linkify}}{{message}}{{/linkify}}{{/markdown}}{{/emojione}}
           {{#if messageUrls}}
             {{#each messageUrls}}
@@ -28,6 +33,6 @@
 
 <template name="messageEditBox">
   <div class="edit-box">
-    <textarea cols="90" class="form-message-input">{{_removeTrailingNewLine message}}</textarea>
+    <textarea rows="1" cols="90" class="form-message-input">{{_removeTrailingNewLine message}}</textarea>
   </div>
 </template>

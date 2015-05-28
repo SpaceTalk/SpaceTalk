@@ -3,14 +3,6 @@ Message = BlazeComponent.extendComponent({
     this.isEditing = new ReactiveVar(false);
   },
 
-  _onClickOutside: function (event) {
-    var self = event.data.instance;
-    if (!$(event.target).is(self.$('.form-message-input')) && !$(event.target).is(self.$('.edit'))) {
-      self.isEditing.set(false);
-      $(document.body).unbind('click', self._onClickOutside);
-    }
-  },
-
   _focus: function () {
     var input = this.find('.form-message-input');
     input.focus();
@@ -26,7 +18,7 @@ Message = BlazeComponent.extendComponent({
   },
 
   _removeTrailingNewLine: function (content) {
-    return content.replace(/\s+$/g, '');
+    return content.replace(/  \n/g, "\n");
   },
 
   user: function () {
@@ -44,11 +36,39 @@ Message = BlazeComponent.extendComponent({
   },
 
   avatar: function () {
+    var self = this,
+        previous = self.previousMessage(),
+        current = self.currentData();
     var user = Meteor.users.findOne(this.currentData().userId);
 
     if (user && user.emails) {
-      return Gravatar.imageUrl(user.emails[0].address);
+      if (!previous || previous.userId != current.userId
+        || moment(current.timestamp).diff(previous.timestamp) >= 120000) {
+        return Gravatar.imageUrl(user.emails[0].address);
+      }
     }
+  },
+
+  previousMessage: function() {
+    var self = this,
+        current = self.currentData();
+
+    return Messages.findOne({
+      channelId: currentChannelId(),
+      timestamp: {$lt: current.timestamp}
+    }, {sort: {timestamp: -1}, limit:1});
+  },
+
+  isNewAuthor: function() {
+    var self = this,
+        previous = self.previousMessage(),
+        current = self.currentData();
+
+    if (previous && previous.userId == current.userId
+      && moment(current.timestamp).diff(previous.timestamp) < 120000) {
+      return false;
+    }
+    return true;
   },
 
   toggleEditMode: function () {
@@ -59,8 +79,14 @@ Message = BlazeComponent.extendComponent({
 
     Tracker.flush();
     if (toggled) {
-      $(document.body).bind('click', { instance: this }, self._onClickOutside);
-      this._focus();
+      self.$('textarea').autosize();
+      $(document.body).bind('mouseup.edit-message', function() {
+        if (!$(event.target).is(self.$('.form-message-input'))) {
+          self.isEditing.set(false);
+          $(document.body).unbind('mouseup.edit-message');
+        }
+      });
+      self._focus();
     }
   },
 
@@ -73,19 +99,72 @@ Message = BlazeComponent.extendComponent({
         },
 
         'keydown .edit-box': function (event) {
+          var self = this;
           if (event.keyCode === 27 && !event.shiftKey) { // esc to cancel
             event.preventDefault();
-            this.toggleEditMode();
+            self.toggleEditMode();
           } else if (event.keyCode === 13 && !event.shiftKey) { // enter to save
             event.preventDefault();
 
-            var content = this.find('.form-message-input').value;
-            Messages.update(this.currentData()._id, {
-              $set: { message: content }
+            var value = self.find('.form-message-input').value;
+            // Markdown requires double spaces at the end of the line to force line-breaks.
+            value = value.replace(/([^\n])\n/g, "$1  \n");
+
+            // Prevent accepting empty message
+            if ($.trim(value) === "") return;
+
+            console.log(value);
+
+            Messages.update(self.currentData()._id, {
+              $set: { message: value }
             });
 
-            this.toggleEditMode();
+            self.toggleEditMode();
+
+            var position = self.$('.message .cursor').position();
+            if (position) {
+              var width = position.left;
+              self.$('.edit').css({
+                left: width + 8
+              });
+            }
           }
+        },
+
+        'mouseover .message-body': function(event) {
+          var self = this;
+          if (self.currentData().userId === Meteor.userId()) {
+            var position = self.$('.message .cursor').position();
+            if (position) {
+              var width = position.left;
+              self.$('.modify').css({
+                left: width + 8
+              });
+            }
+          }
+        },
+
+        'click .delete': function (event) {
+          event.preventDefault();
+
+          Meteor.call('messages.delete', this.currentData()._id,
+            function (error) {
+              if (error) {
+                swal({
+                  title: 'Yikes! Something went wrong',
+                  text: error.reason,
+                  type: 'error'
+                });
+              } else {
+                swal({
+                  title: 'Message deleted',
+                  text:  'Message deleted successfully',
+                  type: 'success',
+                  html: true
+                });
+              }
+            }
+          );
         }
       }];
   }
