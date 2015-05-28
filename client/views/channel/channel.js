@@ -45,6 +45,11 @@ Channel = BlazeComponent.extendComponent({
         });
       }
     });
+
+    // Make the textarea resize it self.
+    setTimeout(function() {
+      self.$('textarea[name=message]').autosize();
+    }, 10);
   },
   onDestroyed: function () {
     var self = this;
@@ -99,7 +104,7 @@ Channel = BlazeComponent.extendComponent({
             var _id = currentRouteId();
             var value = this.find('textarea[name=message]').value;
             // Markdown requires double spaces at the end of the line to force line-breaks.
-            value = value.replace("\n", "  \n");
+            value = value.replace(/([^\n])\n/g, "$1  \n");
 
             // Prevent accepting empty message
             if ($.trim(value) === "") return;
