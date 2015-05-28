@@ -14,8 +14,9 @@ currentChannel = function () {
 
   if(isDirectChannel()) {
     var user = Meteor.users.findOne({username: nameOfDirectChannel()});
-    if(user)
+    if (user) {
       channel = Channels.findOne({ direct: true, allowedUsers: {$in :[Meteor.userId(), user._id] } });
+    }
   } else {
     // Search cnannel by id or slug
     channel = Channels.findOne({ $or: [{ _id: search }, { slug: search }] });
@@ -66,4 +67,3 @@ isSubReady = function (subName) {
 isEnter = function (e) {
   return e.keyCode === 13;
 };
-
