@@ -1,20 +1,11 @@
-DOM = {};
-DOM.ChannelInfoBar = { 
-  toggle: function () {
-    console.log('DOM.ChannelInfoBar.toggle()');
-    $('.channel-info').toggleClass('channel-info-out');
-    $('.channel-content').toggleClass('channel-content-full');
-    $('.channel-footer').toggleClass('channel-footer-full');
-  },
-  open: function () {
-    $('.channel-info').removeClass('channel-info-out');
-    $('.channel-content').removeClass('channel-content-full');
-    $('.channel-footer').removeClass('channel-footer-full');
-
-  },
-  close: function () {
-    $('.channel-info').addClass('channel-info-out');
-    $('.channel-content').addClass('channel-content-full');
-    $('.channel-footer').addClass('channel-footer-full');
-  }
+/**
+ * Scrolls down the page when the user is a at or nearly at the bottom of the page
+ */
+scrollDown = function () {
+  // It has to be in a setTimeout or it won't
+  // scroll all the way down for some reason
+  setTimeout(function () {
+    // Scroll down the page
+    window.scrollTo(0, document.body.scrollHeight);
+  }, 0);
 };

@@ -40,7 +40,7 @@ Start the app:
 
 ```
 cd SpaceTalk
-meteor
+meteor run --settings=settings.json
 ```
 
 To update your clone do a pull:
