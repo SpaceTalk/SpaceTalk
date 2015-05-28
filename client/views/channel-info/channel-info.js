@@ -36,7 +36,9 @@ ChannelInfo = BlazeComponent.extendComponent({
       {
         'click .channel-accordion-section-header': function (event) {
           event.preventDefault();
-          $(event.target).parent('.channel-accordion-section').toggleClass('open');
+
+          $(event.target).parent('.channel-accordion-section')
+          .toggleClass('open');
         }
       }
     ];
