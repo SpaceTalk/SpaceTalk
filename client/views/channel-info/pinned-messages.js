@@ -6,14 +6,24 @@ ChannelInfoPinnedMessages = BlazeComponent.extendComponent({
     var self = this;
 
     this.autorun(function () {
-      console.log(App.channelInfo.pinnedMessages.isOpen.get());
-
       if(App.channelInfo.pinnedMessages.isOpen.get()) {
-        self.$('.channel-accordion-section').addClass('open')
+        self.open();
       } else {
-        self.$('.channel-accordion-section').removeClass('open')
+        self.close();
       }
     });
+  },
+
+  open: function () {
+    var self = this;
+
+    self.$('.channel-accordion-section').addClass('open');
+  },
+
+  close: function () {
+    var self = this;
+
+    self.$('.channel-accordion-section').removeClass('open');
   },
 
   pinnedMessages: function () {
