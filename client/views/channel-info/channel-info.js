@@ -10,5 +10,17 @@ ChannelInfo = BlazeComponent.extendComponent({
   },
   dateCreated: function () {
     return moment(currentChannel().timestamp).format('MMMM Do YYYY');
+  },
+  events: function () {
+    return [{
+      'click .channel-add-purpose': function (event) {
+        event.preventDefault();
+
+        // XXX TODO: Implement cross-component interactions
+        // in a nicer way
+        $('.channel-title').trigger('click');
+        $('.channel-purpose').trigger('click');
+      }
+    }];
   }
 }).register('channelInfo');
