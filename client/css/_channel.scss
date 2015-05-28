@@ -69,13 +69,13 @@
     .message {
       font-size: 15px;
       color: $secondary;
+      line-height: 1.3rem;
     }
     .username, h2 {
       color: darken($primary, 15%);
       font-weight: 900;
     }
     li {
-      margin-top: $padding/2;
       &:after {
         content: '';
         display: block;
@@ -96,6 +96,7 @@
       text-decoration: none;
       color: grey;
       display: none;
+      float: right;
     }
     .message-body:hover .edit {
       display: inline;
@@ -103,6 +104,12 @@
     .message-body {
       float: left;
       width: calc(100% - 70px);
+      margin-top: 8px;
+
+      &.no-avatar {
+        margin-left: 50px;
+        margin-top: 0;
+      }
 
       .iframely-oembed {
         max-width: 400px;

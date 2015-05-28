@@ -3,14 +3,6 @@ Message = BlazeComponent.extendComponent({
     this.isEditing = new ReactiveVar(false);
   },
 
-  _onClickOutside: function (event) {
-    var self = event.data.instance;
-    if (!$(event.target).is(self.$('.form-message-input')) && !$(event.target).is(self.$('.edit'))) {
-      self.isEditing.set(false);
-      $(document.body).unbind('click', self._onClickOutside);
-    }
-  },
-
   _focus: function () {
     var input = this.find('.form-message-input');
     input.focus();
@@ -44,11 +36,37 @@ Message = BlazeComponent.extendComponent({
   },
 
   avatar: function () {
+    var self = this,
+        previous = self.previousMessage(),
+        current = self.currentData();
     var user = Meteor.users.findOne(this.currentData().userId);
 
     if (user && user.emails) {
-      return Gravatar.imageUrl(user.emails[0].address);
+      if (!previous || previous.userId != current.userId) {
+        return Gravatar.imageUrl(user.emails[0].address);
+      }
     }
+  },
+
+  previousMessage: function() {
+    var self = this,
+        current = self.currentData();
+
+    return Messages.findOne({
+      channelId: currentChannelId(),
+      timestamp: {$lt: current.timestamp}
+    }, {sort: {timestamp: -1}, limit:1});
+  },
+
+  isNewAuthor: function() {
+    var self = this,
+        previous = self.previousMessage(),
+        current = self.currentData();
+
+    if (previous && previous.userId == current.userId) {
+      return false;
+    }
+    return true;
   },
 
   toggleEditMode: function () {
@@ -59,8 +77,12 @@ Message = BlazeComponent.extendComponent({
 
     Tracker.flush();
     if (toggled) {
-      $(document.body).bind('click', { instance: this }, self._onClickOutside);
-      this._focus();
+      $(document.body).bind('mouseup', function() {
+        if (!$(event.target).is(self.$('.form-message-input'))) {
+          self.isEditing.set(false);
+        }
+      });
+      self._focus();
     }
   },
 
