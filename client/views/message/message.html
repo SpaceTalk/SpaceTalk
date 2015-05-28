@@ -9,6 +9,7 @@
         <span class="time">{{time timestamp}}</span>
         {{#if isOwner}}
           <a href="#" class="edit">Edit</a>
+          <a href="#" class="delete" title="Delete this message"><i class="fa fa-trash-o" data-action="remove-message"></i></a>
         {{/if}}
       </div>
       {{#if isEditing.get}}

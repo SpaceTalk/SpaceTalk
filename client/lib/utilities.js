@@ -38,4 +38,5 @@ isSubReady = function (subName) {
 
 isEnter = function (e) {
   return e.keyCode === 13;
-}
+};
+

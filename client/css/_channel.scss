@@ -81,15 +81,17 @@
       text-transform: uppercase;
       margin-left: 3px;
     }
-    .edit {
+    .edit, .delete{
       font-size: 12px;
       margin-left: 3px;
       text-decoration: none;
       color: grey;
       display: none;
     }
-    .message-body:hover .edit {
-      display: inline;
+    .message-body:hover {
+      & .edit, .delete {
+        display: inline;
+      }
     }
     .message-body {
       float: left;
