@@ -6,7 +6,7 @@ Meteor.methods({
 		}
 
 		if (!Messages.findOne(messageId)) {
-			throw new Meteor.Error(404, 'Message does not exist')
+			throw new Meteor.Error(404, 'Message does not exist');
 		}
 
 		if(isOwner('Messages', messageId)) {
