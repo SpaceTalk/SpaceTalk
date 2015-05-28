@@ -176,7 +176,7 @@ Channel = BlazeComponent.extendComponent({
         },
         'click [data-action="display-channel-info"]': function (event) {
           event.preventDefault();
-          DOM.ChannelInfoBar.toggle()
+          App.channelInfo.toggle();
         },
 
         'click .channel-title': function(event) {

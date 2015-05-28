@@ -95,7 +95,7 @@ Message = BlazeComponent.extendComponent({
                       currentData.channelId,
                       currentData._id, function (error) {
             // TODO: handle error
-            DOM.ChannelInfoBar.open();
+            App.channelInfo.show();
           });
         }
       }];
