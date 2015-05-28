@@ -8,7 +8,7 @@
   box-sizing: border-box;
   z-index: 2;
   &, a {
-    color: lighten($primary, 30%);
+    color: lighten($primary, 50%);
     text-decoration: none;
     text-shadow: 1px 1px darken($primary, 5%);
   }
@@ -55,12 +55,21 @@
   }
   .user-circle-online {
     color: $online;
+    font-size: 20px;
+    position: relative;
+    top: 2px;
   }
   .user-circle-offline {
     color: $offline;
+    font-size: 20px;
+    position: relative;
+    top: 2px;
   }
   .user-circle-idle {
     color: $idle;
+    font-size: 20px;
+    position: relative;
+    top: 2px;
   }
 
   &-channels {
@@ -122,6 +131,9 @@
       outline: none;
       font-size: 20px;
       margin-top: 6px;
+      &.visible {
+        color: white;
+      }
     }
 
     &-dropdown {
@@ -138,11 +150,11 @@
       background: #f3f3f3;
       z-index: 2;
       border-radius: .375rem;
-      border: solid 2px #ccc;
+      border: solid 2px darken($primary, 10%);
       text-shadow: none;
       font-size: 0.8rem;
 
-      &:after {
+      &:before {
         content: '';
         display: block;
         position: absolute;
@@ -150,7 +162,18 @@
         left: 46px;
         border-left: solid 8px transparent;
         border-right: solid 8px transparent;
-        border-top: solid 8px #ccc;
+        border-top: solid 8px darken($primary, 10%);
+      }
+
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -5px;
+        left: 49px;
+        border-left: solid 5px transparent;
+        border-right: solid 5px transparent;
+        border-top: solid 5px #f3f3f3;
       }
 
       a {

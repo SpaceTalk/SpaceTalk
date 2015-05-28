@@ -8,6 +8,6 @@ Template.teamLink.onRendered(function() {
     this.$('li').click(function(e) {
       e.preventDefault();
       var href = $('a', this).attr('href');
-      window.open(href, '_blank');
+      FlowRouter.go(href);
     });
   });

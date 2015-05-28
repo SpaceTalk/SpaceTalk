@@ -10,14 +10,11 @@
       min-height: 100%;
       font-weight: 400;
       margin: 0;
-      background: url(bg.jpg) #000;
-      background-size: cover;
-      background-attachment: fixed;
+      background: $primary;
       color: #aaa;
       font-family: Open Sans, sans-serif;
       font-size: 16px;
       line-height: 1.8em;
-      //    display: table;
 
       &-inner {
         max-width: 960px;

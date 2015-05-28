@@ -20,15 +20,20 @@ ChannelInfo = BlazeComponent.extendComponent({
       }
     });
   },
-
   events: function () {
     return [
-    {
-      'click .channel-accordion-section-header': function (event) {
-        event.preventDefault();
-        $(event.target).parent('.channel-accordion-section').toggleClass('open');
+      {
+        'click .channel-accordion-section-header': function (event) {
+          event.preventDefault();
+          $(event.target).parent('.channel-accordion-section').toggleClass('open');
+        }
       }
-    }
-  ];
-}
+    ];
+  },
+  creatorUsername : function() {
+    return currentChannel().createdBy ? Meteor.users.findOne(currentChannel().createdBy).username : '';
+  },
+  dateCreated: function () {
+    return moment(currentChannel().timestamp).format('MMMM Do YYYY');
+  }
 }).register('channelInfo');

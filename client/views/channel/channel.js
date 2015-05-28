@@ -45,13 +45,18 @@ Channel = BlazeComponent.extendComponent({
         });
       }
     });
+
+    // Make the textarea resize it self.
+    setTimeout(function() {
+      self.$('textarea[name=message]').autosize();
+    }, 10);
   },
   onDestroyed: function () {
     var self = this;
     // Prevents memory leaks!
     self.messageObserveHandle && self.messageObserveHandle.stop();
     // Stop listening to scroll events
-    $(window).off(self.calculateNearBottom);
+    // $(window).off(self.calculateNearBottom);
   },
   calculateNearBottom: function () {
     var self = this;
@@ -94,12 +99,12 @@ Channel = BlazeComponent.extendComponent({
     return [
       {
         'keydown textarea[name=message]': function (event) {
-          if (isEnter(event) && !event.shiftKey) { // Check if enter was pressed (but without shift).
+          if (isEnter(event) && ! event.shiftKey) { // Check if enter was pressed (but without shift).
             event.preventDefault();
             var _id = currentRouteId();
             var value = this.find('textarea[name=message]').value;
             // Markdown requires double spaces at the end of the line to force line-breaks.
-            value = value.replace("\n", "  \n");
+            value = value.replace(/([^\n])\n/g, "$1  \n");
 
             // Prevent accepting empty message
             if ($.trim(value) === "") return;
@@ -174,17 +179,51 @@ Channel = BlazeComponent.extendComponent({
             });
           }
         },
+
         'click [data-action="display-channel-info"]': function (event) {
           event.preventDefault();
           App.channelInfo.toggle();
         },
 
         'click .channel-title': function(event) {
+          var self = this;
           event.preventDefault();
 
-          this.$(".channel-dropdown").toggleClass("hidden");
+          self.$(".channel-dropdown").toggleClass("hidden");
+          self.$(".channel-title").toggleClass("visible");
           if ($(".channel-dropdown").not('.hidden')) {
-            $('.channel-dropdown-topic-input').focus();
+            self.$('.channel-dropdown-topic-input').focus();
+            self.$(".channel-dropdown").css({
+              left: $(".channel-title").outerWidth() + 200 - 30 - $(".channel-title span").outerWidth()
+            });
+            $(window).bind('mouseup.channel-dropdown', function(e) {
+              if (!self.$(e.target).closest('#spacetalk-header')[0] && !self.$(e.target).closest('.channel-dropdown')[0]) {
+                self.$(".channel-dropdown").addClass("hidden");
+                self.$(".channel-title").removeClass("visible");
+              }
+              $(window).unbind('mouseup.channel-dropdown');
+            });
+          }
+        },
+
+        'click .channel-purpose': function(event) {
+          event.preventDefault();
+          self.$('.channel-purpose-form textarea').autosize();
+          self.$(".channel-purpose-form").toggleClass("hidden");
+          self.$('.channel-purpose-form textarea').focus();
+        },
+
+        'keydown textarea[name=channel-purpose]': function (event) {
+          if (isEnter(event) && ! event.shiftKey) {
+            event.preventDefault();
+            var textarea = this.find('textarea[name=channel-purpose]');
+            // Markdown requires double spaces at the end of the line to force line-breaks.
+            value = textarea.value.replace(/([^\n])\n/g, "$1  \n");
+            // Prevent accepting empty channel purpose
+            if ($.trim(value) === "") return;
+            Channels.update({ _id: currentChannelId()}, { $set: { purpose: value} });
+            textarea.value = '';
+            this.$(".channel-purpose-form").toggleClass("hidden");
           }
         },
 
@@ -195,7 +234,9 @@ Channel = BlazeComponent.extendComponent({
             Meteor.call('channels.updateTopic', currentChannelId(), content);
             // Hide the dropdown.
             this.$(".channel-dropdown").toggleClass("hidden");
+            this.$(".channel-title").toggleClass("visible");
           }
+
         }
       }];
   }

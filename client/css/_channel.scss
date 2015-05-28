@@ -25,18 +25,28 @@
       color: $primary;
       font-size: 24px;
       font-weight: 900;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
 
       i {
-        font-size: 15px;
+        font-size: 18px;
         color: #9e9ea6;
         font-weight: 500;
+      }
+
+      &.visible i {
+        color: $primary;
       }
 
       .topic {
         font-size: 15px;
         color: #9e9ea6;
         font-weight: 500;
-        cursor: default;
+        cursor: pointer;
         padding-left: 10px;
       }
     }
@@ -49,6 +59,7 @@
     margin-left: $sidebar-width;
 
     &-full{
+      margin-right : $channel-info-width;
       transition: margin-right 100ms ease-in-out;
     }
 
@@ -59,14 +70,14 @@
     .message {
       font-size: 15px;
       color: $secondary;
+      line-height: 1.3rem;
     }
     .username, h2 {
-      color: darken($primary, 15%);
+      color: $primary;
       font-weight: 900;
     }
 
     li {
-      margin-top: $padding/2;
       &:after {
         content: '';
         display: block;
@@ -76,7 +87,6 @@
 
     p {
       margin: 0 0 $padding/2 0;
-
     }
 
     .time {
@@ -86,17 +96,33 @@
 
     }
 
-    .edit {
-      font-size: 12px;
-      margin-left: 3px;
-      text-decoration: none;
-      color: grey;
+    .modify {
       display: none;
-
+      position: absolute;
+      bottom: 4px;
+      a {
+        font-size: 12px;
+        text-decoration: none;
+        margin-right: 3px;
+        color: grey;
+        &:hover {
+          color: black;
+        }
+      }
     }
 
-    .message-body:hover .edit {
-      display: inline;
+    .edit-box textarea {
+      padding: 2px 6px 4px;
+      margin: -4px -8px;
+      font-size: 15px;
+      line-height: 1.3rem;
+      font-weight: 400;
+      font-family: Open Sans, sans-serif;
+    }
+    .message-body:hover {
+      & .modify {
+        display: inline;
+      }
     }
 
     .pin {
@@ -109,6 +135,10 @@
       .icon {
         margin-right: 3px;
       }
+
+      &.pinned {
+        color: black;
+      }
     }
 
     .message-body:hover .pin {
@@ -116,8 +146,15 @@
     }
 
     .message-body {
+      position: relative;
       float: left;
       width: calc(100% - 70px);
+      margin-top: 8px;
+
+      &.no-avatar {
+        margin-left: 50px;
+        margin-top: 0;
+      }
 
       .iframely-oembed {
         max-width: 400px;
@@ -175,13 +212,14 @@
     border-radius: 4px;
     background-color: $light-background;
     color: $secondary;
-    position: absolute;
-    left: 230px;
+    position: fixed;
+    left: 300px;
+    margin-left: -100px;
     width: 200px;
     top: 50px;
     z-index: 2;
     border-radius: .375rem;
-    border: solid 2px #ccc;
+    border: solid 2px darken($primary, 10%);
     background: #f3f3f3;
     text-shadow: none;
     font-size: 0.7rem;
@@ -191,10 +229,54 @@
       display: block;
       position: absolute;
       top: -8px;
-      left: 126px;
+      left: 50%;
+      margin-left: -8px;
       border-left: solid 8px transparent;
       border-right: solid 8px transparent;
-      border-bottom: solid 8px #ccc;
+      border-bottom: solid 8px darken($primary, 10%);
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      margin-left: -6px;
+      border-left: solid 6px transparent;
+      border-right: solid 6px transparent;
+      border-bottom: solid 6px #f3f3f3;
+    }
+
+    li {
+      font-size: 0.8rem;
+      a {
+        display: block;
+        text-decoration: none;
+        color: #3D3C40;
+        &:hover {
+          background: #DDD;
+          margin: 0 -1rem;
+          padding-left: 1rem;
+        }
+        &:active {
+          background: #AAA;
+        }
+      }
+    }
+
+    textarea {
+      border: solid 2px #D3D3D3;
+      border-radius: 4px;
+      padding: 8px;
+      width: 100%;
+      box-sizing: border-box;
+      resize: none !important;
+      font-size: 14px;
+      margin-top: 8px;
+      &:focus {
+        outline: none;
+      }
     }
 
     .header-item {

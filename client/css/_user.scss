@@ -1,10 +1,8 @@
 .user {
-
   &-avatar {
     width: 40px;
-    border-radius: 4px;
+    border-radius: 50%;
     float: left;
     margin-right: $padding*2/3;
   }
-
 }
