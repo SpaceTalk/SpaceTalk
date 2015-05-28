@@ -80,8 +80,8 @@ Message = BlazeComponent.extendComponent({
       $(document.body).bind('mouseup.edit-message', function() {
         if (!$(event.target).is(self.$('.form-message-input'))) {
           self.isEditing.set(false);
+          $(document.body).unbind('mouseup.edit-message');
         }
-        $(document.body).unbind('mouseup.edit-message');
       });
       self._focus();
     }
