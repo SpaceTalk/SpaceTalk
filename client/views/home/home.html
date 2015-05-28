@@ -7,7 +7,7 @@
     <!--Once you log in, you will automatically be redirected to the backend interface.-->
     {{#if currentUser}}
     <div class="breif">
-      <p><strong>Welcome to SpaceTalk.</strong> SpaceTalk is made for communication in teams, and we've created one for you to get you started.</p>
+      <p><strong>Welcome to SpaceTalk.</strong> SpaceTalk is made for team communication, and we've created one for you to get you started.</p>
     </div>
     <div class="content-inner-form">
       {{#if currentUser}}
@@ -34,5 +34,5 @@
 </template>
 
 <template name="teamLink">
-  <li><a href="{{pathFor 'teamHome' team=slug }}" target="_blank">{{name}}</a></li>    
+  <li><a href="{{pathFor 'teamHome' team=slug }}">{{name}}</a></li>
 </template>

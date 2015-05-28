@@ -30,8 +30,12 @@
     }
   }
   span {
-    display: block;
-    margin-top: 5px;
+    display: inline-block;
+    top: 10px;
+    right: 5px;
+    position: absolute;
+    color: green;
+    z-index: 1;
   }
   &.has-error {
     input {
