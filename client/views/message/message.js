@@ -137,12 +137,12 @@ Message = BlazeComponent.extendComponent({
             var position = self.$('.message .cursor').position();
             if (position) {
               var width = position.left;
-              self.$('.edit').css({
+              self.$('.modify').css({
                 left: width + 8
               });
             }
           }
-        }, 
+        },
 
         'click .delete': function (event) {
           event.preventDefault();
