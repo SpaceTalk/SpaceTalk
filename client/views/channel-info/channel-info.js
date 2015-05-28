@@ -21,14 +21,6 @@ ChannelInfo = BlazeComponent.extendComponent({
     });
   },
 
-  pinnedMessages: function () {
-    if (currentChannel().pinnedMessageIds) {
-      return Messages.find({
-        _id: { $in: currentChannel().pinnedMessageIds } 
-      });
-    }
-  },
-
   events: function () {
     return [
     {

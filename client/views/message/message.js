@@ -96,6 +96,7 @@ Message = BlazeComponent.extendComponent({
                       currentData._id, function (error) {
             // TODO: handle error
             App.channelInfo.show();
+            App.channelInfo.pinnedMessages.open();
           });
         }
       }];

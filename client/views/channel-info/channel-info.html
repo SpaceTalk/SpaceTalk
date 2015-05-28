@@ -10,21 +10,14 @@
           <input type="checkbox" checked>
           <i class="fa fa-caret-down"></i>
           <h2><i class="fa fa-info-circle icon icon-about"></i> About this channel</h2>
-          <p>About this channel to be here</p>
+          <p class="channel-accordion-item-content">About this channel to be here</p>
         </li>
-        <li>
-          <input type="checkbox" checked>
-          <i class="fa fa-caret-down"></i>
-          <h2><i class="fa fa-thumb-tack icon icon-pinned"></i> Pinned items</h2>
-          {{#each pinnedMessages}}
-            {{> message}}
-          {{/each}}
-        </li>
+        {{> channelInfoPinnedMessages}}
         <li>
           <input type="checkbox" checked>
           <i class="fa fa-caret-down"></i>
           <h2><i class="fa fa-user icon icon-members"></i> Members</h2>
-          <p>Members content to be here</p>
+          <p class="channel-accordion-item-content">Members content to be here</p>
         </li>
       </ul>
     </div>

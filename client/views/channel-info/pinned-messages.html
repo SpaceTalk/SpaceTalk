@@ -1,0 +1,12 @@
+<template name="channelInfoPinnedMessages">
+  <li>
+    <input type="checkbox" checked>
+    <i class="fa fa-caret-down"></i>
+    <h2><i class="fa fa-thumb-tack icon icon-pinned"></i> Pinned items</h2>
+    <div class="channel-accordion-item-content">
+        {{#each pinnedMessages}}
+        {{> _pinnedMessage}}
+        {{/each}}
+    </div>
+    </li>
+</template>

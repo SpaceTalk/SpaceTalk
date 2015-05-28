@@ -103,7 +103,7 @@
       }
     }
 
-    p {
+    .channel-accordion-item-content {
       color: rgba(48, 69, 92, 0.8);
       font-size: 14px;
       position: relative;
@@ -171,7 +171,7 @@
       z-index: 0;
       opacity: 0;
     }
-    ul li input[type=checkbox]:checked ~ p {
+    ul li input[type=checkbox]:checked ~ .channel-accordion-item-content {
       margin-top: 0;
       margin-bottom: 8px;
       max-height: 0;
