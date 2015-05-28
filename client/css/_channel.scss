@@ -101,7 +101,14 @@
 
     .pin {
       display: none !important; // _sweetalert-override.scss is affecting this
+      margin-left: 3px;
       color: grey;
+      font-size: 12px;
+      text-decoration: none;
+
+      .icon {
+        margin-right: 3px;
+      }
     }
 
     .message-body:hover .pin {

@@ -10,9 +10,11 @@
         {{#if isOwner}}
           <a href="#" class="edit">Edit</a>
         {{/if}}
-        {{#unless isPinned}}
-        <a href="#" class="pin" title="pin this message"><i class="fa fa-thumb-tack"></i></a>
-        {{/unless}}
+        {{#if isPinned}}
+        <a href="#" data-action="unpin-message" class="pin"><i class="icon fa fa-thumb-tack"></i>Un-pin this message</a>
+        {{else}}
+          <a href="#" data-action="pin-message" class="pin"><i class="icon fa fa-thumb-tack"></i>Pin this message</a>
+        {{/if}}
       </div>
       {{#if isEditing.get}}
         {{> messageEditBox}}
