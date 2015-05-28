@@ -59,6 +59,7 @@
     margin-left: $sidebar-width;
 
     &-full{
+      margin-right : $channel-info-width;
       transition: margin-right 100ms ease-in-out;
     }
 
@@ -149,6 +150,15 @@
     &-full {
       right : $channel-info-width;
       transition: right 100ms ease-in-out;
+    }
+
+    .message-tab-container {
+      box-shadow: 0 1px 4px rgba(64, 54, 63, 0.25);
+      border: 1px solid #DDD;
+      position: absolute;
+      bottom: 72px;
+      border-radius: 4px;
+      max-width: 90%;
     }
   }
 
