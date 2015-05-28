@@ -109,6 +109,16 @@ Message = BlazeComponent.extendComponent({
 
             this.toggleEditMode();
           }
+        },
+
+        'mouseover .message-body': function(event) {
+          var self = this;
+          if (self.currentData().userId === Meteor.userId()) {
+            var width = self.$('.message .cursor').position().left;
+            self.$('.edit').css({
+              left: width + 8
+            });
+          }
         }
       }];
   }

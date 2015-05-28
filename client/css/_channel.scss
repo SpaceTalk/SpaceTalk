@@ -72,7 +72,7 @@
       line-height: 1.3rem;
     }
     .username, h2 {
-      color: darken($primary, 15%);
+      color: $primary;
       font-weight: 900;
     }
     li {
@@ -84,6 +84,7 @@
     }
     p {
       margin: 0 0 $padding/2 0;
+      display: inline-block;
     }
     .time {
       font-size: 12px;
@@ -92,16 +93,25 @@
     }
     .edit {
       font-size: 12px;
-      margin-left: 3px;
       text-decoration: none;
       color: grey;
       display: none;
-      float: right;
+      position: absolute;
+      bottom: 4px;
+    }
+    .edit-box textarea {
+      padding: 2px 6px 4px;
+      margin: -4px -8px;
+      font-size: 15px;
+      line-height: 1.3rem;
+      font-weight: 400;
+      font-family: Open Sans, sans-serif;
     }
     .message-body:hover .edit {
       display: inline;
     }
     .message-body {
+      position: relative;
       float: left;
       width: calc(100% - 70px);
       margin-top: 8px;
