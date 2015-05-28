@@ -18,6 +18,7 @@
       </ul>
     {{/content}}
     {{#footer class="channel-footer"}}
+      {{> messageTab}}
       {{> messageForm}}
     {{/footer}}
   {{else}}
@@ -29,4 +30,10 @@
   <form>
     <textarea rows="1" cols="100" name="message" class="form-message-input" autofocus="true"></textarea>
   </form>
+</template>
+
+<template name="messageTab">
+  <section class="message-tab-container">
+    <div class="message-tab-content"></div>
+  </section>
 </template>
