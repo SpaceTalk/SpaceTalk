@@ -20,7 +20,6 @@ Meteor.methods({
         return user;
       }).join("-");
       if (!Channels.findOne({ direct: true, teamId: teamId, allowedUsers: { $in: options.allowedUsers } })) {
-        console.log("created direct channel");
         var directChannel = {
           direct: true,
           teamId: teamId,
@@ -38,17 +37,6 @@ Meteor.methods({
     // Get rid of extra spaces in names, lower-case it
     // (like Slack does), and trim it
     channelName = channelName.replace(/\s{2,}/g, ' ').toLowerCase().trim();
-
-    //// Insert direct channel
-    //if (options && options.direct) {
-    //  name = _.sortBy(options.allowedUsers, function(s) {return s;}).join("+");
-    //  var directChannel = {direct: true, teamId: teamId, name: name, allowedUsers: options.allowedUsers };
-    //  if (!Channels.findOne({direct: true, teamId: teamId, name: name, allowedUsers: options.allowedUsers })) {
-    //    return Channels.insert({name: name, teamId: teamId, direct: true, allowedUsers: options.allowedUsers});
-    //  } else {
-    //    return Channels.update({name: name}, {$set: {name: name, teamId: teamId, direct: true, allowedUsers: options.allowedUsers}});
-    //  }
-    //}
 
     // Insert the new channel
     if (!Channels.findOne({ teamId: teamId, name: channelName })) {
