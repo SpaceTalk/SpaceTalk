@@ -137,11 +137,34 @@ Message = BlazeComponent.extendComponent({
             var position = self.$('.message .cursor').position();
             if (position) {
               var width = position.left;
-              self.$('.edit').css({
+              self.$('.modify').css({
                 left: width + 8
               });
             }
           }
+        },
+
+        'click .delete': function (event) {
+          event.preventDefault();
+
+          Meteor.call('messages.delete', this.currentData()._id,
+            function (error) {
+              if (error) {
+                swal({
+                  title: 'Yikes! Something went wrong',
+                  text: error.reason,
+                  type: 'error'
+                });
+              } else {
+                swal({
+                  title: 'Message deleted',
+                  text:  'Message deleted successfully',
+                  type: 'success',
+                  html: true
+                });
+              }
+            }
+          );
         }
       }];
   }

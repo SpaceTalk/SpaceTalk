@@ -93,13 +93,19 @@
       text-transform: uppercase;
       margin-left: 3px;
     }
-    .edit {
-      font-size: 12px;
-      text-decoration: none;
-      color: grey;
+    .modify {
       display: none;
       position: absolute;
       bottom: 4px;
+      a {
+        font-size: 12px;
+        text-decoration: none;
+        margin-right: 3px;
+        color: grey;
+        &:hover {
+          color: black;
+        }
+      }
     }
     .edit-box textarea {
       padding: 2px 6px 4px;
@@ -109,8 +115,10 @@
       font-weight: 400;
       font-family: Open Sans, sans-serif;
     }
-    .message-body:hover .edit {
-      display: inline;
+    .message-body:hover {
+      & .modify {
+        display: inline;
+      }
     }
     .message-body {
       position: relative;
