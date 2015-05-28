@@ -8,7 +8,7 @@ Blaze.Template.registerHelper("linkify", new Template('linkify', function () {
 }));
 
 var linkify = function (string) {
-  if (!string) return null;
+  if (!string) return '';
 
   // http://, https://, ftp://
   var urlPattern = /\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
