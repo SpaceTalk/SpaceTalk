@@ -71,6 +71,10 @@
       font-size: 15px;
       color: $secondary;
       line-height: 1.3rem;
+
+      .cursor {
+        display: inline-block;
+      }
     }
     .username, h2 {
       color: $primary;
