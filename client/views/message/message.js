@@ -77,10 +77,11 @@ Message = BlazeComponent.extendComponent({
 
     Tracker.flush();
     if (toggled) {
-      $(document.body).bind('mouseup', function() {
+      $(document.body).bind('mouseup.edit-message', function() {
         if (!$(event.target).is(self.$('.form-message-input'))) {
           self.isEditing.set(false);
         }
+        $(document.body).unbind('mouseup.edit-message');
       });
       self._focus();
     }
