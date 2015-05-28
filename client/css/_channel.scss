@@ -223,6 +223,37 @@
       border-bottom: solid 6px #f3f3f3;
     }
 
+    li {
+      font-size: 0.8rem;
+      a {
+        display: block;
+        text-decoration: none;
+        color: #3D3C40;
+        &:hover {
+          background: #DDD;
+          margin: 0 -1rem;
+          padding-left: 1rem;
+        }
+        &:active {
+          background: #AAA;
+        }
+      }
+    }
+
+    textarea {
+      border: solid 2px #D3D3D3;
+      border-radius: 4px;
+      padding: 8px;
+      width: 100%;
+      box-sizing: border-box;
+      resize: none !important;
+      font-size: 14px;
+      margin-top: 8px;
+      &:focus {
+        outline: none;
+      }
+    }
+
     .header-item {
       position: relative;
       margin-bottom: 8px;
