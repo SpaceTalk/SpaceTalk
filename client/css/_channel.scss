@@ -59,6 +59,7 @@
     margin-left: $sidebar-width;
 
     &-full{
+      margin-right : $channel-info-width;
       transition: margin-right 100ms ease-in-out;
     }
 
