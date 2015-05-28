@@ -88,7 +88,9 @@ Message = BlazeComponent.extendComponent({
 
   isPinned: function () {
     var pinnedMessageIds = currentChannel().pinnedMessageIds;
-    return pinnedMessageIds.indexOf(this.currentData()._id) !== -1;
+    return pinnedMessageIds && pinnedMessageIds.indexOf(
+        this.currentData()._id
+    ) !== -1;
   },
 
   events: function () {
