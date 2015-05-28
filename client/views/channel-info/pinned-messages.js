@@ -7,12 +7,11 @@ ChannelInfoPinnedMessages = BlazeComponent.extendComponent({
 
     this.autorun(function () {
       console.log(App.channelInfo.pinnedMessages.isOpen.get());
-      console.log(self.$('input[type="checkbox"]').prop('checked'));
 
       if(App.channelInfo.pinnedMessages.isOpen.get()) {
-        self.$('input[type="checkbox"]').prop('checked', true)
+        self.$('.channel-accordion-section').addClass('open')
       } else {
-        self.$('input[type="checkbox"]').prop('checked', false)
+        self.$('.channel-accordion-section').removeClass('open')
       }
     });
   },
