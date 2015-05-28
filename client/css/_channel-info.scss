@@ -13,13 +13,18 @@
   height: 100%;
   transition: right 100ms ease-in-out;
   transition: margin-right 100ms ease-out-in;
-  &, a {
-    color: lighten($primary, 30%);
-    text-decoration: none;
-  }
+
   a {
+    color: #2a80b9;
+    text-decoration: none;
     padding: 0;
-    display: block;
+    display: inline-block;
+
+    &:hover {
+      color: $primary;
+      text-decoration: underline;
+      color: #439fe0;
+    }
   }
   ul {
     margin: $padding/2 0;
@@ -87,7 +92,7 @@
       font-size: 14px;
       font-weight: 800;
       display: block;
-      margin: 0;
+      margin: 0 0 16px;
       cursor: pointer;
       color: #555459;
       transition: color 100ms ease-out;
@@ -119,7 +124,6 @@
       position: relative;
       padding: 0;
       margin: 0;
-      padding-bottom: 4px;
       padding-top: 18px;
       border-bottom: 1px solid #e8e8e8;
     }
@@ -168,7 +172,7 @@
     }
     ul li input[type=checkbox]:checked ~ p {
       margin-top: 0;
-      margin-bottom: 8px;
+      margin-bottom: 0px;
       max-height: 0;
       opacity: 0;
       transform: translate(0, 50%);
@@ -176,7 +180,56 @@
     ul li input[type=checkbox]:checked ~ i {
       transform: rotate(-90deg);
     }
+    .created-by {
+      color: #9e9ea6;
+      font-size: 14px;
+    }
+    .addPurposeText {
+      color: #9e9ea6;
+      line-height: 1.25rem;
+      font-style: italic;
+      font-size: .9375rem;
+    }
 
   }
+
+  .channel-add-purpose-dropdown {
+    padding: 1rem 1.25rem 0.2rem 1.25rem;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: $light-background;
+    color: $secondary;
+    position: fixed;
+    right: 317px;
+    left: $sidebar-width;
+    top: $top;
+    z-index: 2;
+    border-radius: .375rem;
+    box-shadow: 0 3px 8px rgba(0,0,0,.25);
+    text-shadow: none;
+    font-size: 0.8rem;
+
+    .header-item {
+      position: relative;
+
+      hr {
+        position: absolute;
+        left: 0;
+        width: 100%;
+      }
+
+      &-content {
+        color: lighten($secondary, 20%);
+        font-size: 1rem;
+        z-index: 2;
+        padding-right: 1rem;
+        background-color: white;
+        position: relative;
+      }
+
+    }
+  }
+
 
 }

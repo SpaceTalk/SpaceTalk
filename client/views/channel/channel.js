@@ -99,7 +99,7 @@ Channel = BlazeComponent.extendComponent({
     return [
       {
         'keydown textarea[name=message]': function (event) {
-          if (isEnter(event) && !event.shiftKey) { // Check if enter was pressed (but without shift).
+          if (isEnter(event) && ! event.shiftKey) { // Check if enter was pressed (but without shift).
             event.preventDefault();
             var _id = currentRouteId();
             var value = this.find('textarea[name=message]').value;
@@ -179,11 +179,13 @@ Channel = BlazeComponent.extendComponent({
             });
           }
         },
+
         'click [data-action="display-channel-info"]': function (event) {
           event.preventDefault();
           $('.channel-info').toggleClass('channel-info-out');
           $('.channel-content').toggleClass('channel-content-full');
           $('.channel-footer').toggleClass('channel-footer-full');
+          $(".channel-add-purpose-dropdown").toggleClass("hidden");
         },
 
         'click .channel-title': function(event) {
@@ -207,6 +209,27 @@ Channel = BlazeComponent.extendComponent({
           }
         },
 
+        'click .channel-purpose': function(event) {
+          event.preventDefault();
+          self.$('.channel-purpose-form textarea').autosize();
+          self.$(".channel-purpose-form").toggleClass("hidden");
+          self.$('.channel-purpose-form textarea').focus();
+        },
+
+        'keydown textarea[name=channel-purpose]': function (event) {
+          if (isEnter(event) && ! event.shiftKey) {
+            event.preventDefault();
+            var textarea = this.find('textarea[name=channel-purpose]');
+            // Markdown requires double spaces at the end of the line to force line-breaks.
+            value = textarea.value.replace(/([^\n])\n/g, "$1  \n");
+            // Prevent accepting empty channel purpose
+            if ($.trim(value) === "") return;
+            Channels.update({ _id: currentChannelId()}, { $set: { purpose: value} });
+            textarea.value = '';
+            this.$(".channel-purpose-form").toggleClass("hidden");
+          }
+        },
+
         'keydown input[name=channel-topic]': function (event) {
 
           if (isEnter(event)) {
@@ -216,6 +239,7 @@ Channel = BlazeComponent.extendComponent({
             this.$(".channel-dropdown").toggleClass("hidden");
             this.$(".channel-title").toggleClass("visible");
           }
+
         }
       }];
   }

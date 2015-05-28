@@ -36,9 +36,19 @@
 
 <template name="channelDropdown">
     <div class="channel-dropdown hidden">
-        <div class="header-item">
-            <span class="header-item-content">Set channel topic</span>
-        </div>
-        <input name="channel-topic" class="channel-dropdown-topic-input" type="text" value="{{currentChannel.topic}}">
+      <ul>
+        <ul>
+          <li><a href="#" class="channel-purpose">Set channel purpose</a>
+            <div class="channel-purpose-form hidden">
+              <textarea name="channel-purpose" class="channel-purpose-input" cols="30" rows="1">{{removeTrailingSpaces currentChannel.purpose}}</textarea>
+            </div>
+          </li>
+          <li><a href="#" class="notification-settings">Notification settings</a></li>
+        </ul>
+      </ul>
+      <div class="header-item">
+          <span class="header-item-content">Set channel topic</span>
+      </div>
+      <input name="channel-topic" class="channel-dropdown-topic-input" type="text" value="{{currentChannel.topic}}">
     </div>
 </template>

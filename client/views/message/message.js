@@ -17,10 +17,6 @@ Message = BlazeComponent.extendComponent({
     input.scrollTop = 999999;
   },
 
-  _removeTrailingNewLine: function (content) {
-    return content.replace(/  \n/g, "\n");
-  },
-
   user: function () {
     return Meteor.users.findOne({
       _id: this.currentData().userId
@@ -112,8 +108,6 @@ Message = BlazeComponent.extendComponent({
 
             // Prevent accepting empty message
             if ($.trim(value) === "") return;
-
-            console.log(value);
 
             Messages.update(self.currentData()._id, {
               $set: { message: value }
