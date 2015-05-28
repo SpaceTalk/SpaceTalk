@@ -42,7 +42,8 @@ Message = BlazeComponent.extendComponent({
     var user = Meteor.users.findOne(this.currentData().userId);
 
     if (user && user.emails) {
-      if (!previous || previous.userId != current.userId) {
+      if (!previous || previous.userId != current.userId
+        || moment(current.timestamp).diff(previous.timestamp) >= 120000) {
         return Gravatar.imageUrl(user.emails[0].address);
       }
     }
@@ -63,7 +64,8 @@ Message = BlazeComponent.extendComponent({
         previous = self.previousMessage(),
         current = self.currentData();
 
-    if (previous && previous.userId == current.userId) {
+    if (previous && previous.userId == current.userId
+      && moment(current.timestamp).diff(previous.timestamp) < 120000) {
       return false;
     }
     return true;
