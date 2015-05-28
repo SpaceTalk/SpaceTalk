@@ -45,6 +45,11 @@ Channel = BlazeComponent.extendComponent({
         });
       }
     });
+
+    // Make the textarea resize it self.
+    setTimeout(function() {
+      self.$('textarea[name=message]').autosize();
+    }, 10);
   },
   onDestroyed: function () {
     var self = this;
