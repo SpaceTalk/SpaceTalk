@@ -1,28 +1,63 @@
 Channel = BlazeComponent.extendComponent({
   onCreated: function () {
     var self = this;
+
+    // Used to indicate that the user's scroll position
+    // is near the bottom, see `calculateNearBottom` method
+    self.isNearBottom = new ReactiveVar(false);
+
     // Listen for changes to reactive variables (such as FlowRouter.getParam()).
     self.autorun(function () {
       currentChannel() && self.subscribe('messages', currentChannelId(), function () {
+        // On channel load, scroll page to the bottom
         scrollDown();
       });
     });
   },
   onRendered: function () {
-    // Observe the changes on the messages for this channel
-    Messages.find({
-      channelId: currentChannelId()
-    }).observeChanges({
-      // When a new message is added
-      added: function (id, doc) {
-        // Trigger the scroll down method which determines whether to scroll down or not
-        scrollDown();
+    var self = this;
+
+    // Listen to scroll events to see if we're near the bottom
+    // This is used to detect whether we should auto-scroll down
+    // when a new message arrives
+    $(window)
+      .on('scroll', self.calculateNearBottom.bind(self))
+      // And also trigger it initially
+      .trigger('scroll');
+
+    // We need to do this in an autorun because
+    // for some reason the currentChannelId is not
+    // available until a bit later
+    self.autorun(function () {
+      if (currentChannelId()) {
+        // Note: this scrollDown does work
+        // Observe the changes on the messages for this channel
+        self.messageObserveHandle = Messages.find({
+          channelId: currentChannelId()
+        }).observeChanges({
+          // When a new message is added
+          added: function (id, doc) {
+            // Trigger the scroll down method which determines whether to scroll down or not
+            if (self.isNearBottom.get()) {
+              scrollDown();
+            }
+          }
+        });
       }
     });
-
-    $('article').css({
-      'padding-bottom': $('footer').outerHeight()
-    });
+  },
+  onDestroyed: function () {
+    var self = this;
+    // Prevents memory leaks!
+    self.messageObserveHandle && self.messageObserveHandle.stop();
+    // Stop listening to scroll events
+    $(window).off(self.calculateNearBottom);
+  },
+  calculateNearBottom: function () {
+    var self = this;
+    // You are near the bottom if you're at least 200px from the bottom
+    self.isNearBottom.set((window.innerHeight + window.scrollY) >= (
+      Number(document.body.offsetHeight) - 200));
   },
   messages: function () {
     return Messages.find({
@@ -79,7 +114,7 @@ Channel = BlazeComponent.extendComponent({
             this.$('textarea[name=message]').css({
               height: 37
             });
-            window.scrollTo(0, document.body.scrollHeight);
+            scrollDown();
           }
         },
         'click [data-action="remove-channel"]': function (event) {
@@ -151,30 +186,21 @@ Channel = BlazeComponent.extendComponent({
           event.preventDefault();
 
           this.$(".channel-dropdown").toggleClass("hidden");
+          if ($(".channel-dropdown").not('.hidden')) {
+            $('.channel-dropdown-topic-input').focus();
+          }
         },
 
         'keydown input[name=channel-topic]': function (event) {
 
           if (isEnter(event)) {
-
             var content = this.find('input[name=channel-topic]').value;
             Meteor.call('channels.updateTopic', currentChannelId(), content);
+            // Hide the dropdown.
+            this.$(".channel-dropdown").toggleClass("hidden");
           }
 
         }
       }];
   }
 }).register('channel');
-
-/**
- * Scrolls down the page when the user is a at or nearly at the bottom of the page
- */
-var scrollDown = function () {
-  // Check if the innerHeight + the scrollY position is higher than the offsetHeight - 200
-  if ((window.innerHeight + window.scrollY) >= (
-    Number(document.body.offsetHeight) - 200
-    )) {
-    // Scroll down the page
-    window.scrollTo(0, document.body.scrollHeight);
-  }
-};
