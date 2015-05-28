@@ -130,7 +130,6 @@
       position: relative;
       padding: 0;
       margin: 0;
-      padding-bottom: 4px;
       padding-top: 18px;
       border-bottom: 1px solid #e8e8e8;
     }
@@ -178,7 +177,7 @@
     }
     ul li input[type=checkbox]:checked ~ p {
       margin-top: 0;
-      margin-bottom: 8px;
+      margin-bottom: 0px;
       max-height: 0;
       opacity: 0;
       transform: translate(0, 50%);
