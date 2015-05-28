@@ -55,12 +55,21 @@
   }
   .user-circle-online {
     color: $online;
+    font-size: 20px;
+    position: relative;
+    top: 2px;
   }
   .user-circle-offline {
     color: $offline;
+    font-size: 20px;
+    position: relative;
+    top: 2px;
   }
   .user-circle-idle {
     color: $idle;
+    font-size: 20px;
+    position: relative;
+    top: 2px;
   }
 
   &-channels {

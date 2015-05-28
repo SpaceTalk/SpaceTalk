@@ -90,7 +90,7 @@
       margin: 0;
       cursor: pointer;
       color: #555459;
-      transition: color 100ms ease-in-out;
+      transition: color 100ms ease-out;
       cursor: pointer;
       &:hover {
         color: $primary;
@@ -143,6 +143,7 @@
     }
     .icon {
       position: inherit;
+      margin-right: 4px;
     }
 
     .icon-about{
