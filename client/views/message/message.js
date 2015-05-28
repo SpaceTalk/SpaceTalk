@@ -77,6 +77,7 @@ Message = BlazeComponent.extendComponent({
 
     Tracker.flush();
     if (toggled) {
+      self.$('textarea').autosize();
       $(document.body).bind('mouseup.edit-message', function() {
         if (!$(event.target).is(self.$('.form-message-input'))) {
           self.isEditing.set(false);
@@ -96,18 +97,24 @@ Message = BlazeComponent.extendComponent({
         },
 
         'keydown .edit-box': function (event) {
+          var self = this;
           if (event.keyCode === 27 && !event.shiftKey) { // esc to cancel
             event.preventDefault();
-            this.toggleEditMode();
+            self.toggleEditMode();
           } else if (event.keyCode === 13 && !event.shiftKey) { // enter to save
             event.preventDefault();
 
-            var content = this.find('.form-message-input').value;
-            Messages.update(this.currentData()._id, {
+            var content = self.find('.form-message-input').value;
+            Messages.update(self.currentData()._id, {
               $set: { message: content }
             });
 
-            this.toggleEditMode();
+            self.toggleEditMode();
+
+            var width = self.$('.message .cursor').position().left;
+            self.$('.edit').css({
+              left: width + 8
+            });
           }
         },
 
