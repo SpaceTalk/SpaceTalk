@@ -108,7 +108,7 @@ Message = BlazeComponent.extendComponent({
 
             var value = self.find('.form-message-input').value;
             // Markdown requires double spaces at the end of the line to force line-breaks.
-            value = value.replace(/[^\n]\n/g, "  \n");
+            value = value.replace(/([^\n])\n/g, "$1  \n");
 
             // Prevent accepting empty message
             if ($.trim(value) === "") return;
