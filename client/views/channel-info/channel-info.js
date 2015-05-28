@@ -3,22 +3,33 @@ ChannelInfo = BlazeComponent.extendComponent({
   },
 
   onRendered: function () {
-    var self = this,
-        $channelInfo = self.$('.channel-info'),
-        $channelFooter = $('.channel-footer'),
-        $channelBody = $('.channel-body');
+    var self = this;
 
-    Tracker.autorun(function () {
-      if(App.channelInfo.isVisible.get()) {
-        $channelInfo.removeClass('channel-info-out');
-        $channelBody.removeClass('channel-body-full');
-        $channelFooter.removeClass('channel-footer-full');
+    self.$channelInfo = self.$('.channel-info');
+    self.$channelFooter = $('.channel-footer');
+    self.$channelBody = $('.channel-body');
+
+    this.autorun(function () {
+      if (App.channelInfo.isVisible.get()) {
+        self.show();
       } else {
-        $channelInfo.addClass('channel-info-out');
-        $channelBody.addClass('channel-body-full');
-        $channelFooter.addClass('channel-footer-full');
+        self.hide();
       }
     });
+  },
+  show: function () {
+    var self = this;
+
+    self.$channelInfo.removeClass('channel-info-out');
+    self.$channelBody.removeClass('channel-body-full');
+    self.$channelFooter.removeClass('channel-footer-full');
+  },
+  hide: function () {
+    var self = this;
+
+    self.$channelInfo.addClass('channel-info-out');
+    self.$channelBody.addClass('channel-body-full');
+    self.$channelFooter.addClass('channel-footer-full');
   },
   events: function () {
     return [
