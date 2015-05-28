@@ -85,6 +85,8 @@
     p {
       margin: 0 0 $padding/2 0;
       display: inline-block;
+      float: left;
+      clear: left;
     }
     .time {
       font-size: 12px;

@@ -18,7 +18,7 @@ Message = BlazeComponent.extendComponent({
   },
 
   _removeTrailingNewLine: function (content) {
-    return content.replace(/\s+$/g, '');
+    return content.replace(/  \n/g, "\n");
   },
 
   user: function () {
@@ -106,27 +106,41 @@ Message = BlazeComponent.extendComponent({
           } else if (event.keyCode === 13 && !event.shiftKey) { // enter to save
             event.preventDefault();
 
-            var content = self.find('.form-message-input').value;
+            var value = self.find('.form-message-input').value;
+            // Markdown requires double spaces at the end of the line to force line-breaks.
+            value = value.replace(/[^\n]\n/g, "  \n");
+
+            // Prevent accepting empty message
+            if ($.trim(value) === "") return;
+
+            console.log(value);
+
             Messages.update(self.currentData()._id, {
-              $set: { message: content }
+              $set: { message: value }
             });
 
             self.toggleEditMode();
 
-            var width = self.$('.message .cursor').position().left;
-            self.$('.edit').css({
-              left: width + 8
-            });
+            var position = self.$('.message .cursor').position();
+            if (position) {
+              var width = position.left;
+              self.$('.edit').css({
+                left: width + 8
+              });
+            }
           }
         },
 
         'mouseover .message-body': function(event) {
           var self = this;
           if (self.currentData().userId === Meteor.userId()) {
-            var width = self.$('.message .cursor').position().left;
-            self.$('.edit').css({
-              left: width + 8
-            });
+            var position = self.$('.message .cursor').position();
+            if (position) {
+              var width = position.left;
+              self.$('.edit').css({
+                left: width + 8
+              });
+            }
           }
         }
       }];
