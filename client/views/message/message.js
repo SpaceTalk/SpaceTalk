@@ -118,8 +118,8 @@ Message = BlazeComponent.extendComponent({
             var position = self.$('.message .cursor').position();
             if (position) {
               var width = position.left;
-              self.$('.edit').css({
-                left: width + 8
+              self.$('.modify').css({
+                left: Math.max(width, 25) + 8
               });
             }
           }
@@ -132,7 +132,7 @@ Message = BlazeComponent.extendComponent({
             if (position) {
               var width = position.left;
               self.$('.modify').css({
-                left: width + 8
+                left: Math.max(width, 25) + 8
               });
             }
           }
