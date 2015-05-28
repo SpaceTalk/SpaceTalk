@@ -1,28 +1,68 @@
 Channel = BlazeComponent.extendComponent({
   onCreated: function () {
     var self = this;
+
+    // Used to indicate that the user's scroll position
+    // is near the bottom, see `calculateNearBottom` method
+    self.isNearBottom = new ReactiveVar(false);
+
     // Listen for changes to reactive variables (such as FlowRouter.getParam()).
     self.autorun(function () {
       currentChannel() && self.subscribe('messages', currentChannelId(), function () {
+        // On channel load, scroll page to the bottom
         scrollDown();
       });
     });
   },
   onRendered: function () {
-    // Observe the changes on the messages for this channel
-    Messages.find({
-      channelId: currentChannelId()
-    }).observeChanges({
-      // When a new message is added
-      added: function (id, doc) {
-        // Trigger the scroll down method which determines whether to scroll down or not
-        scrollDown();
+    var self = this;
+
+    // Listen to scroll events to see if we're near the bottom
+    // This is used to detect whether we should auto-scroll down
+    // when a new message arrives
+    $(window)
+      .on('scroll', self.calculateNearBottom.bind(self))
+      // And also trigger it initially
+      .trigger('scroll');
+
+    // We need to do this in an autorun because
+    // for some reason the currentChannelId is not
+    // available until a bit later
+    self.autorun(function () {
+      if (currentChannelId()) {
+        // Note: this scrollDown does work
+        // Observe the changes on the messages for this channel
+        self.messageObserveHandle = Messages.find({
+          channelId: currentChannelId()
+        }).observeChanges({
+          // When a new message is added
+          added: function (id, doc) {
+            // Trigger the scroll down method which determines whether to scroll down or not
+            if (self.isNearBottom.get()) {
+              scrollDown();
+            }
+          }
+        });
       }
     });
 
-    $('article').css({
-      'padding-bottom': $('footer').outerHeight()
-    });
+    // Make the textarea resize it self.
+    setTimeout(function() {
+      self.$('textarea[name=message]').autosize();
+    }, 10);
+  },
+  onDestroyed: function () {
+    var self = this;
+    // Prevents memory leaks!
+    self.messageObserveHandle && self.messageObserveHandle.stop();
+    // Stop listening to scroll events
+    // $(window).off(self.calculateNearBottom);
+  },
+  calculateNearBottom: function () {
+    var self = this;
+    // You are near the bottom if you're at least 200px from the bottom
+    self.isNearBottom.set((window.innerHeight + window.scrollY) >= (
+      Number(document.body.offsetHeight) - 200));
   },
   messages: function () {
     return Messages.find({
@@ -58,13 +98,13 @@ Channel = BlazeComponent.extendComponent({
   events: function () {
     return [
       {
-        'keyup textarea[name=message]': function (event) {
-          if (event.keyCode == 13 && !event.shiftKey) { // Check if enter was pressed (but without shift).
+        'keydown textarea[name=message]': function (event) {
+          if (isEnter(event) && ! event.shiftKey) { // Check if enter was pressed (but without shift).
             event.preventDefault();
             var _id = currentRouteId();
             var value = this.find('textarea[name=message]').value;
             // Markdown requires double spaces at the end of the line to force line-breaks.
-            value = value.replace("\n", "  \n");
+            value = value.replace(/([^\n])\n/g, "$1  \n");
 
             // Prevent accepting empty message
             if ($.trim(value) === "") return;
@@ -79,7 +119,7 @@ Channel = BlazeComponent.extendComponent({
             this.$('textarea[name=message]').css({
               height: 37
             });
-            window.scrollTo(0, document.body.scrollHeight);
+            scrollDown();
           }
 
           $("textarea").textcomplete([ {
@@ -182,25 +222,68 @@ Channel = BlazeComponent.extendComponent({
             });
           }
         },
+
         'click [data-action="display-channel-info"]': function (event) {
           event.preventDefault();
           $('.channel-info').toggleClass('channel-info-out');
           $('.channel-content').toggleClass('channel-content-full');
           $('.channel-footer').toggleClass('channel-footer-full');
+          $(".channel-add-purpose-dropdown").toggleClass("hidden");
+        },
+
+        'click .channel-title': function(event) {
+          var self = this;
+          event.preventDefault();
+
+          self.$(".channel-dropdown").toggleClass("hidden");
+          self.$(".channel-title").toggleClass("visible");
+          if ($(".channel-dropdown").not('.hidden')) {
+            self.$('.channel-dropdown-topic-input').focus();
+            self.$(".channel-dropdown").css({
+              left: $(".channel-title").outerWidth() + 200 - 30 - $(".channel-title span").outerWidth()
+            });
+            $(window).bind('mouseup.channel-dropdown', function(e) {
+              if (!self.$(e.target).closest('#spacetalk-header')[0] && !self.$(e.target).closest('.channel-dropdown')[0]) {
+                self.$(".channel-dropdown").addClass("hidden");
+                self.$(".channel-title").removeClass("visible");
+              }
+              $(window).unbind('mouseup.channel-dropdown');
+            });
+          }
+        },
+
+        'click .channel-purpose': function(event) {
+          event.preventDefault();
+          self.$('.channel-purpose-form textarea').autosize();
+          self.$(".channel-purpose-form").toggleClass("hidden");
+          self.$('.channel-purpose-form textarea').focus();
+        },
+
+        'keydown textarea[name=channel-purpose]': function (event) {
+          if (isEnter(event) && ! event.shiftKey) {
+            event.preventDefault();
+            var textarea = this.find('textarea[name=channel-purpose]');
+            // Markdown requires double spaces at the end of the line to force line-breaks.
+            value = textarea.value.replace(/([^\n])\n/g, "$1  \n");
+            // Prevent accepting empty channel purpose
+            if ($.trim(value) === "") return;
+            Channels.update({ _id: currentChannelId()}, { $set: { purpose: value} });
+            textarea.value = '';
+            this.$(".channel-purpose-form").toggleClass("hidden");
+          }
+        },
+
+        'keydown input[name=channel-topic]': function (event) {
+
+          if (isEnter(event)) {
+            var content = this.find('input[name=channel-topic]').value;
+            Meteor.call('channels.updateTopic', currentChannelId(), content);
+            // Hide the dropdown.
+            this.$(".channel-dropdown").toggleClass("hidden");
+            this.$(".channel-title").toggleClass("visible");
+          }
+
         }
       }];
   }
 }).register('channel');
-
-/**
- * Scrolls down the page when the user is a at or nearly at the bottom of the page
- */
-var scrollDown = function () {
-  // Check if the innerHeight + the scrollY position is higher than the offsetHeight - 200
-  if ((window.innerHeight + window.scrollY) >= (
-    Number(document.body.offsetHeight) - 200
-    )) {
-    // Scroll down the page
-    window.scrollTo(0, document.body.scrollHeight);
-  }
-};

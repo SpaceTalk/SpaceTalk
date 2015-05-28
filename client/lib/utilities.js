@@ -35,3 +35,8 @@ currentChannelSlug = function () {
 isSubReady = function (subName) {
   return FlowRouter.subsReady(subName);
 };
+
+isEnter = function (e) {
+  return e.keyCode === 13;
+};
+
