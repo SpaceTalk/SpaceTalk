@@ -25,11 +25,21 @@
       color: $primary;
       font-size: 24px;
       font-weight: 900;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
 
       i {
-        font-size: 15px;
+        font-size: 18px;
         color: #9e9ea6;
         font-weight: 500;
+      }
+
+      &.visible i {
+        color: $primary;
       }
 
       .topic {
@@ -151,12 +161,13 @@
     background-color: $light-background;
     color: $secondary;
     position: absolute;
-    left: 230px;
+    left: 300px;
+    margin-left: -100px;
     width: 200px;
     top: 50px;
     z-index: 2;
     border-radius: .375rem;
-    border: solid 2px #ccc;
+    border: solid 2px darken($primary, 10%);
     background: #f3f3f3;
     text-shadow: none;
     font-size: 0.7rem;
@@ -166,10 +177,23 @@
       display: block;
       position: absolute;
       top: -8px;
-      left: 126px;
+      left: 50%;
+      margin-left: -8px;
       border-left: solid 8px transparent;
       border-right: solid 8px transparent;
-      border-bottom: solid 8px #ccc;
+      border-bottom: solid 8px darken($primary, 10%);
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      margin-left: -6px;
+      border-left: solid 6px transparent;
+      border-right: solid 6px transparent;
+      border-bottom: solid 6px #f3f3f3;
     }
 
     .header-item {
