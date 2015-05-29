@@ -1,6 +1,8 @@
 <template name="channel">
   {{#if currentChannel}}
-    {{> channelInfo}}
+    {{#unless currentChannel.direct}}
+      {{> channelInfo}}
+    {{/unless}}
     {{> channelDropdown}}
     {{#header class="channel-header"}}
       <h1 class="channel-title">

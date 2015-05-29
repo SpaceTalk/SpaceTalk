@@ -267,9 +267,25 @@ Channel = BlazeComponent.extendComponent({
             value = textarea.value.replace(/([^\n])\n/g, "$1  \n");
             // Prevent accepting empty channel purpose
             if ($.trim(value) === "") return;
-            Channels.update({ _id: currentChannelId()}, { $set: { purpose: value} });
-            textarea.value = '';
-            this.$(".channel-purpose-form").toggleClass("hidden");
+
+            Meteor.call('channels.updatePurpose', currentChannelId(), value, function (error, result) {
+              if (result) {
+                self.$(".channel-purpose-form").toggleClass("hidden");
+              } else if (error) {
+                switch(error.error) {
+                  case 401: // Not authorized
+                  displayUnauthorizedError();
+                  break;
+                  case 404: // No channel found
+                  swal({
+                    title: 'Yikes! Something went wrong',
+                    text: "We can't find the channel",
+                    type: 'error'
+                  });
+                  break;
+                }
+              }
+            });
           }
         },
 
