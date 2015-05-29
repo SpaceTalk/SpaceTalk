@@ -1,0 +1,7 @@
+#!/bin/bash
+#
+# Simple shell script to make your life so much easier by not having to type the meteor run command everytime.
+
+echo -e "\e[94mStarting the almighty SpaceTalk"
+
+exec meteor run --settings settings.json
