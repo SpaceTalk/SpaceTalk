@@ -4,7 +4,7 @@ Blaze.Template.registerHelper("linkify", new Template('linkify', function () {
   if (view.templateContentBlock) {
     content = Blaze._toText(view.templateContentBlock, HTML.TEXTMODE.STRING);
   }
-  return HTML.Raw(linkify(content) + '<span class="cursor"></span>');
+  return HTML.Raw(linkify(content));
 }));
 
 var linkify = function (string) {

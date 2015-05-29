@@ -75,6 +75,11 @@
       .cursor {
         display: inline-block;
       }
+
+      .info-text {
+        color: #b4b4b4;
+        font-size: 0.8em;
+      }
     }
     .username, h2 {
       color: $primary;
