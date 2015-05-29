@@ -22,7 +22,7 @@
     {{/content}}
     {{#footer class="channel-footer"}}
       {{> messageTab}}
-      {{> messageForm}}
+      {{> messageForm usersTyping=usersTyping}}
     {{/footer}}
   {{else}}
     {{> notFound}}
@@ -33,6 +33,7 @@
   <form>
     <textarea rows="1" cols="100" name="message" class="form-message-input" autofocus="true"></textarea>
   </form>
+  <span class="form-users-typing">{{usersTyping}}</span>
 </template>
 
 

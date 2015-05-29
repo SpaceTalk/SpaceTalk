@@ -2,6 +2,8 @@ Channel = BlazeComponent.extendComponent({
   onCreated: function () {
     var self = this;
 
+    self.clearTypingTimeoutId = null;
+
     // Used to indicate that the user's scroll position
     // is near the bottom, see `calculateNearBottom` method
     self.isNearBottom = new ReactiveVar(false);
@@ -12,6 +14,10 @@ Channel = BlazeComponent.extendComponent({
         // On channel load, scroll page to the bottom
         scrollDown();
       });
+
+      if (currentChannel()) {
+        self.subscribe('channelPresences', currentChannelId());
+      }
     });
   },
   onRendered: function () {
@@ -95,6 +101,26 @@ Channel = BlazeComponent.extendComponent({
       return Gravatar.imageUrl(user.emails[0].address);
     }
   },
+  usersTyping: function () {
+    var users = [];
+
+    Presences.find({
+      userId: { $exists: true },
+      state: { typingInChannel: currentChannelId() }
+    }).forEach(function (presence) {
+      if (presence.userId !== Meteor.userId()) {
+        users.push(Meteor.users.findOne(presence.userId).username);
+      }
+    });
+
+    if (users.length === 1) {
+      return users[0] + ' is typing';
+    } else if (users.length > 1) {
+      var initial = users.slice(0, users.length - 1);
+      var last = users[users.length - 1];
+      return initial.join(', ') + ' and ' + last + ' are typing';
+    }
+  },
   events: function () {
     return [
       {
@@ -120,6 +146,8 @@ Channel = BlazeComponent.extendComponent({
               height: 37
             });
             scrollDown();
+
+            Session.set('typingInChannel', undefined);
           }
 
           $("textarea").textcomplete([ {
@@ -164,6 +192,12 @@ Channel = BlazeComponent.extendComponent({
           $('.dropdown-menu').css({
             "position": "static",
           });
+
+          Session.set('typingInChannel', currentChannelId());
+          this.clearTypingTimeoutId && clearTimeout(this.clearTypingTimeoutId);
+          this.clearTypingTimeoutId = setTimeout(function () {
+            Session.set('typingInChannel', undefined);
+          }, 5000);
         },
         'click [data-action="remove-channel"]': function (event) {
           event.preventDefault();
