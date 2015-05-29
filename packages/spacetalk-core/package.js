@@ -22,10 +22,15 @@ Package.onUse(function(api) {
     'spacetalk:notifications@0.1.0', //  no dependencies
     'spacetalk:mentions@0.1.0', //  no dependencies
     'spacetalk:star-favorites@0.1.0', //  no dependencies
-    'spacetalk:emoji@0.1.0' //  no dependencies
+    'spacetalk:emoji@0.1.0', //  no dependencies
+    'spacetalk:rich-embeds@0.1.0' //  no dependencies
   ];
 
   api.use(packages);
 
   api.imply(packages);
+
+  api.addFiles([
+    'lib/general.js'
+  ], ['client', 'server']);
 });

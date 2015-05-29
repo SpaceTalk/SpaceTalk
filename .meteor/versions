@@ -82,6 +82,7 @@ spacetalk:lib@0.2.0
 spacetalk:mentions@0.1.0
 spacetalk:messages@0.1.0
 spacetalk:notifications@0.1.0
+spacetalk:rich-embeds@0.1.0
 spacetalk:settings@0.1.0
 spacetalk:star-favorites@0.1.0
 spacetalk:teams@0.1.0
