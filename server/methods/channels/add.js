@@ -16,16 +16,14 @@ Meteor.methods({
     // Insert direct channel
     if (options && options.direct) {
       // Create the channel name like userId-userId
-      var directChannelName = _.sortBy(options.allowedUsers, function (user) {
-        return user;
-      }).join("-");
-      if (!Channels.findOne({ direct: true, teamId: teamId, allowedUsers: { $in: options.allowedUsers } })) {
+      if (!Channels.findOne({ direct: true, teamId: teamId, allowedUsers: { $all: options.allowedUsers } })) {
         var directChannel = {
           direct: true,
           teamId: teamId,
           allowedUsers: options.allowedUsers,
-          name: directChannelName
+          name: null
         };
+
         return Channels.insert(directChannel);
       } else {
         return 1;

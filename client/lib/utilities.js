@@ -12,10 +12,11 @@ currentChannel = function () {
   var search = currentChannelSlug();
   var channel = null;
 
-  if(isDirectChannel()) {
-    var user = Meteor.users.findOne({username: nameOfDirectChannel()});
-    if(user)
-      channel = Channels.findOne({ direct: true, allowedUsers: {$in :[Meteor.userId(), user._id] } });
+
+  if (isDirectChannel()) {
+    var user = Meteor.users.findOne({ username: nameOfDirectChannel() });
+    if (user)
+      channel = Channels.findOne({ direct: true, allowedUsers: { $all: [Meteor.userId(), user._id] } });
   } else {
     // Search cnannel by id or slug
     channel = Channels.findOne({ $or: [{ _id: search }, { slug: search }] });
@@ -42,7 +43,7 @@ isDirectChannel = function () {
  * Removes the first character of a string and returns the result
  * @returns {string} The currentChannelSlug with the first character removed
  */
-nameOfDirectChannel = function() {
+nameOfDirectChannel = function () {
   return currentChannelSlug().substring(1);
 };
 
