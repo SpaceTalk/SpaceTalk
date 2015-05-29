@@ -2,6 +2,6 @@
 #
 # Simple shell script to make your life so much easier by not having to type the meteor run command everytime.
 
-echo -e "\e[94mStarting the almighty SpaceTalk"
+echo -e "Starting the almighty SpaceTalk using the default settings.json file"
 
 exec meteor run --settings settings.json
