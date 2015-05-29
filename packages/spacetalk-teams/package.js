@@ -1,7 +1,7 @@
 Package.describe({
-  name: 'spacetalk:users',
+  name: 'spacetalk:teams',
   version: '0.1.0',
-  summary: 'SpaceTalk users package',
+  summary: 'SpaceTalk teams package',
   git: 'https://github.com/SpaceTalk/SpaceTalk.git',
   documentation: 'README.md'
 });
@@ -14,11 +14,12 @@ Package.onUse(function(api) {
   ]);
 
   api.addFiles([
-    'lib/users.js',
-    'lib/accounts.js',
+    'lib/teams.js',
+    'lib/routes.js'
   ], ['client', 'server']);
 
   api.export([
-    'Users'
+    'Teams',
+    'teamRoutes'
   ]);
 });

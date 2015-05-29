@@ -8,4 +8,16 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
+
+  api.use([
+    'spacetalk:lib@0.2.0'
+  ]);
+
+  api.addFiles([
+    'lib/messages.js'
+  ], ['client', 'server']);
+
+  api.export([
+    'Messages'
+  ]);
 });

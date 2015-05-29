@@ -57,4 +57,8 @@ Package.onUse(function(api) {
   api.use(packages);
 
   api.imply(packages);
+
+  api.addFiles([
+    'lib/moment.js'
+  ], ['client', 'server']);
 });
