@@ -17,6 +17,13 @@ Package.onUse(function(api) {
     'lib/channels.js'
   ], ['client', 'server']);
 
+  api.addFiles([
+    'server/methods/channels/add.js',
+    'server/methods/channels/remove.js',
+    'server/methods/channels/update.js',
+    'server/publications/teamChannels.js'
+  ], 'server');
+
   api.export([
     'Channels'
   ]);

@@ -11,7 +11,6 @@ Package.onUse(function(api) {
 
   var packages = [
     'spacetalk:lib@0.1.0', //  no dependencies
-    'spacetalk:teams@0.1.0', //  no dependencies
     'spacetalk:channels@0.1.0', //  no dependencies
     'spacetalk:messages@0.1.0', //  no dependencies
     'spacetalk:users@0.1.0', //  no dependencies
