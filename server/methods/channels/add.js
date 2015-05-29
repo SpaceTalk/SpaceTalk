@@ -1,8 +1,7 @@
 Meteor.methods({
-  'channels.add': function(teamId, channelName, options) {
+  'channels.add': function (teamId, channelName, options) {
     check(teamId, String);
-    check(channelName, String);
-    check(options, Match.Optional({direct: Boolean, allowedUsers: [String]}));
+    check(options, Match.Optional({ direct: Boolean, allowedUsers: [String] }));
 
     // Check user authenticated
     if (!this.userId) {
@@ -16,13 +15,22 @@ Meteor.methods({
 
     // Insert direct channel
     if (options && options.direct) {
-      name = _.sortBy(options.allowedUsers, function(s) {return s;}).join("+");
-      if (!Channels.findOne({teamId: teamId, name: name})) {
-        return Channels.insert({name: name, teamId: teamId, direct: true, allowedUsers: options.allowedUsers});
+      // Create the channel name like userId-userId
+      if (!Channels.findOne({ direct: true, teamId: teamId, allowedUsers: { $all: options.allowedUsers } })) {
+        var directChannel = {
+          direct: true,
+          teamId: teamId,
+          allowedUsers: options.allowedUsers,
+          name: null
+        };
+
+        return Channels.insert(directChannel);
       } else {
-        return Channels.update({name: name}, {$set: {name: name, teamId: teamId, direct: true, allowedUsers: options.allowedUsers}});
+        return 1;
       }
     }
+
+    check(channelName, String);
 
     // Get rid of extra spaces in names, lower-case it
     // (like Slack does), and trim it
@@ -39,3 +47,4 @@ Meteor.methods({
     }
   }
 });
+

@@ -8,6 +8,33 @@ Channel = BlazeComponent.extendComponent({
     // is near the bottom, see `calculateNearBottom` method
     self.isNearBottom = new ReactiveVar(false);
 
+    self.autorun(function () {
+      if(FlowRouter.subsReady()) {
+        // Getting the user where where the user wants to talk with
+        var user = Meteor.users.findOne({username: nameOfDirectChannel()});
+
+        if(user) {
+          // Check if the channel is a direct channel
+          if (isDirectChannel()) {
+            // There is a possibility where the direct channel has not yet been created. Lets do it then.
+            if (!currentChannelId()) {
+              var options = { direct: true, allowedUsers: [Meteor.userId(), user._id] };
+              Meteor.call('channels.add', currentTeamId(), null, options, function (error, result) {
+                if (error) {
+                  // Any other error
+                  swal({
+                    title: 'Yikes! Something went wrong',
+                    text: "We can't complete your request at the moment, are you still online?",
+                    type: 'error'
+                  });
+                }
+              });
+            }
+          }
+        }
+      }
+    });
+
     // Listen for changes to reactive variables (such as FlowRouter.getParam()).
     self.autorun(function () {
       currentChannel() && self.subscribe('messages', currentChannelId(), function () {
@@ -53,7 +80,7 @@ Channel = BlazeComponent.extendComponent({
     });
 
     // Make the textarea resize it self.
-    setTimeout(function() {
+    setTimeout(function () {
       self.$('textarea[name=message]').autosize();
     }, 10);
   },
@@ -68,7 +95,7 @@ Channel = BlazeComponent.extendComponent({
     var self = this;
     // You are near the bottom if you're at least 200px from the bottom
     self.isNearBottom.set((window.innerHeight + window.scrollY) >= (
-      Number(document.body.offsetHeight) - 200));
+    Number(document.body.offsetHeight) - 200));
   },
   messages: function () {
     return Messages.find({
@@ -266,7 +293,7 @@ Channel = BlazeComponent.extendComponent({
           $(".channel-add-purpose-dropdown").toggleClass("hidden");
         },
 
-        'click .channel-title': function(event) {
+        'click .channel-title': function (event) {
           var self = this;
           event.preventDefault();
 
@@ -277,7 +304,7 @@ Channel = BlazeComponent.extendComponent({
             self.$(".channel-dropdown").css({
               left: $(".channel-title").outerWidth() + 200 - 30 - $(".channel-title span").outerWidth()
             });
-            $(window).bind('mouseup.channel-dropdown', function(e) {
+            $(window).bind('mouseup.channel-dropdown', function (e) {
               if (!self.$(e.target).closest('#spacetalk-header')[0] && !self.$(e.target).closest('.channel-dropdown')[0]) {
                 self.$(".channel-dropdown").addClass("hidden");
                 self.$(".channel-title").removeClass("visible");

@@ -2,11 +2,22 @@ LeftSidebar = BlazeComponent.extendComponent({
   channels: function () {
     return Channels.find( { teamId: currentTeamId(), direct: {$ne: true} } );
   },
-  directChannels: function() {
-    return Channels.find( { teamId: currentTeamId(), direct: true } );
+  allUsersExceptMe: function () {
+    // TODO: add limit, autoscale to sidebar height
+    return Meteor.users.find({ _id: { $ne: Meteor.userId() } });
+  },
+  teamUsers: function() {
+    return Meteor.users.find({ _id: { $ne: Meteor.userId() } });
+    //return Channels.find( { teamId: currentTeamId(), direct: true } );
   },
   activeChannelClass: function () {
+    if(isDirectChannel()) {
+      return nameOfDirectChannel() === this.currentData().username ? 'active' : '';
+    }
     return currentChannelId() === this.currentData()._id ? 'active' : '';
+  },
+  directChannelName: function() {
+    return "@" + this.currentData().username;
   },
   events: function () {
     return [
