@@ -1,1 +1,1 @@
-SpaceTalk lib package, used internally.
+SpaceTalk libraries, used internally.

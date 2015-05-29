@@ -1,7 +1,7 @@
 Package.describe({
   name: 'spacetalk:lib',
   version: '0.1.0',
-  summary: 'SpaceTalk lib package',
+  summary: 'SpaceTalk libraries',
   git: 'https://github.com/SpaceTalk/SpaceTalk.git',
   documentation: 'README.md'
 });
