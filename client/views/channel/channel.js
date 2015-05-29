@@ -121,7 +121,8 @@ Channel = BlazeComponent.extendComponent({
             });
             scrollDown();
           }
-
+        },
+        'keyup textarea[name=message]': function (event) {
           $("textarea").textcomplete([ {
             match: /\B:([\-+\w]*)$/,
             search: function (term, callback) {
