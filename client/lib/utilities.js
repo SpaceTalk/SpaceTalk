@@ -12,7 +12,6 @@ currentChannel = function () {
   var search = currentChannelSlug();
   var channel = null;
 
-
   if (isDirectChannel()) {
     var user = Meteor.users.findOne({ username: nameOfDirectChannel() });
     if (user)
@@ -43,7 +42,7 @@ isDirectChannel = function () {
  * Removes the first character of a string and returns the result
  * @returns {string} The currentChannelSlug with the first character removed
  */
-nameOfDirectChannel = function () {
+nameOfDirectChannel = function() {
   return currentChannelSlug().substring(1);
 };
 
