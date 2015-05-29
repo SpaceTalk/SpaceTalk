@@ -1,18 +1,25 @@
 Meteor.startup(function() {
 
   if (Meteor.users.find().count() === 0) {
-    Accounts.createUser({
-      email: 'admin@spacetalk.com',
-      password: 'admin',
-      username: 'admin'
-    });
+
     console.log('--------------------------');
-    console.log('inserted the default user');
-    console.log('username: admin | password: admin | email: admin@spacetalk.com');
+    console.log('inserted the default user(s)');
+
+    var usernames = ['admin', 'user', 'user1', 'user2', 'user3', 'user4', 'user5'];
+
+    usernames.forEach(function(username) {
+      Accounts.createUser({
+        email: username + '@spacetalk.com',
+        password: username,
+        username: username
+      });
+
+      console.log('username: ' +  username + ' | password: ' + username +' | email: ' + username + '@spacetalk.com');
+    });
   }
 
   if (Teams.find().count() === 0) {
-    const teamId = Teams.insert({
+    var teamId = Teams.insert({
       name: 'public'
     });
     console.log('--------------------------');

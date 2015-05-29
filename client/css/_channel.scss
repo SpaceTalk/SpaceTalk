@@ -85,6 +85,9 @@
       color: $primary;
       font-weight: 900;
     }
+    ul {
+      clear: both;
+    }
     li {
       &:after {
         content: '';
