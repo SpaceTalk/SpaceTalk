@@ -71,6 +71,15 @@
       font-size: 15px;
       color: $secondary;
       line-height: 1.3rem;
+
+      .cursor {
+        display: inline-block;
+      }
+
+      .info-text {
+        color: #b4b4b4;
+        font-size: 0.8em;
+      }
     }
     .username, h2 {
       color: $primary;
@@ -146,7 +155,7 @@
     bottom: 0;
     left: $sidebar-width;
     right: 0;
-    padding: $padding $padding*4/3-3px;
+    padding: $padding $padding*4/3-3px 5px;
     background: white;
     z-index: 1;
 

@@ -2,6 +2,8 @@ Channel = BlazeComponent.extendComponent({
   onCreated: function () {
     var self = this;
 
+    self.clearTypingTimeoutId = null;
+
     // Used to indicate that the user's scroll position
     // is near the bottom, see `calculateNearBottom` method
     self.isNearBottom = new ReactiveVar(false);
@@ -39,6 +41,10 @@ Channel = BlazeComponent.extendComponent({
         // On channel load, scroll page to the bottom
         scrollDown();
       });
+
+      if (currentChannel()) {
+        self.subscribe('channelPresences', currentChannelId());
+      }
     });
   },
   onRendered: function () {
@@ -122,6 +128,26 @@ Channel = BlazeComponent.extendComponent({
       return Gravatar.imageUrl(user.emails[0].address);
     }
   },
+  usersTyping: function () {
+    var users = [];
+
+    Presences.find({
+      userId: { $exists: true },
+      state: { typingInChannel: currentChannelId() }
+    }).forEach(function (presence) {
+      if (presence.userId !== Meteor.userId()) {
+        users.push(Meteor.users.findOne(presence.userId).username);
+      }
+    });
+
+    if (users.length === 1) {
+      return users[0] + ' is typing';
+    } else if (users.length > 1) {
+      var initial = users.slice(0, users.length - 1);
+      var last = users[users.length - 1];
+      return initial.join(', ') + ' and ' + last + ' are typing';
+    }
+  },
   events: function () {
     return [
       {
@@ -147,8 +173,11 @@ Channel = BlazeComponent.extendComponent({
               height: 37
             });
             scrollDown();
-          }
 
+            Session.set('typingInChannel', undefined);
+          }
+        },
+        'keyup textarea[name=message]': function (event) {
           $("textarea").textcomplete([ {
             match: /\B:([\-+\w]*)$/,
             search: function (term, callback) {
@@ -191,6 +220,12 @@ Channel = BlazeComponent.extendComponent({
           $('.dropdown-menu').css({
             "position": "static",
           });
+
+          Session.set('typingInChannel', currentChannelId());
+          this.clearTypingTimeoutId && clearTimeout(this.clearTypingTimeoutId);
+          this.clearTypingTimeoutId = setTimeout(function () {
+            Session.set('typingInChannel', undefined);
+          }, 5000);
         },
         'click [data-action="remove-channel"]': function (event) {
           event.preventDefault();
@@ -294,9 +329,25 @@ Channel = BlazeComponent.extendComponent({
             value = textarea.value.replace(/([^\n])\n/g, "$1  \n");
             // Prevent accepting empty channel purpose
             if ($.trim(value) === "") return;
-            Channels.update({ _id: currentChannelId()}, { $set: { purpose: value} });
-            textarea.value = '';
-            this.$(".channel-purpose-form").toggleClass("hidden");
+
+            Meteor.call('channels.updatePurpose', currentChannelId(), value, function (error, result) {
+              if (result) {
+                self.$(".channel-purpose-form").toggleClass("hidden");
+              } else if (error) {
+                switch(error.error) {
+                  case 401: // Not authorized
+                  displayUnauthorizedError();
+                  break;
+                  case 404: // No channel found
+                  swal({
+                    title: 'Yikes! Something went wrong',
+                    text: "We can't find the channel",
+                    type: 'error'
+                  });
+                  break;
+                }
+              }
+            });
           }
         },
 
