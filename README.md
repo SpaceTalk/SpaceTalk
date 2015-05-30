@@ -63,19 +63,6 @@ This project is in flux at the moment, these are the currently agreed upon clien
 * CSS Pre-Processor: [Sass / .scss](http://sass-lang.com/)
 * Icon Font Library: [FontAwesome](http://fortawesome.github.io/Font-Awesome/)
 
-
-### Disclaimer
-
-This code was part of a [Meteor Workshop](http://www.meetup.com/Meteor-Goteborg/events/221282857/) that took place on the 14th of May 2015 in Gothenburg, Sweden.
-
-We used it to build a chat application in 25 steps (https://slides.com/timbrandin/meteor-slack) – it was originally designed to look a little bit like Slack.
-
-But it was solely made do demonstrate the efficiency and simple nature of Meteor applications.
-
-#### Credits
-
-Thanks to [@timbrandin](https://twitter.com/timbrandin) who created this material for [a Meteor workshop](http://www.meetup.com/Meteor-Goteborg/events/221282857/).
-
 ### License
 
 Note that SpaceTalk is distributed under the [MIT License](http://opensource.org/licenses/MIT).
