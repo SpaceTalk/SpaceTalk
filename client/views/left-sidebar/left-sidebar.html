@@ -19,11 +19,11 @@
         </ul>
       </div>
       <div class="aside-section">
-        {{> directMessagesForm}}
+        <label for="username">Direct Messages</label>
         <ul>
-          {{#each directChannels}}
+          {{#each teamUsers}}
             <li class="{{activeChannelClass}}">
-            <a href="{{pathFor 'channel' team=currentTeam.slug channel=slug}}"><b class="user-circle-{{otherUser.online}}">&#8226; </b>{{channelName}}</a>
+              <a class="open-direct-channel" href="{{pathFor 'channel' team=currentTeam.slug channel=directChannelName}}"><b class="user-circle-{{online}}">&#8226; </b>{{username}}</a>
             </li>
           {{/each}}
         </ul>

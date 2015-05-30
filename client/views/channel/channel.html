@@ -1,6 +1,8 @@
 <template name="channel">
   {{#if currentChannel}}
-    {{> channelInfo}}
+    {{#unless currentChannel.direct}}
+      {{> channelInfo}}
+    {{/unless}}
     {{> channelDropdown}}
     {{#header class="channel-header"}}
       <h1 class="channel-title">
@@ -21,7 +23,8 @@
       </ul>
     {{/content}}
     {{#footer class="channel-footer"}}
-      {{> messageForm}}
+      {{> messageTab}}
+      {{> messageForm usersTyping=usersTyping}}
     {{/footer}}
   {{else}}
     {{> notFound}}
@@ -32,23 +35,31 @@
   <form>
     <textarea rows="1" cols="100" name="message" class="form-message-input" autofocus="true"></textarea>
   </form>
+  <span class="form-users-typing">{{usersTyping}}</span>
+</template>
+
+
+<template name="messageTab">
+  <section class="message-tab-container">
+    <div class="message-tab-content"></div>
+  </section>
 </template>
 
 <template name="channelDropdown">
-    <div class="channel-dropdown hidden">
+  <div class="channel-dropdown hidden">
+    <ul>
       <ul>
-        <ul>
-          <li><a href="#" class="channel-purpose">Set channel purpose</a>
-            <div class="channel-purpose-form hidden">
-              <textarea name="channel-purpose" class="channel-purpose-input" cols="30" rows="1">{{removeTrailingSpaces currentChannel.purpose}}</textarea>
-            </div>
-          </li>
-          <li><a href="#" class="notification-settings">Notification settings</a></li>
-        </ul>
+        <li><a href="#" class="channel-purpose">Set channel purpose</a>
+          <div class="channel-purpose-form hidden">
+            <textarea name="channel-purpose" class="channel-purpose-input" cols="30" rows="1">{{removeTrailingSpaces currentChannel.purpose}}</textarea>
+          </div>
+        </li>
+        <li><a href="#" class="notification-settings">Notification settings</a></li>
       </ul>
-      <div class="header-item">
-          <span class="header-item-content">Set channel topic</span>
-      </div>
-      <input name="channel-topic" class="channel-dropdown-topic-input" type="text" value="{{currentChannel.topic}}">
+    </ul>
+    <div class="header-item">
+        <span class="header-item-content">Set channel topic</span>
     </div>
+    <input name="channel-topic" class="channel-dropdown-topic-input" type="text" value="{{currentChannel.topic}}">
+  </div>
 </template>

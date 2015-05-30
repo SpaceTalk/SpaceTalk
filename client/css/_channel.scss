@@ -71,10 +71,23 @@
       font-size: 15px;
       color: $secondary;
       line-height: 1.3rem;
+
+      .cursor {
+        display: inline-block;
+      }
+
+      .info-text {
+        color: #b4b4b4;
+        font-size: 0.8em;
+      }
     }
     .username, h2 {
       color: $primary;
       font-weight: 900;
+    }
+
+    ul {
+      clear: both;
     }
 
     li {
@@ -167,13 +180,22 @@
     bottom: 0;
     left: $sidebar-width;
     right: 0;
-    padding: $padding $padding*4/3-3px;
+    padding: $padding $padding*4/3-3px 5px;
     background: white;
     z-index: 1;
 
     &-full {
       right : $channel-info-width;
       transition: right 100ms ease-in-out;
+    }
+
+    .message-tab-container {
+      box-shadow: 0 1px 4px rgba(64, 54, 63, 0.25);
+      border: 1px solid #DDD;
+      position: absolute;
+      bottom: 72px;
+      border-radius: 4px;
+      max-width: 90%;
     }
   }
 

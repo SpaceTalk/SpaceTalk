@@ -2,9 +2,38 @@ Channel = BlazeComponent.extendComponent({
   onCreated: function () {
     var self = this;
 
+    self.clearTypingTimeoutId = null;
+
     // Used to indicate that the user's scroll position
     // is near the bottom, see `calculateNearBottom` method
     self.isNearBottom = new ReactiveVar(false);
+
+    self.autorun(function () {
+      if(FlowRouter.subsReady()) {
+        // Getting the user where where the user wants to talk with
+        var user = Meteor.users.findOne({username: nameOfDirectChannel()});
+
+        if(user) {
+          // Check if the channel is a direct channel
+          if (isDirectChannel()) {
+            // There is a possibility where the direct channel has not yet been created. Lets do it then.
+            if (!currentChannelId()) {
+              var options = { direct: true, allowedUsers: [Meteor.userId(), user._id] };
+              Meteor.call('channels.add', currentTeamId(), null, options, function (error, result) {
+                if (error) {
+                  // Any other error
+                  swal({
+                    title: 'Yikes! Something went wrong',
+                    text: "We can't complete your request at the moment, are you still online?",
+                    type: 'error'
+                  });
+                }
+              });
+            }
+          }
+        }
+      }
+    });
 
     // Listen for changes to reactive variables (such as FlowRouter.getParam()).
     self.autorun(function () {
@@ -12,6 +41,10 @@ Channel = BlazeComponent.extendComponent({
         // On channel load, scroll page to the bottom
         scrollDown();
       });
+
+      if (currentChannel()) {
+        self.subscribe('channelPresences', currentChannelId());
+      }
     });
   },
   onRendered: function () {
@@ -47,7 +80,7 @@ Channel = BlazeComponent.extendComponent({
     });
 
     // Make the textarea resize it self.
-    setTimeout(function() {
+    setTimeout(function () {
       self.$('textarea[name=message]').autosize();
     }, 10);
   },
@@ -62,7 +95,7 @@ Channel = BlazeComponent.extendComponent({
     var self = this;
     // You are near the bottom if you're at least 200px from the bottom
     self.isNearBottom.set((window.innerHeight + window.scrollY) >= (
-      Number(document.body.offsetHeight) - 200));
+    Number(document.body.offsetHeight) - 200));
   },
   messages: function () {
     return Messages.find({
@@ -95,6 +128,26 @@ Channel = BlazeComponent.extendComponent({
       return Gravatar.imageUrl(user.emails[0].address);
     }
   },
+  usersTyping: function () {
+    var users = [];
+
+    Presences.find({
+      userId: { $exists: true },
+      state: { typingInChannel: currentChannelId() }
+    }).forEach(function (presence) {
+      if (presence.userId !== Meteor.userId()) {
+        users.push(Meteor.users.findOne(presence.userId).username);
+      }
+    });
+
+    if (users.length === 1) {
+      return users[0] + ' is typing';
+    } else if (users.length > 1) {
+      var initial = users.slice(0, users.length - 1);
+      var last = users[users.length - 1];
+      return initial.join(', ') + ' and ' + last + ' are typing';
+    }
+  },
   events: function () {
     return [
       {
@@ -120,7 +173,59 @@ Channel = BlazeComponent.extendComponent({
               height: 37
             });
             scrollDown();
+
+            Session.set('typingInChannel', undefined);
           }
+        },
+        'keyup textarea[name=message]': function (event) {
+          $("textarea").textcomplete([ {
+            match: /\B:([\-+\w]*)$/,
+            search: function (term, callback) {
+              var results = [];
+              var results2 = [];
+              var results3 = [];
+              $.each(emojiStrategy,function(shortname,data) {
+                if(shortname.indexOf(term) > -1) { results.push(shortname); }
+                else {
+                  if((data.aliases !== null) && (data.aliases.indexOf(term) > -1)) {
+                    results2.push(shortname);
+                  }
+                  else if((data.keywords !== null) && (data.keywords.indexOf(term) > -1)) {
+                    results3.push(shortname);
+                  }
+                }
+              });
+
+              if(term.length >= 3) {
+                results.sort(function(a,b) { return (a.length > b.length); });
+                results2.sort(function(a,b) { return (a.length > b.length); });
+                results3.sort();
+              }
+              var newResults = results.concat(results2).concat(results3);
+
+              callback(newResults);
+            },
+            template: function (shortname) {
+              return '<img class="emojione" src="//cdn.jsdelivr.net/emojione/assets/png/'+emojiStrategy[shortname].unicode+'.png"> :'+shortname+':';
+            },
+            replace: function (shortname) {
+              return ':'+shortname+': ';
+            },
+            index: 1,
+            maxCount: 10,
+          }
+          ]);
+
+          $('.dropdown-menu').prependTo('.message-tab-content');
+          $('.dropdown-menu').css({
+            "position": "static",
+          });
+
+          Session.set('typingInChannel', currentChannelId());
+          this.clearTypingTimeoutId && clearTimeout(this.clearTypingTimeoutId);
+          this.clearTypingTimeoutId = setTimeout(function () {
+            Session.set('typingInChannel', undefined);
+          }, 5000);
         },
         'click [data-action="remove-channel"]': function (event) {
           event.preventDefault();
@@ -185,7 +290,7 @@ Channel = BlazeComponent.extendComponent({
           App.channelInfo.toggle();
         },
 
-        'click .channel-title': function(event) {
+        'click .channel-title': function (event) {
           var self = this;
           event.preventDefault();
 
@@ -196,7 +301,7 @@ Channel = BlazeComponent.extendComponent({
             self.$(".channel-dropdown").css({
               left: $(".channel-title").outerWidth() + 200 - 30 - $(".channel-title span").outerWidth()
             });
-            $(window).bind('mouseup.channel-dropdown', function(e) {
+            $(window).bind('mouseup.channel-dropdown', function (e) {
               if (!self.$(e.target).closest('#spacetalk-header')[0] && !self.$(e.target).closest('.channel-dropdown')[0]) {
                 self.$(".channel-dropdown").addClass("hidden");
                 self.$(".channel-title").removeClass("visible");
@@ -221,9 +326,25 @@ Channel = BlazeComponent.extendComponent({
             value = textarea.value.replace(/([^\n])\n/g, "$1  \n");
             // Prevent accepting empty channel purpose
             if ($.trim(value) === "") return;
-            Channels.update({ _id: currentChannelId()}, { $set: { purpose: value} });
-            textarea.value = '';
-            this.$(".channel-purpose-form").toggleClass("hidden");
+
+            Meteor.call('channels.updatePurpose', currentChannelId(), value, function (error, result) {
+              if (result) {
+                self.$(".channel-purpose-form").toggleClass("hidden");
+              } else if (error) {
+                switch(error.error) {
+                  case 401: // Not authorized
+                  displayUnauthorizedError();
+                  break;
+                  case 404: // No channel found
+                  swal({
+                    title: 'Yikes! Something went wrong',
+                    text: "We can't find the channel",
+                    type: 'error'
+                  });
+                  break;
+                }
+              }
+            });
           }
         },
 
