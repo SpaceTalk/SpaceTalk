@@ -17,6 +17,11 @@ Package.onUse(function(api) {
     'lib/messages.js'
   ], ['client', 'server']);
 
+  api.addFiles([
+    'server/methods/messages/delete.js',
+    'server/publications/messages.js'
+  ], 'server');
+
   api.export([
     'Messages'
   ]);

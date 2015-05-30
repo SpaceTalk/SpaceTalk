@@ -18,6 +18,10 @@ Package.onUse(function(api) {
     'lib/accounts.js',
   ], ['client', 'server']);
 
+  api.addFiles([
+    'server/publications/users.js'
+  ], 'server');
+
   api.export([
     'Users'
   ]);

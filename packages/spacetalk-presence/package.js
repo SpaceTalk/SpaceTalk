@@ -1,7 +1,7 @@
 Package.describe({
-  name: 'spacetalk:teams',
+  name: 'spacetalk:mentions',
   version: '0.1.0',
-  summary: 'SpaceTalk teams package',
+  summary: 'SpaceTalk mentions package',
   git: 'https://github.com/SpaceTalk/SpaceTalk.git',
   documentation: 'README.md'
 });
@@ -14,16 +14,6 @@ Package.onUse(function(api) {
   ]);
 
   api.addFiles([
-    'lib/teams.js',
-    'lib/routes.js'
-  ], ['client', 'server']);
-
-  api.addFiles([
-    'server/publications/myTeams.js'
+    'server/publications/messages.js'
   ], 'server');
-
-  api.export([
-    'Teams',
-    'teamRoutes'
-  ]);
 });

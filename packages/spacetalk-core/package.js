@@ -32,4 +32,8 @@ Package.onUse(function(api) {
   api.addFiles([
     'lib/general.js'
   ], ['client', 'server']);
+
+  api.addFiles([
+    'server/server.js'
+  ], 'server');
 });
