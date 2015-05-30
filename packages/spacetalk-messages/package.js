@@ -18,11 +18,19 @@ Package.onUse(function(api) {
   ], ['client', 'server']);
 
   api.addFiles([
-    'server/methods/messages/delete.js',
-    'server/publications/messages.js'
+    'lib/server/methods/messages/delete.js',
+    'lib/server/publications/messages.js'
   ], 'server');
 
+  api.addFiles([
+    'lib/client/utilities/scrollDown.js',
+    'lib/client/utilities/isEnter.js',
+  ], 'client');
+
   api.export([
-    'Messages'
+    'Messages',
+
+    'scrollDown',
+    'isEnter'
   ]);
 });

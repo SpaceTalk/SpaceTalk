@@ -1,7 +1,7 @@
 Package.describe({
-  name: 'spacetalk:mentions',
+  name: 'spacetalk:linkify',
   version: '0.1.0',
-  summary: 'SpaceTalk mentions package',
+  summary: 'SpaceTalk linkify package',
   git: 'https://github.com/SpaceTalk/SpaceTalk.git',
   documentation: 'README.md'
 });
@@ -14,10 +14,6 @@ Package.onUse(function(api) {
   ]);
 
   api.addFiles([
-    'lib/server/publications/messages.js'
-  ], 'server');
-
-  api.addFiles([
-    'lib/client/utilities/presence.js'
+    'lib/client/linkify.js'
   ], 'client');
 });

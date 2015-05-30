@@ -19,11 +19,19 @@ Package.onUse(function(api) {
   ], ['client', 'server']);
 
   api.addFiles([
-    'server/publications/myTeams.js'
+    'lib/server/publications/myTeams.js'
   ], 'server');
+
+  api.addFiles([
+    'lib/client/utilities/currentTeam.js',
+    'lib/client/helpers/currentTeam.js'
+  ], 'client');
 
   api.export([
     'Teams',
-    'teamRoutes'
+    'teamRoutes',
+
+    // XXX These shouldn't be exported. Separate this logic!
+    'currentTeamId'
   ]);
 });

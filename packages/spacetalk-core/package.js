@@ -22,7 +22,8 @@ Package.onUse(function(api) {
     'spacetalk:mentions@0.1.0', //  no dependencies
     'spacetalk:star-favorites@0.1.0', //  no dependencies
     'spacetalk:emoji@0.1.0', //  no dependencies
-    'spacetalk:rich-embeds@0.1.0' //  no dependencies
+    'spacetalk:rich-embeds@0.1.0', //  no dependencies
+    'spacetalk:linkify@0.1.0' //  no dependencies
   ];
 
   api.use(packages);
@@ -34,6 +35,19 @@ Package.onUse(function(api) {
   ], ['client', 'server']);
 
   api.addFiles([
-    'server/server.js'
+    'lib/server/server.js'
   ], 'server');
+
+  api.addFiles([
+    'lib/client/main.html',
+    'lib/client/utilities/utilities.js',
+    'lib/client/helpers/remove-trailing-spaces.js',
+    'lib/client/helpers/isSubReady.js'
+  ], 'client');
+
+  api.export([
+    'currentRouteId',
+    'isSubReady',
+    'displayUnauthorizedError'
+  ]);
 });
