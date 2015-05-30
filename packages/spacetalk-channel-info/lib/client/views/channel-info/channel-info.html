@@ -11,7 +11,7 @@
           <i class="fa fa-caret-down"></i>
           <h2><i class="fa fa-info-circle icon icon-about"></i> About this channel</h2>
           {{#unless currentChannel.purpose}}
-            <p class="addPurposeText">A purpose has not been set for #{{currentChannel.name}}. Why not let everyone know <a class="channel-add-purpose" href="#">what this channel is for</a>?</p>
+          <p class="addPurposeText">A purpose has not been set for #{{currentChannel.name}}. Why not let everyone know <a class="channel-add-purpose" href="#">what this channel is for</a>?</p>
           {{/unless}}
           <p class="addPurposeText">{{#markdown}}{{#linkify}}{{currentChannel.purpose}}{{/linkify}}{{/markdown}}</p>
           <p class="created-by">Created by {{creatorUsername}} on {{dateCreated}}</p>

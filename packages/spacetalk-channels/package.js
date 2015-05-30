@@ -23,13 +23,13 @@ Package.onUse(function(api) {
     'lib/server/methods/channels/add.js',
     'lib/server/methods/channels/remove.js',
     'lib/server/methods/channels/update.js',
-    'lib/server/publications/teamChannels.js'
+    'lib/server/publications/team-channels.js'
   ], 'server');
 
   api.addFiles([
-    'lib/client/utilities/currentChannel.js',
-    'lib/client/utilities/currentChannelId.js',
-    'lib/client/helpers/currentChannel.js',
+    'lib/client/utilities/current-channel.js',
+    'lib/client/utilities/current-channel-id.js',
+    'lib/client/helpers/current-channel.js',
 
     // Channel
     'lib/client/views/channel/channel.html',

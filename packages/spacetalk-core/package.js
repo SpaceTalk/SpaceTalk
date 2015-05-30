@@ -23,7 +23,8 @@ Package.onUse(function(api) {
     'spacetalk:star-favorites@0.1.0', //  no dependencies
     'spacetalk:emoji@0.1.0', //  no dependencies
     'spacetalk:rich-embeds@0.1.0', //  no dependencies
-    'spacetalk:linkify@0.1.0' //  no dependencies
+    'spacetalk:linkify@0.1.0', //  no dependencies
+    'spacetalk:channel-info@0.1.0' //  no dependencies
   ];
 
   api.use(packages);
@@ -42,7 +43,7 @@ Package.onUse(function(api) {
     'lib/client/main.html',
     'lib/client/utilities/utilities.js',
     'lib/client/helpers/remove-trailing-spaces.js',
-    'lib/client/helpers/isSubReady.js'
+    'lib/client/helpers/is-sub-ready.js'
   ], 'client');
 
   api.export([
