@@ -14,12 +14,12 @@ Package.onUse(function(api) {
   ]);
 
   api.addFiles([
-    'lib/server/publications/teamDirectChannels.js'
+    'lib/server/publications/team-direct-channels.js'
   ], 'server');
 
   api.addFiles([
-    'lib/client/utilities/isDirectChannel.js',
-    'lib/client/utilities/nameOfDirectChannel.js'
+    'lib/client/utilities/is-direct-channel.js',
+    'lib/client/utilities/name-of-direct-channel.js'
   ], 'client');
 
   api.export([

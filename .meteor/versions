@@ -74,6 +74,7 @@ sha@1.0.3
 softwarerero:accounts-t9n@1.0.9
 spacebars@1.0.6
 spacebars-compiler@1.0.6
+spacetalk:channel-info@0.1.0
 spacetalk:channels@0.1.0
 spacetalk:core@0.1.0
 spacetalk:direct-messages@0.1.0
