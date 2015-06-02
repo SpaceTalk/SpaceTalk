@@ -19,8 +19,10 @@ var linkify = function (string) {
   // Email addresses
   var emailAddressPattern = /[\w.]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+/gim;
 
+  var attributesString = 'target="_blank"';
+
   return string
-    .replace(urlPattern, '<a href="$&">$&</a>')
-    .replace(pseudoUrlPattern, '$1<a href="http://$2">$2</a>')
-    .replace(emailAddressPattern, '<a href="mailto:$&">$&</a>');
+    .replace(urlPattern, '<a ' + attributesString + ' href="$&">$&</a>')
+    .replace(pseudoUrlPattern, '$1<a ' + attributesString + ' href="http://$2">$2</a>')
+    .replace(emailAddressPattern, '<a  ' + attributesString + ' href="mailto:$&">$&</a>');
 }
