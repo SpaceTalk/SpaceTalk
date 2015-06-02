@@ -7,7 +7,7 @@ ChannelInfo = BlazeComponent.extendComponent({
 
     self.$channelInfo = self.$('.channel-info');
     self.$channelFooter = $('.channel-footer');
-    self.$channelBody = $('.channel-body');
+    self.$channelContent = $('.channel-content');
 
     this.autorun(function () {
       if (App.channelInfo.isVisible.get()) {
@@ -21,14 +21,14 @@ ChannelInfo = BlazeComponent.extendComponent({
     var self = this;
 
     self.$channelInfo.removeClass('channel-info-out');
-    self.$channelBody.removeClass('channel-body-full');
+    self.$channelContent.removeClass('channel-content-full');
     self.$channelFooter.removeClass('channel-footer-full');
   },
   hide: function () {
     var self = this;
 
     self.$channelInfo.addClass('channel-info-out');
-    self.$channelBody.addClass('channel-body-full');
+    self.$channelContent.addClass('channel-content-full');
     self.$channelFooter.addClass('channel-footer-full');
   },
   events: function () {

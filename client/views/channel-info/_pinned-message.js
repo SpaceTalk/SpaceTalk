@@ -19,10 +19,6 @@ PinnedMessage = BlazeComponent.extendComponent({
     if (user && user.emails) {
       return Gravatar.imageUrl(user.emails[0].address);
     }
-  },
-
-  events: function () {
-    return [
-    ];
   }
+
 }).register('_pinnedMessage');

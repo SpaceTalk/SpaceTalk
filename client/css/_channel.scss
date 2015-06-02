@@ -57,9 +57,13 @@
     margin-top: 53px;
     height: calc(100% - 53px);
     margin-left: $sidebar-width;
+    position: fixed;
+    right: $channel-info-width;
+    overflow-y: auto;
+    margin-right: $padding*4/3-3px;
 
     &-full{
-      margin-right : $channel-info-width;
+      right: 0;
       transition: margin-right 100ms ease-in-out;
     }
 
@@ -179,13 +183,13 @@
     position: fixed;
     bottom: 0;
     left: $sidebar-width;
-    right: 0;
     padding: $padding $padding*4/3-3px 5px;
     background: white;
     z-index: 1;
+    right: $channel-info-width;
 
     &-full {
-      right : $channel-info-width;
+      right: 0;
       transition: right 100ms ease-in-out;
     }
 
