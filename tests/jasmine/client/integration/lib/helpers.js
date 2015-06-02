@@ -53,7 +53,6 @@ createDefaultUser = function (done) {
     'fixtures/users/createDefault',
     createMethodResultHandler(done, function (error, user) {
       self.user = user;
-      console.log("default user created");
     })
   );
 };
@@ -85,11 +84,21 @@ goToRoute = function (pathDef, params, queryParams) {
 };
 
 goToDefaultTeamPage = function (done) {
-  return goToRoute('/teams/public')(done);
+  return goToRoute('/teams/test')(done);
+};
+
+waitABit = function(callback) {
+  setTimeout(function() {
+    Meteor.defer(callback);
+  }, 100);
+};
+
+goToHomePage = function (done) {
+  return goToRoute('home')(done);
 };
 
 goToDefaultChannel = function (done) {
-  return goToRoute('/teams/public/channels/general')(done);
+  return goToRoute('/teams/test/channels/general')(done);
 };
 
 waitForChannelSubs = function (channelSlug, callback) {

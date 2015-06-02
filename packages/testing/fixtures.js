@@ -67,7 +67,7 @@ Meteor.methods({
 
   'fixtures/teams/createDefault': function () {
     var team = {
-      name: 'public'
+      name: 'test'
     };
 
     return Meteor.call('fixtures/teams/create', team);
