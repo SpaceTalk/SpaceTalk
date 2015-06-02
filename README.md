@@ -43,6 +43,12 @@ cd SpaceTalk
 meteor run --settings=settings.json
 ```
 
+Or for Mac and Unix users. This executes the exact same command but doens't make you forget adding the settings argument.
+```
+cd SpaceTalk
+./run
+```
+
 To update your clone do a pull:
 
 ```
