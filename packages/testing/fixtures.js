@@ -22,66 +22,54 @@ var resetDatabase = function () {
   });
 };
 
-var resetTestingEnvironment = function () {
-  if (process.env.IS_MIRROR) {
-    resetDatabase();
-  } else {
-    throw new Meteor.Error(
-      'NOT_ALLOWED',
-      'resetTestingEnvironment can only be executed in a Velocity mirror.'
-    );
-  }
-};
-
-var createUser = function (userData) {
-  var user = Meteor.users.findOne({username: userData.username});
-
-  if (!user) {
-    var userId = Accounts.createUser(userData);
-    user = Meteor.users.findOne(userId);
-  }
-
-  return user;
-};
-
-var createDefaultUser = function () {
-  return createUser({
-    email: 'test@spacetalk.com',
-    password: 'test',
-    username: 'test'
-  });
-};
-
-var createTeam = function (team) {
-  var teamId = Teams.insert(team);
-  Channels.insert({
-    name: 'general',
-    teamId: teamId
-  });
-
-  return Teams.findOne(teamId);
-}
-
-var createDefaultTeam = function () {
-  var team = {
-    name: 'test'
-  };
-
-  return createTeam(team);
-}
-
-var createDefaultTeam = function () {
-  var team = {
-    name: 'test'
-  };
-
-  return createTeam(team);
-}
 
 Meteor.methods({
-  resetTestingusersEnvironment: resetTestingEnvironment,
-  'fixtures//create': createUser,
-  'fixtures/users/createDefault': createDefaultUser,
-  'fixtures/teams/create': createTeam,
-  'fixtures/teams/createDefault': createDefaultTeam
+  resetTestingEnvironment: function () {
+    if (process.env.IS_MIRROR) {
+      resetDatabase();
+    } else {
+      throw new Meteor.Error(
+        'NOT_ALLOWED',
+        'resetTestingEnvironment can only be executed in a Velocity mirror.'
+      );
+    }
+  },
+  'fixtures/users/create': function (userData) {
+    var user = Meteor.users.findOne({username: userData.username});
+
+    if (!user) {
+      var userId = Accounts.createUser(userData);
+      user = Meteor.users.findOne(userId);
+    }
+
+    return user;
+  },
+
+  'fixtures/users/createDefault': function () {
+    var user = {
+      email: 'test@spacetalk.com',
+      password: 'test',
+      username: 'test'
+    };
+
+    return Meteor.call('fixtures/users/create', user);
+  },
+
+  'fixtures/teams/create': function (team) {
+    var teamId = Teams.insert(team);
+    Channels.insert({
+      name: 'general',
+      teamId: teamId
+    });
+
+    return Teams.findOne(teamId);
+  },
+
+  'fixtures/teams/createDefault': function () {
+    var team = {
+      name: 'public'
+    };
+
+    return Meteor.call('fixtures/teams/create', team);
+  }
 });

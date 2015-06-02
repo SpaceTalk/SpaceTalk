@@ -15,9 +15,9 @@
 
 var createMethodResultHandler = function (done, hook) {
   return function (error, result) {
-    //if (error) {
-    //  console.error(error);
-    //}
+    if (error) {
+      console.error(error);
+    }
     if (hook) {
       hook(error, result);
     }
@@ -51,9 +51,9 @@ createDefaultUser = function (done) {
 
   Meteor.call(
     'fixtures/users/createDefault',
-    self.organization,
     createMethodResultHandler(done, function (error, user) {
       self.user = user;
+      console.log("default user created");
     })
   );
 };
@@ -85,13 +85,28 @@ goToRoute = function (pathDef, params, queryParams) {
 };
 
 goToDefaultTeamPage = function (done) {
-  return goToRoute('/teams/test')(done);
+  return goToRoute('/teams/public')(done);
 };
 
 goToDefaultChannel = function (done) {
-  return goToRoute('/teams/test/channels/general')(done);
+  return goToRoute('/teams/public/channels/general')(done);
 };
 
-getCurrentRouteName = function() {
+waitForChannelSubs = function (channelSlug, callback) {
+  Tracker.autorun(function (computation) {
+    if(Channels.findOne({ slug: channelSlug })) {
+      computation.stop();
+      callback();
+    }
+  });
+};
+
+getCurrentRouteName = function () {
   return FlowRouter.current().route.name;
+};
+
+logout = function (done) {
+  Meteor.logout(function () {
+    deferAfterFlush(done);
+  });
 };
