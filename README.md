@@ -58,10 +58,55 @@ Commit your changes to your fork, and create Pull Request with [github helper](h
 
 ### Libraries
 
-This project is in flux at the moment, these are the currently agreed upon client side libraries;
+This project is in flux at the moment, these are the currently agreed upon client side libraries:
 
 * CSS Pre-Processor: [Sass / .scss](http://sass-lang.com/)
 * Icon Font Library: [FontAwesome](http://fortawesome.github.io/Font-Awesome/)
+
+### Packages
+
+This project is in flux at the moment, these are the currently used Meteor packages:
+
+* markdown
+* reactive-var
+* accounts-password
+* momentjs:moment
+* fourseven:scss
+* copleykj:jquery-autosize
+* tmeasday:gravatar
+* meteorhacks:flow-layout
+* meteorhacks:flow-router
+* peerlibrary:blaze-components
+* mizzao:user-status
+* todda00:friendly-slugs
+* useraccounts:core
+* arillo:flow-router-helpers
+* seriousm:emoji-continued
+* mrt:tiny-scrollbar
+* jquery
+* kevohagan:sweetalert
+* fortawesome:fontawesome
+* aldeed:autoform
+* useraccounts:unstyled
+* dburles:collection-helpers
+* iframely:oembed
+* matb33:collection-hooks
+* qnub:emojione
+* mquandalle:jquery-textcomplete
+* ogourment:settings
+* tmeasday:presence
+
+### Disclaimer
+
+This code was part of a [Meteor Workshop](http://www.meetup.com/Meteor-Goteborg/events/221282857/) that took place on the 14th of May 2015 in Gothenburg, Sweden.
+
+We used it to build a chat application in 25 steps (https://slides.com/timbrandin/meteor-slack) – it was originally designed to look a little bit like Slack.
+
+But it was solely made do demonstrate the efficiency and simple nature of Meteor applications.
+
+#### Credits
+
+Thanks to [@timbrandin](https://twitter.com/timbrandin) who created this material for [a Meteor workshop](http://www.meetup.com/Meteor-Goteborg/events/221282857/).
 
 ### License
 
