@@ -86,7 +86,10 @@ spacetalk:messages@0.1.0
 spacetalk:notifications@0.1.0
 spacetalk:rich-embeds@0.1.0
 spacetalk:settings@0.1.0
+spacetalk:sidebar@0.1.0
 spacetalk:star-favorites@0.1.0
+spacetalk:teams@0.1.0
+spacetalk:theme-base@0.1.0
 spacetalk:typing-indication@0.1.0
 spacetalk:unseen-messages@0.1.0
 spacetalk:users@0.1.0

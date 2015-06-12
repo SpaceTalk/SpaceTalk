@@ -24,7 +24,8 @@ Package.onUse(function(api) {
     'spacetalk:emoji@0.1.0', //  no dependencies
     'spacetalk:rich-embeds@0.1.0', //  no dependencies
     'spacetalk:linkify@0.1.0', //  no dependencies
-    'spacetalk:channel-info@0.1.0' //  no dependencies
+    'spacetalk:channel-info@0.1.0', //  no dependencies
+    'spacetalk:sidebar@0.1.0' //  no dependencies
   ];
 
   api.use(packages);
