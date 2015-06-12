@@ -33,7 +33,11 @@ Package.onUse(function(api) {
 
     // Channel
     'lib/client/views/channel/channel.html',
-    'lib/client/views/channel/channel.js'
+    'lib/client/views/channel/channel.js',
+
+    // Message
+    'lib/client/views/message/message.html',
+    'lib/client/views/message/message.js'
   ], 'client');
 
   api.export([
