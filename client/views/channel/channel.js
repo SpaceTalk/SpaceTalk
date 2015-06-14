@@ -175,6 +175,12 @@ Channel = BlazeComponent.extendComponent({
             scrollDown();
 
             Session.set('typingInChannel', undefined);
+          } else {
+            Session.set('typingInChannel', currentChannelId());
+            this.clearTypingTimeoutId && clearTimeout(this.clearTypingTimeoutId);
+            this.clearTypingTimeoutId = setTimeout(function () {
+              Session.set('typingInChannel', undefined);
+            }, 5000);
           }
         },
         'keyup textarea[name=message]': function (event) {
@@ -220,12 +226,6 @@ Channel = BlazeComponent.extendComponent({
           $('.dropdown-menu').css({
             "position": "static",
           });
-
-          Session.set('typingInChannel', currentChannelId());
-          this.clearTypingTimeoutId && clearTimeout(this.clearTypingTimeoutId);
-          this.clearTypingTimeoutId = setTimeout(function () {
-            Session.set('typingInChannel', undefined);
-          }, 5000);
         },
         'click [data-action="remove-channel"]': function (event) {
           event.preventDefault();

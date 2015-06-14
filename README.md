@@ -58,11 +58,43 @@ Commit your changes to your fork, and create Pull Request with [github helper](h
 
 ### Libraries
 
-This project is in flux at the moment, these are the currently agreed upon client side libraries;
+This project is in flux at the moment, these are the currently agreed upon client side libraries:
 
 * CSS Pre-Processor: [Sass / .scss](http://sass-lang.com/)
 * Icon Font Library: [FontAwesome](http://fortawesome.github.io/Font-Awesome/)
 
+### Packages
+
+This project is in flux at the moment, these are the currently used Meteor packages:
+
+* markdown
+* reactive-var
+* accounts-password
+* momentjs:moment
+* fourseven:scss
+* copleykj:jquery-autosize
+* tmeasday:gravatar
+* meteorhacks:flow-layout
+* meteorhacks:flow-router
+* peerlibrary:blaze-components
+* mizzao:user-status
+* todda00:friendly-slugs
+* useraccounts:core
+* arillo:flow-router-helpers
+* seriousm:emoji-continued
+* mrt:tiny-scrollbar
+* jquery
+* kevohagan:sweetalert
+* fortawesome:fontawesome
+* aldeed:autoform
+* useraccounts:unstyled
+* dburles:collection-helpers
+* iframely:oembed
+* matb33:collection-hooks
+* qnub:emojione
+* mquandalle:jquery-textcomplete
+* ogourment:settings
+* tmeasday:presence
 
 ### Disclaimer
 
