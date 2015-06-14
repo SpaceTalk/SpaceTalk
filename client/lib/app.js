@@ -21,5 +21,10 @@ App = {
         App.channelInfo.pinnedMessages.isOpen.set(false);
       }
     }
+  },
+  message: {
+    hovered: function() {
+
+    }
   }
 };

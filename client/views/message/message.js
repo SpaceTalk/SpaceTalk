@@ -136,7 +136,7 @@ Message = BlazeComponent.extendComponent({
 
           event.preventDefault();
 
-          Meteor.call('channels.pinMessage', 
+          Meteor.call('channels.pinMessage',
                       currentData.channelId,
                       currentData._id, function (error) {
             if (error) {
@@ -156,7 +156,7 @@ Message = BlazeComponent.extendComponent({
 
           event.preventDefault();
 
-          Meteor.call('channels.unpinMessage', 
+          Meteor.call('channels.unpinMessage',
                       currentData.channelId,
                       currentData._id, function (error) {
             if (error) {

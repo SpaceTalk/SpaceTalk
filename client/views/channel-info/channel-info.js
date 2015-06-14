@@ -31,18 +31,6 @@ ChannelInfo = BlazeComponent.extendComponent({
     self.$channelContent.addClass('channel-content-full');
     self.$channelFooter.addClass('channel-footer-full');
   },
-  events: function () {
-    return [
-      {
-        'click .channel-accordion-section-header': function (event) {
-          event.preventDefault();
-
-          $(event.target).parent('.channel-accordion-section')
-          .toggleClass('open');
-        }
-      }
-    ];
-  },
   creatorUsername : function() {
     return currentChannel().createdBy ? Meteor.users.findOne(currentChannel().createdBy).username : '';
   },
@@ -58,6 +46,13 @@ ChannelInfo = BlazeComponent.extendComponent({
         // in a nicer way
         $('.channel-title').trigger('click');
         $('.channel-purpose').trigger('click');
+      }
+    }, {
+      'click .channel-accordion-section-header': function (event) {
+        event.preventDefault();
+
+        $(event.target).parent('.channel-accordion-section')
+          .toggleClass('open');
       }
     }];
   }
