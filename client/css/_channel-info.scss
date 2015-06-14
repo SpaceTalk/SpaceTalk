@@ -6,6 +6,7 @@
   width: $channel-info-width;
   background: $white;
   height: calc(100% - 53px);
+  overflow-y: auto;
   padding: $padding;
   box-sizing: border-box;
   z-index: 4;
@@ -102,16 +103,26 @@
       }
     }
 
-    p {
+    .channel-accordion-section-content {
       color: rgba(48, 69, 92, 0.8);
-      font-size: 14px;
       position: relative;
       overflow: hidden;
-      max-height: 800px;
       opacity: 1;
-      transform: translate(0, 0);
+      display: none;
       margin-top: 14px;
       z-index: 0;
+      font-size: 0.8rem;
+
+      li {
+        overflow: hidden;
+        border: 2px solid #ccc;
+        font-size: 0.7rem;
+        line-height: 1.3;
+        padding: 10px;
+        margin-bottom: 7px;
+        max-height: 70px;
+        border-radius: 4px;
+      }
     }
 
     ul {
@@ -120,31 +131,30 @@
       padding: 0;
       margin: 0;
     }
-    ul li {
+
+    .channel-accordion-section {
       position: relative;
       padding: 0;
       margin: 0;
       padding-top: 18px;
       border-bottom: 1px solid #e8e8e8;
     }
-    ul li:nth-of-type(1) {
+
+    .channel-accordion-section {
       animation-delay: 0.5s;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
     }
-    ul li:nth-of-type(2) {
-      animation-delay: 0.75s;
-    }
-    ul li:nth-of-type(3) {
-      animation-delay: 1s;
-    }
-    ul li:last-of-type {
-      padding-bottom: 0;
-    }
-    ul li i {
+
+     .channel-accordion-section .caret {
       position: absolute;
-      margin-top: 12px;
+      margin-top: 6px;
       right: 0;
       color: #babbbf;
     }
+
     .icon {
       position: inherit;
       margin-right: 4px;
@@ -162,35 +172,22 @@
       color: #8BCD99;
     }
 
-    ul li input[type=checkbox] {
-      position: absolute;
-      cursor: pointer;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      opacity: 0;
-    }
-    ul li input[type=checkbox]:checked ~ p {
-      margin-top: 0;
-      margin-bottom: 0px;
-      max-height: 0;
-      opacity: 0;
-      transform: translate(0, 50%);
-    }
-    ul li input[type=checkbox]:checked ~ i {
-      transform: rotate(-90deg);
-    }
-    .created-by {
-      color: #9e9ea6;
-      font-size: 14px;
-    }
-    .addPurposeText {
-      color: #9e9ea6;
-      line-height: 1.25rem;
-      font-style: italic;
-      font-size: .9375rem;
-    }
+    .channel-accordion-section.open  {
+      .channel-accordion-section-content {
+        display: block;
+      }
 
+      .caret {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  .addPurposeText {
+    color: #9e9ea6;
+    line-height: 1.25rem;
+    font-style: italic;
+    font-size: .9375rem;
   }
 
   .channel-add-purpose-dropdown {
@@ -230,6 +227,4 @@
 
     }
   }
-
-
 }

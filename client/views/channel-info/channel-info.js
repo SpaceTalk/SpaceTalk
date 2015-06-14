@@ -1,9 +1,35 @@
 ChannelInfo = BlazeComponent.extendComponent({
   onCreated: function () {
-
   },
-  onRendered: function () {
 
+  onRendered: function () {
+    var self = this;
+
+    self.$channelInfo = self.$('.channel-info');
+    self.$channelFooter = $('.channel-footer');
+    self.$channelContent = $('.channel-content');
+
+    this.autorun(function () {
+      if (App.channelInfo.isVisible.get()) {
+        self.show();
+      } else {
+        self.hide();
+      }
+    });
+  },
+  show: function () {
+    var self = this;
+
+    self.$channelInfo.removeClass('channel-info-out');
+    self.$channelContent.removeClass('channel-content-full');
+    self.$channelFooter.removeClass('channel-footer-full');
+  },
+  hide: function () {
+    var self = this;
+
+    self.$channelInfo.addClass('channel-info-out');
+    self.$channelContent.addClass('channel-content-full');
+    self.$channelFooter.addClass('channel-footer-full');
   },
   creatorUsername : function() {
     return currentChannel().createdBy ? Meteor.users.findOne(currentChannel().createdBy).username : '';
@@ -20,6 +46,13 @@ ChannelInfo = BlazeComponent.extendComponent({
         // in a nicer way
         $('.channel-title').trigger('click');
         $('.channel-purpose').trigger('click');
+      }
+    }, {
+      'click .channel-accordion-section-header': function (event) {
+        event.preventDefault();
+
+        $(event.target).parent('.channel-accordion-section')
+          .toggleClass('open');
       }
     }];
   }

@@ -56,10 +56,14 @@
     padding: 16px $padding*4/3 71px $padding*4/3;
     margin-top: 53px;
     height: calc(100% - 53px);
-    margin-left: $sidebar-width;
+    left: $sidebar-width;
+    position: fixed;
+    right: $channel-info-width;
+    overflow-y: auto;
+    margin-right: $padding*4/3-3px;
 
     &-full{
-      margin-right : $channel-info-width;
+      right: 0;
       transition: margin-right 100ms ease-in-out;
     }
 
@@ -73,7 +77,7 @@
       line-height: 1.3rem;
 
       .cursor {
-        display: inline-block;
+        display: none;
       }
 
       .info-text {
@@ -85,9 +89,11 @@
       color: $primary;
       font-weight: 900;
     }
+
     ul {
       clear: both;
     }
+
     li {
       &:after {
         content: '';
@@ -95,17 +101,18 @@
         clear: both;
       }
     }
+
     p {
       margin: 0 0 $padding/2 0;
-      display: inline-block;
-      float: left;
-      clear: left;
     }
+
     .time {
       font-size: 12px;
       text-transform: uppercase;
       margin-left: 3px;
+
     }
+
     .modify {
       display: none;
       position: absolute;
@@ -120,6 +127,7 @@
         }
       }
     }
+
     .edit-box textarea {
       padding: 2px 6px 4px;
       margin: -4px -8px;
@@ -132,7 +140,32 @@
       & .modify {
         display: inline;
       }
+
+      &:hover .cursor {
+        display: inline-block;
+      }
     }
+
+    .pin {
+      display: none !important; // _sweetalert-override.scss is affecting this
+      margin-left: 3px;
+      color: grey;
+      font-size: 12px;
+      text-decoration: none;
+
+      .icon {
+        margin-right: 3px;
+      }
+
+      &.pinned {
+        color: black;
+      }
+    }
+
+    .message-body:hover .pin {
+      display: inline !important;
+    }
+
     .message-body {
       position: relative;
       float: left;
@@ -154,13 +187,13 @@
     position: fixed;
     bottom: 0;
     left: $sidebar-width;
-    right: 0;
     padding: $padding $padding*4/3-3px 5px;
     background: white;
     z-index: 1;
+    right: $channel-info-width;
 
     &-full {
-      right : $channel-info-width;
+      right: 0;
       transition: right 100ms ease-in-out;
     }
 
