@@ -28,6 +28,11 @@ Messages.before.update(function (userId, doc, fieldNames, modifier, options) {
   if (modifier.$set.message != doc.message) {
     modifier.$set.modifiedTimestamp = new Date();
   }
+  //The message owner can't update userId and timestamp
+  if (!_.isEmpty(_.intersection(fieldNames, ['userId', 'timestamp']))) {
+    throw new Meteor.Error(403, 'You are not allowed to update some fields');
+  }
+
 });
 
 Messages.allow({

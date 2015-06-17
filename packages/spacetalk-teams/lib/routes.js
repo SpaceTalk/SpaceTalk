@@ -33,6 +33,9 @@ teamRoutes.route('/', {
 
 teamRoutes.route('/channels/:channel', {
   name: 'channel',
+  subscriptions: function (params) {
+    this.register('pinnedMessages', Meteor.subscribe('channelPinnedMessages', params.channel));
+  },
   action: function () {
     FlowLayout.render('teamLayout', {
       main: 'channel'

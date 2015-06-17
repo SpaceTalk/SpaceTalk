@@ -86,6 +86,13 @@ Message = BlazeComponent.extendComponent({
     }
   },
 
+  isPinned: function () {
+    var pinnedMessageIds = currentChannel().pinnedMessageIds;
+    return pinnedMessageIds && pinnedMessageIds.indexOf(
+        this.currentData()._id
+    ) !== -1;
+  },
+
   events: function () {
     return [
       {
@@ -124,7 +131,49 @@ Message = BlazeComponent.extendComponent({
             }
           }
         },
+        'click [data-action="pin-message"]': function (event) {
+          var currentData = this.currentData();
 
+          event.preventDefault();
+
+          Meteor.call('channels.pinMessage',
+                      currentData.channelId,
+                      currentData._id, function (error) {
+            if (error) {
+              swal({
+                title: 'Yikes! Something went wrong',
+                text: error.reason,
+                type: 'error'
+              });
+            } else {
+              App.channelInfo.show();
+              App.channelInfo.pinnedMessages.open();
+            }
+          });
+        },
+        'click [data-action="unpin-message"]': function (event) {
+          var currentData = this.currentData();
+
+          event.preventDefault();
+
+          Meteor.call('channels.unpinMessage',
+                      currentData.channelId,
+                      currentData._id, function (error) {
+            if (error) {
+              swal({
+                title: 'Yikes! Something went wrong',
+                text: error.reason,
+                type: 'error'
+              });
+            } else {
+              swal({
+                title: 'Message has been un-pinned',
+                type: 'success'
+              });
+
+            }
+          });
+        },
         'mouseover .message-body': function(event) {
           var self = this;
           if (self.currentData().userId === Meteor.userId()) {

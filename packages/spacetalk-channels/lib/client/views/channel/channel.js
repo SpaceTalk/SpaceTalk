@@ -287,10 +287,7 @@ Channel = BlazeComponent.extendComponent({
 
         'click [data-action="display-channel-info"]': function (event) {
           event.preventDefault();
-          $('.channel-info').toggleClass('channel-info-out');
-          $('.channel-content').toggleClass('channel-content-full');
-          $('.channel-footer').toggleClass('channel-footer-full');
-          $(".channel-add-purpose-dropdown").toggleClass("hidden");
+          App.channelInfo.toggle();
         },
 
         'click .channel-title': function (event) {
