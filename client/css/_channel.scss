@@ -53,13 +53,13 @@
   }
 
   &-content {
-    padding: 16px $padding*4/3 71px $padding*4/3;
-    margin-top: 53px;
-    height: calc(100% - 53px);
+    padding: 16px $padding*4/3 0 $padding*4/3;
+    top: 53px;
+    bottom: 71px;
+    overflow-y: auto;
     left: $sidebar-width;
     position: fixed;
     right: $channel-info-width;
-    overflow-y: auto;
     margin-right: $padding*4/3-3px;
 
     &-full{
