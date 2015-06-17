@@ -5,8 +5,7 @@
   right : 0px;
   width: $channel-info-width;
   background: $white;
-  height: calc(100% - 53px);
-  overflow-y: auto;
+  height: 100%;
   padding: $padding;
   box-sizing: border-box;
   z-index: 4;
