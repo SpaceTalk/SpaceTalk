@@ -1,14 +1,15 @@
-Channels = new Mongo.Collection('channels');
-Channels.friendlySlugs();
+SpaceChat.Channels = new Mongo.Collection('spacechat.channels');
 
-Channels.before.insert(function (userId, channel) {
+SpaceChat.Channels.friendlySlugs();
+
+SpaceChat.Channels.before.insert(function (userId, channel) {
   channel.timestamp = new Date();
   if (userId) {
     channel.createdBy = userId;
   }
 });
 
-Channels.allow({
+SpaceChat.Channels.allow({
   update: function (userId, doc) {
     if (userId) {
       return true;
@@ -16,7 +17,7 @@ Channels.allow({
   }
 });
 
-Channels.helpers({
+SpaceChat.Channels.helpers({
   otherUser: function() {
     otherNameId = _.reject(this.allowedUsers, function(u) {return u === Meteor.userId();})[0];
     return Meteor.users.findOne(otherNameId);
@@ -33,5 +34,5 @@ Channels.helpers({
     } else {
       return this.name;
     }
-  },
+  }
 });

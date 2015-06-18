@@ -19,7 +19,7 @@ Channel = BlazeComponent.extendComponent({
             // There is a possibility where the direct channel has not yet been created. Lets do it then.
             if (!currentChannelId()) {
               var options = { direct: true, allowedUsers: [Meteor.userId(), user._id] };
-              Meteor.call('channels.add', currentTeamId(), null, options, function (error, result) {
+              Meteor.call('spacechat.channels.add', currentTeamId(), null, options, function (error, result) {
                 if (error) {
                   // Any other error
                   swal({
@@ -251,10 +251,10 @@ Channel = BlazeComponent.extendComponent({
               showCancelButton: true,
               closeOnConfirm: false,
               confirmButtonText: 'Delete ' + channelName,
-              confirmButtonColor: '#ec6c62',
+              confirmButtonColor: '#ec6c62'
             }, function (inputValue) {
               if (inputValue === channelName) {
-                Meteor.call('channels.remove', currentChannelId(),
+                Meteor.call('spacechat.channels.remove', currentChannelId(),
                   function (error) {
                     if (error) {
                       swal({
@@ -327,7 +327,7 @@ Channel = BlazeComponent.extendComponent({
             // Prevent accepting empty channel purpose
             if ($.trim(value) === "") return;
 
-            Meteor.call('channels.updatePurpose', currentChannelId(), value, function (error, result) {
+            Meteor.call('spacechat.channels.updatePurpose', currentChannelId(), value, function (error, result) {
               if (result) {
                 self.$(".channel-purpose-form").toggleClass("hidden");
               } else if (error) {
@@ -352,7 +352,7 @@ Channel = BlazeComponent.extendComponent({
 
           if (isEnter(event)) {
             var content = this.find('input[name=channel-topic]').value;
-            Meteor.call('channels.updateTopic', currentChannelId(), content);
+            Meteor.call('spacechat.channels.updateTopic', currentChannelId(), content);
             // Hide the dropdown.
             this.$(".channel-dropdown").toggleClass("hidden");
             this.$(".channel-title").toggleClass("visible");

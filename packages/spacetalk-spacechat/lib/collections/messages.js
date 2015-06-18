@@ -1,6 +1,6 @@
-Messages = new Mongo.Collection('messages');
+SpaceChat.Messages = new Mongo.Collection('spacechat.messages');
 
-Messages.helpers({
+SpaceChat.Messages.helpers({
   /*
    * Grabs the urls out of the messages and returns them back in an array.
    */
@@ -17,12 +17,12 @@ Messages.helpers({
   }
 });
 
-Messages.before.insert(function (userId, message) {
+SpaceChat.Messages.before.insert(function (userId, message) {
   message.timestamp = new Date();
   message.userId = userId;
 });
 
-Messages.before.update(function (userId, doc, fieldNames, modifier, options) {
+SpaceChat.Messages.before.update(function (userId, doc, fieldNames, modifier, options) {
   modifier.$set = modifier.$set || {};
   // Add modifiedTimestamp field only when message content really changed
   if (modifier.$set.message != doc.message) {
@@ -35,7 +35,7 @@ Messages.before.update(function (userId, doc, fieldNames, modifier, options) {
 
 });
 
-Messages.allow({
+SpaceChat.Messages.allow({
   insert: function (userId, doc) {
     if (userId && doc.channelId) {
       return true;

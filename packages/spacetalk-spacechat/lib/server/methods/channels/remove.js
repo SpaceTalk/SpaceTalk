@@ -1,5 +1,5 @@
 Meteor.methods({
-  'channels.remove': function (channelId) {
+  'spacechat.channels.remove': function (channelId) {
     check(channelId, String);
 
     // XXX TODO - Need to check if the user can remove the channel
@@ -8,11 +8,11 @@ Meteor.methods({
     }
 
     // Check channel exists
-    if (!Channels.findOne(channelId)) {
+    if (!SpaceChat.Channels.findOne(channelId)) {
       throw new Meteor.Error(404, 'Channel does not exist');
     }
-    
-    Messages.remove({ channelId: channelId });
-    Channels.remove({ _id: channelId });
+
+    SpaceChat.Messages.remove({ channelId: channelId });
+    SpaceChat.Channels.remove({ _id: channelId });
   }
 });

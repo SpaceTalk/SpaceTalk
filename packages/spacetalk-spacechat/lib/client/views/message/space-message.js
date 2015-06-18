@@ -1,4 +1,4 @@
-Message = BlazeComponent.extendComponent({
+SpaceChat.Components.Message = BlazeComponent.extendComponent({
   onCreated: function () {
     this.isEditing = new ReactiveVar(false);
   },
@@ -136,7 +136,7 @@ Message = BlazeComponent.extendComponent({
 
           event.preventDefault();
 
-          Meteor.call('spacechat.channels.pinMessage',
+          Meteor.call('channels.pinMessage',
                       currentData.channelId,
                       currentData._id, function (error) {
             if (error) {
@@ -156,7 +156,7 @@ Message = BlazeComponent.extendComponent({
 
           event.preventDefault();
 
-          Meteor.call('spacechat.channels.unpinMessage',
+          Meteor.call('channels.unpinMessage',
                       currentData.channelId,
                       currentData._id, function (error) {
             if (error) {
@@ -190,7 +190,7 @@ Message = BlazeComponent.extendComponent({
         'click .delete': function (event) {
           event.preventDefault();
 
-          Meteor.call('spacechat.messages.delete', this.currentData()._id,
+          Meteor.call('messages.delete', this.currentData()._id,
             function (error) {
               if (error) {
                 swal({
@@ -211,4 +211,4 @@ Message = BlazeComponent.extendComponent({
         }
       }];
   }
-}).register('message');
+}).register('spaceMessage');

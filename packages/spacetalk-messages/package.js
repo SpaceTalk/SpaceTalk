@@ -9,28 +9,33 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
 
+  var both = ['client', 'server'];
+
   api.use([
-    'spacetalk:lib@0.2.0'
+    'spacetalk:lib@0.2.0',
+    'spacetalk:spacechat@0.1.0',
+    'spacetalk:channels@0.1.0'
   ]);
 
   api.addFiles([
-    'lib/messages.js'
-  ], ['client', 'server']);
-
-  api.addFiles([
-    'lib/server/methods/messages/delete.js',
-    'lib/server/publications/messages.js'
-  ], 'server');
+    'lib/export.js'
+  ], both);
 
   api.addFiles([
     'lib/client/utilities/scrollDown.js',
     'lib/client/utilities/isEnter.js',
   ], 'client');
 
-  api.export([
-    'Messages',
+  api.addFiles([
+    'lib/server/publications/messages.js'
+  ], 'server');
 
-    'scrollDown',
-    'isEnter'
-  ]);
+  api.export([
+    'Messages'
+  ], both);
+
+  api.export([
+    'isEnter',
+    'scrollDown'
+  ], 'client');
 });

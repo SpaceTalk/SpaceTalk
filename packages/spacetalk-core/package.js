@@ -9,13 +9,15 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
 
+  var both = ['client', 'server'];
+
   var packages = [
     'spacetalk:lib@0.1.0', //  no dependencies
+    'spacetalk:teams@0.1.0', //  no dependencies
     'spacetalk:channels@0.1.0', //  no dependencies
     'spacetalk:messages@0.1.0', //  no dependencies
     'spacetalk:users@0.1.0', //  no dependencies
     'spacetalk:settings@0.1.0', //  no dependencies
-    'spacetalk:direct-messages@0.1.0', //  no dependencies
     'spacetalk:unseen-messages@0.1.0', //  no dependencies
     'spacetalk:typing-indication@0.1.0', //  no dependencies
     'spacetalk:notifications@0.1.0', //  no dependencies
@@ -34,7 +36,7 @@ Package.onUse(function(api) {
 
   api.addFiles([
     'lib/general.js'
-  ], ['client', 'server']);
+  ], both);
 
   api.addFiles([
     'lib/server/server.js'

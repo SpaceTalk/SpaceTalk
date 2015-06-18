@@ -6,6 +6,7 @@ scrollDown = function () {
   // scroll all the way down for some reason
   setTimeout(function () {
     // Scroll down the page
-    window.scrollTo(0, document.body.scrollHeight);
-  }, 0);
+    $('.channel-content').scrollTop($('.channel-content-scroll').height());
+  });
+
 };

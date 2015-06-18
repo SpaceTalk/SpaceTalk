@@ -1,5 +1,5 @@
 Meteor.methods({
-  'channels.add': function (teamId, channelName, options) {
+  'spacechat.channels.add': function (teamId, channelName, options) {
     check(teamId, String);
     check(options, Match.Optional({ direct: Boolean, allowedUsers: [String] }));
 
@@ -9,14 +9,14 @@ Meteor.methods({
     }
 
     // Check team exist
-    if (!Teams.findOne({ _id: teamId })) {
+    if (!SpaceChat.Teams.findOne({ _id: teamId })) {
       throw new Meteor.Error(404, 'Team does not exist');
     }
 
     // Insert direct channel
     if (options && options.direct) {
       // Create the channel name like userId-userId
-      if (!Channels.findOne({ direct: true, teamId: teamId, allowedUsers: { $all: options.allowedUsers } })) {
+      if (!SpaceChat.findOne({ direct: true, teamId: teamId, allowedUsers: { $all: options.allowedUsers } })) {
         var directChannel = {
           direct: true,
           teamId: teamId,
@@ -24,7 +24,7 @@ Meteor.methods({
           name: null
         };
 
-        return Channels.insert(directChannel);
+        return SpaceChat.insert(directChannel);
       } else {
         return 1;
       }
@@ -37,7 +37,7 @@ Meteor.methods({
     channelName = channelName.replace(/\s{2,}/g, ' ').toLowerCase().trim();
 
     // Insert the new channel
-    if (!Channels.findOne({ teamId: teamId, name: channelName })) {
+    if (!SpaceChat.Channels.findOne({ teamId: teamId, name: channelName })) {
       return Channels.insert({
         teamId: teamId,
         name: channelName

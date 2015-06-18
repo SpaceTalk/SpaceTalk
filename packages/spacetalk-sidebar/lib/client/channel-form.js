@@ -11,7 +11,7 @@ ChannelForm = BlazeComponent.extendComponent({
         if ($.trim(name) === "") return;
 
         // Allow only unique channel name
-        Meteor.call('channels.add', currentTeamId(), name, function (error, result) {
+        Meteor.call('spacechat.channels.add', currentTeamId(), name, function (error, result) {
           if (result) {
             // Navigate to the new channel view
             var newChannel = Channels.findOne(result);

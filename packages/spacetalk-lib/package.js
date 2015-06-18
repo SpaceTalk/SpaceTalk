@@ -51,7 +51,8 @@ Package.onUse(function(api) {
     'useraccounts:core@1.8.1',
     'useraccounts:unstyled@1.8.1',
     'webapp@1.2.0',
-    'webapp-hashing@1.0.3'
+    'webapp-hashing@1.0.3',
+    'spacetalk:spacechat@0.1.0'
   ];
 
   api.use(packages);

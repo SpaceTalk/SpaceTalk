@@ -12,5 +12,4 @@ spacetalk:core
 
 # Note: all following packages depend on spacetalk:core; Additional internal dependencies are mentioned
 
-spacetalk:teams
 spacetalk:theme-base

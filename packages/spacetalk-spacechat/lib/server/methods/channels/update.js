@@ -1,6 +1,6 @@
 Meteor.methods({
 
-  'channels.updateTopic': function (id, topic) {
+  'spacechat.channels.updateTopic': function (id, topic) {
     check(id, String);
     check(topic, String);
 
@@ -10,29 +10,30 @@ Meteor.methods({
     }
 
     // Check channel exists
-    if (!Channels.findOne({ _id: id })) {
+    if (!SpaceChat.Channels.findOne({ _id: id })) {
       throw new Meteor.Error(404, 'Channel does not exist');
     }
 
-    Channels.update(id, {
+    SpaceChat.Channels.update(id, {
       $set: {topic: topic}
     });
   },
-  'channels.updatePurpose': function (id, purpose) {
+
+  'spacechat.channels.updatePurpose': function (id, purpose) {
     check(id, String);
     check(purpose, String);
-    
+
     // Check user authenticated
     if (!this.userId) {
       throw new Meteor.Error(401, 'Unauthorized access');
     }
 
     // Check channel exists
-    if (!Channels.findOne({ _id: id })) {
+    if (!SpaceChat.Channels.findOne({ _id: id })) {
       throw new Meteor.Error(404, 'Channel does not exist');
     }
 
-    return Channels.update(id, {
+    return SpaceChat.Channels.update(id, {
       $set: {purpose: purpose}
     });
   }

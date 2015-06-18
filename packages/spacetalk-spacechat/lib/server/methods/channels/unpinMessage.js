@@ -1,12 +1,12 @@
 Meteor.methods({
-  'channels.unpinMessage': function(channelId, messageId) {
+  'spacechat.channels.unpinMessage': function(channelId, messageId) {
 
     check(channelId, String);
     check(messageId, String);
 
-    var channel = Channels.findOne(channelId),
-        message = Messages.findOne(messageId);
-    
+    var channel = SpaceChat.Channels.findOne(channelId),
+        message = SpaceChat.Messages.findOne(messageId);
+
     // Check user authenticated
     if (!this.userId) {
       throw new Meteor.Error(401, 'Unauthorized access');
@@ -24,12 +24,12 @@ Meteor.methods({
 
     // Using Channels.direct to get around an issue with Collection Hooks
     // not allowing updates without a $set
-    return Channels.direct.update(channelId,
+    return SpaceChat.Channels.direct.update(channelId,
       {
         $pull: {
           pinnedMessageIds: messageId
         }
       }
-    ); 
+    );
   }
 });

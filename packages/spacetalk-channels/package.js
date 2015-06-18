@@ -9,26 +9,25 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
 
+  var both = ['client', 'server'];
+
   api.use([
     'spacetalk:lib@0.2.0',
-    // XXX Remove dependency from this. We want to separate this.
-    'spacetalk:direct-messages@0.1.0'
+    'spacetalk:spacechat@0.1.0'
   ]);
 
   api.addFiles([
-    'lib/channels.js'
-  ], ['client', 'server']);
+    'lib/server/publications/pinned-messages.js'
+  ], 'server')
 
   api.addFiles([
-    'lib/server/methods/channels/add.js',
-    'lib/server/methods/channels/remove.js',
-    'lib/server/methods/channels/update.js',
-    'lib/server/publications/team-channels.js'
-  ], 'server');
+    'lib/export.js'
+  ], both);
 
   api.addFiles([
     'lib/client/utilities/current-channel.js',
     'lib/client/utilities/current-channel-id.js',
+    'lib/client/utilities/direct-channel.js',
     'lib/client/helpers/current-channel.js',
 
     // Channel
@@ -36,16 +35,19 @@ Package.onUse(function(api) {
     'lib/client/views/channel/channel.js',
 
     // Message
-    'lib/client/views/message/message.html',
-    'lib/client/views/message/message.js'
+    'lib/client/views/message/message.html'
   ], 'client');
 
   api.export([
-    'Channels',
+    'Channels'
+  ], both);
 
+  api.export([
     // XXX These should be exported. Separate logic!
     'currentChannel',
     'currentChannelSlug',
-    'currentChannelId'
-  ]);
+    'currentChannelId',
+    'isDirectChannel',
+    'nameOfDirectChannel'
+  ], 'client');
 });

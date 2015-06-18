@@ -77,7 +77,6 @@ spacebars-compiler@1.0.6
 spacetalk:channel-info@0.1.0
 spacetalk:channels@0.1.0
 spacetalk:core@0.1.0
-spacetalk:direct-messages@0.1.0
 spacetalk:emoji@0.1.0
 spacetalk:lib@0.2.0
 spacetalk:linkify@0.1.0
@@ -87,6 +86,7 @@ spacetalk:notifications@0.1.0
 spacetalk:rich-embeds@0.1.0
 spacetalk:settings@0.1.0
 spacetalk:sidebar@0.1.0
+spacetalk:spacechat@0.1.0
 spacetalk:star-favorites@0.1.0
 spacetalk:teams@0.1.0
 spacetalk:theme-base@0.1.0
