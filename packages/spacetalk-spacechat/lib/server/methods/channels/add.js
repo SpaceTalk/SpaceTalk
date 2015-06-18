@@ -16,7 +16,8 @@ Meteor.methods({
     // Insert direct channel
     if (options && options.direct) {
       // Create the channel name like userId-userId
-      if (!SpaceChat.findOne({ direct: true, teamId: teamId, allowedUsers: { $all: options.allowedUsers } })) {
+      if (!SpaceChat.Channels.findOne({ direct: true, teamId: teamId, allowedUsers: { $all: options.allowedUsers } })) {
+
         var directChannel = {
           direct: true,
           teamId: teamId,
@@ -24,7 +25,7 @@ Meteor.methods({
           name: null
         };
 
-        return SpaceChat.insert(directChannel);
+        return SpaceChat.Channels.insert(directChannel);
       } else {
         return 1;
       }
@@ -38,7 +39,7 @@ Meteor.methods({
 
     // Insert the new channel
     if (!SpaceChat.Channels.findOne({ teamId: teamId, name: channelName })) {
-      return Channels.insert({
+      return SpaceChat.Channels.insert({
         teamId: teamId,
         name: channelName
       });

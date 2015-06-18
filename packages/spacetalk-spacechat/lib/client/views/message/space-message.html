@@ -10,38 +10,59 @@
           <span class="time">{{time timestamp}}</span>
         </div>
       {{/if}}
-      {{#if isEditing.get}}
-        {{> spaceMessageEditBox}}
-      {{else}}
-        <span class="modify">
-          {{#if isOwner}}
-            <a href="#" class="edit" title="Edit message"><i class="fa fa-pencil"></i></a>
-          <a href="#" class="delete" title="Delete this message"><i class="fa fa-trash-o" data-action="remove-message"></i></a>
-          {{/if}}
-          {{#if isPinned}}
-            <a href="#" data-action="unpin-message" title="Un-pin this message" class="pin pinned"><i class="icon fa fa-thumb-tack"></i></a>
+        <div class="message">
+          {{#if isEditing.get}}
+            {{> spaceMessageEditBox}}
           {{else}}
-            <a href="#" data-action="pin-message" title="Pin this message" class="pin"><i class="icon fa fa-thumb-tack"></i></a>
-          {{/if}}
-        </span>
-        <div class="message">{{#emojione}}{{#markdown}}{{#linkify}}{{message}}{{/linkify}}{{/markdown}}{{/emojione}}
-          {{#if modifiedTimestamp}}
-            <span class="info-text">&nbsp;(edited)</span>
-          {{/if}}
-          <span class="cursor"></span>
-          {{#if messageUrls}}
-            {{#each messageUrls}}
-              {{> oembed url=this}}
-            {{/each}}
+
+          {{> spaceMessageEditItems}}
+
+            {{#emojione}}{{#markdown}}{{#linkify}}{{message}}{{/linkify}}{{/markdown}}{{/emojione}}
+            {{#if modifiedTimestamp}}
+              <span class="info-text">&nbsp;(edited)</span>
+            {{/if}}
+            <span class="cursor"></span>
+            {{#if messageUrls}}
+              {{#each messageUrls}}
+                {{> oembed url=this}}
+              {{/each}}
+            {{/if}}
+
           {{/if}}
         </div>
-      {{/if}}
     </div>
   </div>
 </template>
 
 <template name="spaceMessageEditBox">
-  <div class="edit-box">
-    <textarea rows="1" cols="90" class="form-message-input">{{removeTrailingSpaces message}}</textarea>
-  </div>
+  {{#if spaceOptions.editableMessages}}
+    <div class="edit-box">
+      <textarea rows="1" cols="90" class="form-message-input">{{removeTrailingSpaces message}}</textarea>
+    </div>
+  {{/if}}
+</template>
+
+<template name="spaceMessageEditItems">
+    <span class="modify">
+      {{#if isOwner}}
+        {{#if spaceOptions.editableMessages}}
+          <a href="#" class="edit" title="Edit message"><i class="fa fa-pencil"></i></a>
+        {{/if}}
+
+        {{#if spaceOptions.removeableChannels}}
+          <a href="#" class="delete" title="Delete this message"><i class="fa fa-trash-o"
+                                                                    data-action="remove-message"></i></a>
+        {{/if}}
+      {{/if}}
+
+      {{#if spaceOptions.pinnableMessages}}
+        {{#if isPinned}}
+          <a href="#" data-action="unpin-message" title="Un-pin this message" class="pin pinned"><i
+            class="icon fa fa-thumb-tack"></i></a>
+        {{else}}
+          <a href="#" data-action="pin-message" title="Pin this message" class="pin"><i
+            class="icon fa fa-thumb-tack"></i></a>
+        {{/if}}
+      {{/if}}
+    </span>
 </template>

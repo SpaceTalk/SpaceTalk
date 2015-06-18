@@ -86,8 +86,8 @@
       }
     }
     .username, h2 {
-      color: $primary;
       font-weight: 900;
+      padding-bottom: 5px;
     }
 
     ul {
@@ -116,11 +116,12 @@
     .modify {
       display: none;
       position: absolute;
-      bottom: 4px;
+      top: 0;
+      left: 0;
       a {
         font-size: 12px;
         text-decoration: none;
-        margin-right: 3px;
+        margin-right: 1px;
         color: grey;
         &:hover {
           color: black;
@@ -142,7 +143,7 @@
       }
 
       &:hover .cursor {
-        display: inline-block;
+        display: block;
       }
     }
 
@@ -172,7 +173,15 @@
       width: calc(100% - 70px);
       margin-top: 8px;
 
-      &.no-avatar {
+      .message {
+        position: relative;
+
+        .modify {
+          left: -50px;
+        }
+      }
+
+      &.no-avatar .message {
         margin-left: 50px;
         margin-top: 0;
       }

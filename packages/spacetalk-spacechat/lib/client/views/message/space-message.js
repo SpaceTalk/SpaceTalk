@@ -121,14 +121,6 @@ SpaceChat.Components.Message = BlazeComponent.extendComponent({
             });
 
             self.toggleEditMode();
-
-            var position = self.$('.message .cursor').position();
-            if (position) {
-              var width = position.left;
-              self.$('.modify').css({
-                left: width + 8
-              });
-            }
           }
         },
         'click [data-action="pin-message"]': function (event) {
@@ -136,7 +128,7 @@ SpaceChat.Components.Message = BlazeComponent.extendComponent({
 
           event.preventDefault();
 
-          Meteor.call('channels.pinMessage',
+          Meteor.call('spacechat.channels.pinMessage',
                       currentData.channelId,
                       currentData._id, function (error) {
             if (error) {
@@ -156,7 +148,7 @@ SpaceChat.Components.Message = BlazeComponent.extendComponent({
 
           event.preventDefault();
 
-          Meteor.call('channels.unpinMessage',
+          Meteor.call('spacechat.channels.unpinMessage',
                       currentData.channelId,
                       currentData._id, function (error) {
             if (error) {
@@ -174,23 +166,11 @@ SpaceChat.Components.Message = BlazeComponent.extendComponent({
             }
           });
         },
-        'mouseover .message-body': function(event) {
-          var self = this;
-          if (self.currentData().userId === Meteor.userId()) {
-            var position = self.$('.message .cursor').position();
-            if (position) {
-              var width = position.left;
-              self.$('.modify').css({
-                left: width + 8
-              });
-            }
-          }
-        },
 
         'click .delete': function (event) {
           event.preventDefault();
 
-          Meteor.call('messages.delete', this.currentData()._id,
+          Meteor.call('spacechat.messages.delete', this.currentData()._id,
             function (error) {
               if (error) {
                 swal({

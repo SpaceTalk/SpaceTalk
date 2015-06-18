@@ -28,7 +28,8 @@ Package.onUse(function(api) {
   ]);
 
   api.addFiles([
-    'lib/export.js',
+    'lib/spacechat.js',
+    'lib/utilities.js',
 
     // Messages
     'lib/collections/messages.js',
@@ -53,6 +54,8 @@ Package.onUse(function(api) {
   ], 'server');
 
   api.addFiles([
+    'lib/client/helpers/options.js',
+
     'lib/client/views/message/space-message.html',
     'lib/client/views/message/space-message.js'
   ], 'client')
