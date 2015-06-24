@@ -40,17 +40,21 @@ ChannelForm = BlazeComponent.extendComponent({
                 break;
               case 422: // Channel exists
                 var channel = Channels.findOne({teamId: currentTeamId(), name: name});
-                swal({
-                  title: 'Channel name exists',
-                  text: 'Please consider joining the existing channel <button class="channel-link confirm">#' + name + '</button><br>or create a different channel.',
-                  type: 'error',
+                var channelButton = '<button class="channel-link confirm">#' + name + '</button>';
+                
+                var msg = getErrorMessage('channel-exists', {channelButton: channelButton});
+                var overwrites = {
                   closeOnConfirm: false,
                   showConfirmButton: false,
                   showCancelButton: true,
                   closeOnCancel: true,
                   cancelButtonText: "OK",
                   html: true
-                }, function (isConfirm) {
+                };
+
+                var swalObj = $.extend({}, msg, overwrites);
+
+                swal(swalObj, function (isConfirm) {
                   // User wants to visit the existing channel,
                   // clear the input and hide the form
                   // and redirect to the requested channel
