@@ -257,11 +257,15 @@ Channel = BlazeComponent.extendComponent({
                 Meteor.call('channels.remove', currentChannelId(),
                   function (error) {
                     if (error) {
-                      swal({
-                        title: 'Yikes! Something went wrong',
-                        text: error.reason,
-                        type: 'error'
-                      });
+                      switch(error.error) {
+                        case 'unauthorized-access': // Not authorized
+                          displayErrorMessage('unauthorized-access');
+                          break;
+
+                        case 'channel-not-found': // No team found
+                          displayErrorMessage('channel-not-found');
+                          break;
+                        }
                     } else {
                       swal({
                         title: 'Channel deleted!',
@@ -332,16 +336,12 @@ Channel = BlazeComponent.extendComponent({
                 self.$(".channel-purpose-form").toggleClass("hidden");
               } else if (error) {
                 switch(error.error) {
-                  case 401: // Not authorized
-                  displayUnauthorizedError();
-                  break;
-                  case 404: // No channel found
-                  swal({
-                    title: 'Yikes! Something went wrong',
-                    text: "We can't find the channel",
-                    type: 'error'
-                  });
-                  break;
+                  case 'unauthorized-access': // Not authorized
+                    displayErrorMessage('unauthorized-access');
+                    break;
+                  case 'channel-not-found': // No channel found
+                    displayErrorMessage('channel-not-found');
+                    break;
                 }
               }
             });

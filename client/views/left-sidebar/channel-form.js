@@ -24,21 +24,15 @@ ChannelForm = BlazeComponent.extendComponent({
             currentForm.addClass('hidden');
           } else if (error) {
             switch(error.error) {
-              case 401: // Not authorized
-                swal({
-                  title: 'Yikes! Something went wrong',
-                  text: "We can't complete your request at the moment, are you still online?",
-                  type: 'error'
-                });
+              case 'unauthorized-access': // Not authorized
+                displayErrorMessage('unauthorized-access');
                 break;
-              case 404: // No team found
-                swal({
-                  title: 'Yikes! Something went wrong',
-                  text: "We can't find your team at the moment, are you still online?",
-                  type: 'error'
-                });
+
+              case 'team-not-found': // No team found
+                displayErrorMessage('team-not-found');
                 break;
-              case 422: // Channel exists
+
+              case 'channel-exists': // Channel exists
                 var channel = Channels.findOne({teamId: currentTeamId(), name: name});
                 var channelButton = '<button class="channel-link confirm">#' + name + '</button>';
                 
@@ -69,12 +63,7 @@ ChannelForm = BlazeComponent.extendComponent({
                 break;
             }
           } else {
-            // Any other error
-            swal({
-              title: 'Yikes! Something went wrong',
-              text: "We can't complete your request at the moment, are you still online?",
-              type: 'error'
-            });
+            displayErrorMessage('default');
           }
         });
       },

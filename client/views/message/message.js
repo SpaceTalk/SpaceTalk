@@ -140,11 +140,19 @@ Message = BlazeComponent.extendComponent({
                       currentData.channelId,
                       currentData._id, function (error) {
             if (error) {
-              swal({
-                title: 'Yikes! Something went wrong',
-                text: error.reason,
-                type: 'error'
-              });
+              switch(error.error) {
+              case 'unauthorized-access': // Not authorized
+                displayErrorMessage('unauthorized-access');
+                break;
+
+              case 'channel-not-found': // No channel found
+                displayErrorMessage('channel-not-found');
+                break;
+
+              case 'message-not-found': // No message found
+                displayErrorMessage('message-not-found');
+                break;
+              }
             } else {
               App.channelInfo.show();
               App.channelInfo.pinnedMessages.open();
@@ -160,11 +168,19 @@ Message = BlazeComponent.extendComponent({
                       currentData.channelId,
                       currentData._id, function (error) {
             if (error) {
-              swal({
-                title: 'Yikes! Something went wrong',
-                text: error.reason,
-                type: 'error'
-              });
+              switch(error.error) {
+                case 'unauthorized-access': // Not authorized
+                  displayErrorMessage('unauthorized-access');
+                  break;
+
+                case 'channel-not-found': // No team found
+                  displayErrorMessage('channel-not-found');
+                  break;
+
+                case 'message-not-found': // No team found
+                  displayErrorMessage('message-not-found');
+                  break;
+              }
             } else {
               swal({
                 title: 'Message has been un-pinned',
@@ -193,11 +209,15 @@ Message = BlazeComponent.extendComponent({
           Meteor.call('messages.delete', this.currentData()._id,
             function (error) {
               if (error) {
-                swal({
-                  title: 'Yikes! Something went wrong',
-                  text: error.reason,
-                  type: 'error'
-                });
+                switch(error.error) {
+                  case 'unauthorized-access': // Not authorized
+                    displayErrorMessage('unauthorized-access');
+                    break;
+
+                  case 'message-not-found': // No message found
+                    displayErrorMessage('message-not-found');
+                    break;
+                }
               } else {
                 swal({
                   title: 'Message deleted',

@@ -4,11 +4,11 @@ Meteor.methods({
     var message = Messages.findOne(messageId);
 
 		if (!this.userId) {
-	      	throw new Meteor.Error(401, 'Unauthorized access');
+	      	throw new Meteor.Error('unauthorized-access');
 		}
 
 		if (!message) {
-			throw new Meteor.Error(404, 'Message does not exist');
+			throw new Meteor.Error('message-not-found');
 		}
 
 		if(isOwner('Messages', messageId)) {

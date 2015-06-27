@@ -6,12 +6,12 @@ Meteor.methods({
 
     // Check user authenticated
     if (!this.userId) {
-      throw new Meteor.Error(401, 'Unauthorized access');
+      throw new Meteor.Error('unauthorized-access');
     }
 
     // Check channel exists
     if (!Channels.findOne({ _id: id })) {
-      throw new Meteor.Error(404, 'Channel does not exist');
+      throw new Meteor.Error('channel-not-found');
     }
 
     Channels.update(id, {
@@ -24,12 +24,12 @@ Meteor.methods({
     
     // Check user authenticated
     if (!this.userId) {
-      throw new Meteor.Error(401, 'Unauthorized access');
+      throw new Meteor.Error('unauthorized-access');
     }
 
     // Check channel exists
     if (!Channels.findOne({ _id: id })) {
-      throw new Meteor.Error(404, 'Channel does not exist');
+      throw new Meteor.Error('channel-not-found');
     }
 
     return Channels.update(id, {
