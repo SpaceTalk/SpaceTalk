@@ -5,12 +5,12 @@ Meteor.methods({
 
     // Check user authenticated
     if (!this.userId) {
-      throw new Meteor.Error(401, 'Unauthorized access');
+      throw new Meteor.Error('unauthorized-access');
     }
 
     // Check team exist
     if (!Teams.findOne({ _id: teamId })) {
-      throw new Meteor.Error(404, 'Team does not exist');
+      throw new Meteor.Error('team-not-found');
     }
 
     // Insert direct channel
@@ -43,7 +43,7 @@ Meteor.methods({
         name: channelName
       });
     } else {
-      throw new Meteor.Error(422, 'Channel name exists');
+      throw new Meteor.Error('channel-exists');
     }
   }
 });

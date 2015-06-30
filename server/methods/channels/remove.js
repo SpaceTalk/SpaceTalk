@@ -4,12 +4,12 @@ Meteor.methods({
 
     // XXX TODO - Need to check if the user can remove the channel
     if (!this.userId) {
-      throw new Meteor.Error(401, 'Unauthorized access');
+      throw new Meteor.Error('unauthorized-access');
     }
 
     // Check channel exists
     if (!Channels.findOne(channelId)) {
-      throw new Meteor.Error(404, 'Channel does not exist');
+      throw new Meteor.Error('channel-not-found');
     }
     
     Messages.remove({ channelId: channelId });

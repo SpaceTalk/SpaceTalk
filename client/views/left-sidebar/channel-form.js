@@ -24,33 +24,31 @@ ChannelForm = BlazeComponent.extendComponent({
             currentForm.addClass('hidden');
           } else if (error) {
             switch(error.error) {
-              case 401: // Not authorized
-                swal({
-                  title: 'Yikes! Something went wrong',
-                  text: "We can't complete your request at the moment, are you still online?",
-                  type: 'error'
-                });
+              case 'unauthorized-access': // Not authorized
+                displayErrorMessage('unauthorized-access');
                 break;
-              case 404: // No team found
-                swal({
-                  title: 'Yikes! Something went wrong',
-                  text: "We can't find your team at the moment, are you still online?",
-                  type: 'error'
-                });
+
+              case 'team-not-found': // No team found
+                displayErrorMessage('team-not-found');
                 break;
-              case 422: // Channel exists
+
+              case 'channel-exists': // Channel exists
                 var channel = Channels.findOne({teamId: currentTeamId(), name: name});
-                swal({
-                  title: 'Channel name exists',
-                  text: 'Please consider joining the existing channel <button class="channel-link confirm">#' + name + '</button><br>or create a different channel.',
-                  type: 'error',
+                var channelButton = '<button class="channel-link confirm">#' + name + '</button>';
+                
+                var msg = getErrorMessage('channel-exists', {channelButton: channelButton});
+                var overwrites = {
                   closeOnConfirm: false,
                   showConfirmButton: false,
                   showCancelButton: true,
                   closeOnCancel: true,
                   cancelButtonText: "OK",
                   html: true
-                }, function (isConfirm) {
+                };
+
+                var swalObj = $.extend({}, msg, overwrites);
+
+                swal(swalObj, function (isConfirm) {
                   // User wants to visit the existing channel,
                   // clear the input and hide the form
                   // and redirect to the requested channel
@@ -65,12 +63,7 @@ ChannelForm = BlazeComponent.extendComponent({
                 break;
             }
           } else {
-            // Any other error
-            swal({
-              title: 'Yikes! Something went wrong',
-              text: "We can't complete your request at the moment, are you still online?",
-              type: 'error'
-            });
+            displayErrorMessage('default');
           }
         });
       },
