@@ -4,33 +4,13 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
-markdown
-reactive-var
-accounts-password
-momentjs:moment
-fourseven:scss
-copleykj:jquery-autosize
-tmeasday:gravatar
-meteorhacks:flow-layout
-meteorhacks:flow-router
-peerlibrary:blaze-components
-mizzao:user-status
-todda00:friendly-slugs
-useraccounts:core
-arillo:flow-router-helpers
-seriousm:emoji-continued
-jquery
-kevohagan:sweetalert
-fortawesome:fontawesome
-aldeed:autoform
+############ SpaceTalk Core ############
 
-useraccounts:unstyled
-dburles:collection-helpers
-iframely:oembed
-matb33:collection-hooks
-qnub:emojione
-mquandalle:jquery-textcomplete
-ogourment:settings
-tmeasday:presence
-maazalik:malihu-jquery-custom-scrollbar
+spacetalk:core
+
+############ SpaceTalk Packages (Optional) ############
+
+# Note: all following packages depend on spacetalk:core; Additional internal dependencies are mentioned
+
+spacetalk:teams
+spacetalk:theme-base
