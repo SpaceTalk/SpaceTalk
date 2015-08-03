@@ -10,12 +10,12 @@ Meteor.methods({
     }
 
     // Check channel exists
-    if (!Channels.findOne({ _id: channelId })) {
+    if (!Channels.find(channelId).count()) {
       throw new Meteor.Error(404, 'Channel does not exist');
     }
 
     // Check message exists
-    if (!Messages.findOne({ _id: messageId })) {
+    if (!Messages.find(messageId).count()) {
       throw new Meteor.Error(404, 'Message does not exist');
     }
     

@@ -10,7 +10,7 @@ Meteor.methods({
     }
 
     // Check channel exists
-    if (!Channels.findOne({ _id: id })) {
+    if (!Channels.find(id).count()) {
       throw new Meteor.Error(404, 'Channel does not exist');
     }
 
@@ -28,7 +28,7 @@ Meteor.methods({
     }
 
     // Check channel exists
-    if (!Channels.findOne({ _id: id })) {
+    if (!Channels.find(id).count()) {
       throw new Meteor.Error(404, 'Channel does not exist');
     }
 
