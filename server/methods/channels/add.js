@@ -9,14 +9,14 @@ Meteor.methods({
     }
 
     // Check team exist
-    if (!Teams.findOne({ _id: teamId })) {
+    if (!Teams.find(teamId).count()) {
       throw new Meteor.Error(404, 'Team does not exist');
     }
 
     // Insert direct channel
     if (options && options.direct) {
       // Create the channel name like userId-userId
-      if (!Channels.findOne({ direct: true, teamId: teamId, allowedUsers: { $all: options.allowedUsers } })) {
+      if (!Channels.find({ direct: true, teamId: teamId, allowedUsers: { $all: options.allowedUsers } }).count()) {
         var directChannel = {
           direct: true,
           teamId: teamId,

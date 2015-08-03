@@ -3,9 +3,6 @@ Meteor.methods({
 
     check(channelId, String);
     check(messageId, String);
-
-    var channel = Channels.findOne(channelId),
-        message = Messages.findOne(messageId);
     
     // Check user authenticated
     if (!this.userId) {
@@ -13,12 +10,12 @@ Meteor.methods({
     }
 
     // Check channel exists
-    if (!channel) {
+    if (!Channels.find(channelId).count()) {
       throw new Meteor.Error(404, 'Channel does not exist');
     }
 
     // Check message exists
-    if (!message) {
+    if (!Messages.find(messageId).count()) {
       throw new Meteor.Error(404, 'Message does not exist');
     }
 
