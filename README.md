@@ -8,6 +8,34 @@ A lot of work has already gone into SpaceTalk, but it needs that final push to r
 
 So if you'd like to be part of the project, please check out the [roadmap](https://trello.com/b/R9Nh1V3t/spacetalk-roadmap) and [issues](https://github.com/SpaceTalk/SpaceTalk/issues) to see if there's anything you can help with.
 
+### Features
+
+#### Currently Implemented
+
+* Teams (group users into separate teams)
+* Channels (each group contains multiple channels)
+  * Remove/edit channels
+  * Pinned items
+  * Channel purpose (description) 
+* Users
+  * Gravatar for profile pictures
+  * Online status
+  * Self sign up 
+* Messages
+  * Emoji, Markdown support
+  * Edit & trash your own messages
+  * Direct Messaging between users
+  * Indication of user typing
+  * Rich embeds via https://iframely.com/
+
+#### On The Way
+
+* Pinned messages
+* Better notifications
+* Packages structure (for extensibility)
+* See the [roadmap](https://trello.com/b/R9Nh1V3t/spacetalk-roadmap) for more and get involved with bringing these features to life
+
+
 ### Prerequisites
 
 * [Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
