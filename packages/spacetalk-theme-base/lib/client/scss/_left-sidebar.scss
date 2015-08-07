@@ -1,12 +1,13 @@
 .left-sidebar {
   position: fixed;
   top: $top;
+  bottom: $top;
   width: $sidebar-width;
   background: $primary;
-  height: calc(100% - 53px);
   padding: $padding;
   box-sizing: border-box;
   z-index: 2;
+  overflow-y: auto;
   &, a {
     color: lighten($primary, 50%);
     text-decoration: none;

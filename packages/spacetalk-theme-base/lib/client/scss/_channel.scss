@@ -137,13 +137,24 @@
       font-weight: 400;
       font-family: Open Sans, sans-serif;
     }
-    .message-body:hover {
-      & .modify {
-        display: inline;
+
+    .space-message {
+      .user-avatar {
+        position: absolute;
       }
 
-      &:hover .cursor {
-        display: block;
+      &:hover {
+        .modify {
+          display: inline;
+        }
+
+        .pin {
+          display: inline !important;
+        }
+
+        &:hover .cursor {
+          display: block;
+        }
       }
     }
 
@@ -163,15 +174,11 @@
       }
     }
 
-    .message-body:hover .pin {
-      display: inline !important;
-    }
-
     .message-body {
       position: relative;
-      float: left;
       width: calc(100% - 70px);
       margin-top: 8px;
+      margin-left: 50px;
 
       .message {
         position: relative;
@@ -182,7 +189,6 @@
       }
 
       &.no-avatar .message {
-        margin-left: 50px;
         margin-top: 0;
       }
 

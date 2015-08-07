@@ -10,6 +10,7 @@
   box-sizing: border-box;
   z-index: 4;
   top: 0;
+  overflow-y: scroll;
   height: 100%;
   transition: right 100ms ease-in-out;
   transition: margin-right 100ms ease-out-in;
