@@ -1,0 +1,28 @@
+.contributor {
+
+  &-overview {
+    @extend %grid;
+
+    &-item {
+      @extend %grid-cell;
+      width: grid-span(3);
+      padding: 10px 0;
+
+      &-name {
+        display: block;
+        overflow: hidden;
+        width: 100%;
+        font-size: 26px;
+        line-height: 30px;
+        color: white;
+        text-overflow: ellipsis;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+
+  }
+
+}

@@ -30,7 +30,8 @@ Package.onUse(function(api) {
 
   api.addFiles([
     'lib/client/utilities/currentTeam.js',
-    'lib/client/helpers/currentTeam.js'
+    'lib/client/helpers/currentTeam.js',
+    'lib/client/views/team-home.html'
   ], 'client');
 
   api.export([

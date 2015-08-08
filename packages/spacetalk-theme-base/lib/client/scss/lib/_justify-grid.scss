@@ -1,0 +1,65 @@
+$columns: 12 !default;
+$column-width: 4em !default;
+$gutter-width: 2.5em !default;
+$support-old-ie: false !default;
+
+%grid {
+  text-align: justify !important;
+  text-justify: distribute-all-lines;
+  font-size: 0 !important;
+
+  & > * {
+    text-align: left;
+    font-size: medium;
+  }
+
+  &:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+  }
+
+  @if $support-old-ie {
+    .lt-ie8 & {
+      zoom: 1;
+    }
+  }
+}
+
+%grid-cell {
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+
+  @if $support-old-ie {
+    .lt-ie8 & {
+      display: inline;
+    }
+  }
+}
+
+@function grid-span($cols, $total: $columns) {
+  @return ($column-width * $cols  + $gutter-width * ($cols  - 1)) /
+          ($column-width * $total + $gutter-width * ($total - 1)) * 100%;
+}
+
+@function grid-xt($cols, $total: $columns) {
+  @return ($column-width + $gutter-width) * $cols /
+          ($column-width * $total + $gutter-width * ($total - 1)) * 100%;
+}
+
+@mixin grid-push($cols, $total: $columns) {
+  left: grid-xt($cols, $total);
+}
+
+@mixin grid-pull($cols, $total: $columns) {
+  left: grid-xt(-$cols, $total);
+}
+
+@mixin grid-prepend($cols, $total: $columns) {
+  margin-left: grid-xt($cols, $total);
+}
+
+@mixin grid-append($cols, $total: $columns) {
+  margin-right: grid-xt($cols, $total);
+}

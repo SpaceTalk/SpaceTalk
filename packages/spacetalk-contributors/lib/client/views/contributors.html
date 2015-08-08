@@ -1,0 +1,17 @@
+<template name="contributors">
+  {{#header}}
+    <h1>Contributors</h1>
+  {{/header}}
+  {{#content}}
+    <div class="contributor-overview">
+      {{#each contributors}}
+      <div class="contributor-overview-item">
+        <img src="{{avatarUrl}}" alt="{{name}}"/>
+        <div class="contributor-overview-item-name">
+          {{name}}
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  {{/content}}
+</template>

@@ -13,6 +13,7 @@ Package.onUse(function(api) {
 
   api.addFiles(
     [
+      // Scss
       'lib/client/scss/_accounts.scss',
       'lib/client/scss/_channel-info.scss',
       'lib/client/scss/_channel.scss',
@@ -25,7 +26,19 @@ Package.onUse(function(api) {
       'lib/client/scss/_sweetalert-override.scss',
       'lib/client/scss/_user.scss',
       'lib/client/scss/_vars.scss',
-      'lib/client/scss/main.scss'
+      'lib/client/scss/lib/_justify-grid.scss',
+      'lib/client/scss/_contributor.scss',
+      'lib/client/scss/main.scss',
+      // Views
+      'lib/client/views/not-found.html',
+      // Layouts
+      'lib/client/layouts/default-layout.html',
+      'lib/client/layouts/team-layout.html',
+      'lib/client/layouts/block-helpers/header.html',
+      'lib/client/layouts/block-helpers/footer.html',
+      'lib/client/layouts/block-helpers/content.html',
+      // Assets
+      'lib/client/img/logo.png'
     ],
     'client'
   );

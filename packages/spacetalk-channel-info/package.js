@@ -16,6 +16,10 @@ Package.onUse(function(api) {
   api.addFiles([
     // Channel info
     'lib/client/views/channel-info/channel-info.html',
-    'lib/client/views/channel-info/channel-info.js'
+    'lib/client/views/channel-info/channel-info.js',
+    'lib/client/views/pinned-messages/pinned-messages.html',
+    'lib/client/views/pinned-messages/pinned-messages.js',
+    'lib/client/views/pinned-messages/pinned-message.html',
+    'lib/client/views/pinned-messages/pinned-message.js'
     ], 'client');
 });

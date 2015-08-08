@@ -21,4 +21,4 @@ PinnedMessage = BlazeComponent.extendComponent({
     }
   }
 
-}).register('_pinnedMessage');
+}).register('pinnedMessage');
