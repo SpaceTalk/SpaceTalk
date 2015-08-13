@@ -6,7 +6,7 @@ ChannelInfoPinnedMessages = BlazeComponent.extendComponent({
     var self = this;
 
     this.autorun(function () {
-      if(App.channelInfo.pinnedMessages.isOpen.get()) {
+      if(SpaceTalk.channelInfo.pinnedMessages.isOpen.get()) {
         self.open();
       } else {
         self.close();
@@ -29,7 +29,7 @@ ChannelInfoPinnedMessages = BlazeComponent.extendComponent({
   pinnedMessages: function () {
     if (currentChannel().pinnedMessageIds) {
       return Messages.find({
-        _id: { $in: currentChannel().pinnedMessageIds } 
+        _id: { $in: currentChannel().pinnedMessageIds }
       });
     }
   },
@@ -40,7 +40,7 @@ ChannelInfoPinnedMessages = BlazeComponent.extendComponent({
       'change input[type="checkbox"]': function (event) {
         console.log(event.target);
         console.log($(event.target).prop('checked'));
-        App.channelInfo.pinnedMessages.isOpen.set(!$(event.target).prop('checked'));
+        SpaceTalk.channelInfo.pinnedMessages.isOpen.set(!$(event.target).prop('checked'));
       }
 
     }

@@ -52,6 +52,7 @@ Package.onUse(function(api) {
     'useraccounts:unstyled@1.8.1',
     'webapp@1.2.0',
     'webapp-hashing@1.0.3',
+    'ogourment:settings',
     'spacetalk:spacechat@0.1.0'
   ];
 
@@ -60,6 +61,9 @@ Package.onUse(function(api) {
   api.imply(packages);
 
   api.addFiles([
-    'lib/moment.js'
+    'lib/moment.js',
+    'lib/start.js'
   ], ['client', 'server']);
+
+  api.export(['SpaceTalk']);
 });

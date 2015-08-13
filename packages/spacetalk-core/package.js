@@ -28,7 +28,8 @@ Package.onUse(function(api) {
     'spacetalk:linkify@0.1.0', //  no dependencies
     'spacetalk:channel-info@0.1.0', //  no dependencies
     'spacetalk:sidebar@0.1.0', //  no dependencies
-    'spacetalk:contributors@0.1.0'
+    'spacetalk:contributors@0.1.0',
+    'spacetalk:home@0.1.0'
   ];
 
   api.use(packages);

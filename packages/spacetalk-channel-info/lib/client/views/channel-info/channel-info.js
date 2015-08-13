@@ -10,7 +10,7 @@ ChannelInfo = BlazeComponent.extendComponent({
     self.$channelContent = $('.channel-content');
 
     this.autorun(function () {
-      if (App.channelInfo.isVisible.get()) {
+      if (SpaceTalk.channelInfo.isVisible.get()) {
         self.show();
       } else {
         self.hide();

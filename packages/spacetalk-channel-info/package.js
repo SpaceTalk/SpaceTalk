@@ -15,6 +15,7 @@ Package.onUse(function(api) {
 
   api.addFiles([
     // Channel info
+    'lib/client/channel-info.js',
     'lib/client/views/channel-info/channel-info.html',
     'lib/client/views/channel-info/channel-info.js',
     'lib/client/views/pinned-messages/pinned-messages.html',

@@ -32,6 +32,4 @@ Package.onUse(function(api) {
     'lib/server/methods/project-contributors/update.js',
     'lib/server/publications/project-contributors.js'
   ], 'server');
-
-  api.export(['SpaceTalk']);
 });

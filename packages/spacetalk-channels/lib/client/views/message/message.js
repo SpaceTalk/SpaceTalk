@@ -146,8 +146,8 @@ Message = BlazeComponent.extendComponent({
                 type: 'error'
               });
             } else {
-              App.channelInfo.show();
-              App.channelInfo.pinnedMessages.open();
+              SpaceTalk.channelInfo.show();
+              SpaceTalk.channelInfo.pinnedMessages.open();
             }
           });
         },

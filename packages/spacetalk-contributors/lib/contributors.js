@@ -1,4 +1,3 @@
-SpaceTalk = {};
 SpaceTalk.Config = {};
 SpaceTalk.Config.githubRepo = "SpaceTalk/SpaceTalk";
 
