@@ -1,6 +1,6 @@
-SpaceTalk is an open-source chat app built with Meteor.
+SpaceTalk is an amazing open-source chat app built with Meteor.
 
-Note: SpaceTalk is beta software. Most of it should work but it's still a little unpolished and you'll probably find some bugs. Use at your own risk :)
+Note: SpaceTalk is beta software. Most of the things  work properly but it's still a little unpolished and you'll probably find some bugs in it. Use at your own risk :)
 
 ### We Need Your Help!
 
@@ -77,7 +77,7 @@ To update your clone do a pull:
 git pull upstream master
 ```
 
-Commit your changes to your fork, and create Pull Request with [github helper](https://github.com/SpaceTalk/SpaceTalk/compare/master...#)
+Commit your changes to your fork, and create Pull Request at [github.com](https://github.com/SpaceTalk/SpaceTalk/compare/master...#)
 
 ### Guidelines for reviewing Pull Requests
 
